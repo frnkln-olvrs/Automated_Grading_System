@@ -4,29 +4,27 @@
 	$title = 'Login';
 	include 'head.php';
 ?>
-<body>
+<body class="login">
   <main>
     <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-      <div class="login-page p4">
+      <div class="login-page p-4">
         <p class="text-center">
           <img src="./img/wmsu_logo.png" alt="wmsu-logo" class="img-fluid">
         </p>
-        <h1 class="h2 my-3 mb-4 text-center brand-color">MyWMSU</h1>
-        <form action="" method="post">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          </div>
-
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-            <a href="#" id="forgot-pass" class="form-text d-flex justify-content-end">Forgot your password?</a>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account?<a href="signup.php">Sign up</a></div>
-        </form>
+        <h1 class="fs-1 fw-bold my-3 mb-4 text-white text-center brand-color">MyWMSU</h1>
+        <form>
+            <div class="field">
+              <input type="text" name="email" required>
+              <label for="email">School ID</label>
+            </div>
+            <div class="field">
+              <input type="password" name="password" required>
+              <label for="password">Password</label>
+              <a href="#" id="forgot-pass" class="form-text d-flex justify-content-end">Forgot your password?</a>
+            </div>
+            <button type="submit" class="btn d-flex p-3 justify-content-center">Submit</button>
+            <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div>
+        </form>    
       </div>
     </div>
   </main>
