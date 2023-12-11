@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Signup';
+	$title = 'Login';
 	include 'head.php';
 ?>
 <body class="login">
@@ -14,15 +14,18 @@
         <h1 class="fs-1 fw-bold my-3 mb-4 text-white text-center brand-color">MyWMSU</h1>
         <form>
             <div class="field">
-              <input type="text" name="email" required>
-              <label for="email">School ID</label>
+              <i class='bx bxs-user'></i>
+              <input type="text" name="id" required>
+              <label for="id">School ID</label>
             </div>
             <div class="field">
+              <i class='bx bxs-lock-alt'></i>
               <input type="password" name="password" required>
               <label for="password">Password</label>
-              <a href="#" id="forgot-pass" class="form-text d-flex justify-content-end">Forgot your password?</a>
+              <div class="forgot-pass"></div>
             </div>
-            <button type="submit" class="btn d-flex p-3 justify-content-center">Submit</button>
+            <a href="#" id="forgot-pass" class="forgot-pass form-text d-flex justify-content-end">Forgot your password?</a>
+            <button type="submit" class="btn d-flex p-3 justify-content-center">LOGIN</button>
             <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div>
         </form>    
       </div>

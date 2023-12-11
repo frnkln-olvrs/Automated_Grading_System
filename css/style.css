@@ -21,7 +21,8 @@ html {
   scroll-behavior: smooth;
 }
 
-.login main {
+.login main,
+.signup main {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -35,25 +36,45 @@ html {
 
 .login-page {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
 }
 
-.login img.img-fluid {
-  height: 250px;
+.login img.img-fluid,
+.signup img.img-fluid{
+  height: 200px;
 }
 
-.login form .btn {
+.login form .btn,
+.signup form .btn {
   width: 100%;
   font-size: 17px;
   font-weight: 800;
   color: var(--primary-color);
   background-color: whitesmoke;
+  margin-top: 30px;
+}
+
+.login form .forgot-pass {
+  margin-top: -25px;
+}
+
+.login form {
+  font-size: 15px;
 }
 
 .login .field {
   position: relative;
   margin-bottom: 30px;
   color: whitesmoke;
+  display: flex;
+  align-items: center;
+  border-bottom: 2.5px solid whitesmoke;
+}
+
+.login .field .bx {
+  font-size: 30px;
+  padding: 10px 0;
+  padding-right: 10px;
 }
 
 .login .field input {
@@ -62,16 +83,15 @@ html {
   font-size: 16px;
   color: whitesmoke;
   border: none;
-  border-bottom: 2.5px solid whitesmoke;
   outline: none;
   background: transparent;
 }
 
 .login .field label {
   position: absolute;
-  top:0;
-  left: 0;
-  padding: 10px 0;
+  top: -5px;
+  left: 40px;
+  padding-top: 20px;
   font-size: 16px;
   font-weight: 700;
   color: white;
@@ -81,7 +101,7 @@ html {
 
 .login .field input:focus ~ label,
 .login .field input:valid ~ label {
-  top: -20px;
+  top: -30px;
   left: 0;
   color: whitesmoke;
   font-size: 12px;
@@ -96,4 +116,38 @@ html {
 .login div.form-text, 
 .login div a{
   color: whitesmoke;
+}
+
+.signup-page {
+  width: 100%;
+  max-width: 600px;
+}
+
+.signup form .field-box {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 15px;
+}
+
+.signup .field {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup .field label {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.signup .field input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: whitesmoke;
+  border: 3px solid whitesmoke;
+  background: transparent;
+  border-radius: 5px;
 }
