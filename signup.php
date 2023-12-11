@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Signup';
+	$title = 'Login';
 	include 'head.php';
 ?>
 <body class="login">
