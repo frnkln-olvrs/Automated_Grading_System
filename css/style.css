@@ -142,7 +142,8 @@ html {
   transition: .5s;
 }
 
-.signup .field input {
+.signup .field input,
+.signup .field select {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -150,4 +151,15 @@ html {
   border: 3px solid whitesmoke;
   background: transparent;
   border-radius: 5px;
+}
+
+.signup .field select option {
+  color: var(--primary-color);
+}
+
+
+.signup .form-text,
+.signup .form-text a {
+  color: whitesmoke;
+  font-size: 15px;
 }
