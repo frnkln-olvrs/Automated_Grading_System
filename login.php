@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 	$title = 'Login';
-	include 'head.php';
+  include_once './includes/head.php'
 ?>
 <body class="login">
   <main>

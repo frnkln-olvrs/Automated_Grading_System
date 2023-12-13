@@ -15,7 +15,6 @@
 }
 
 html {
-  font-size: 62.5%;
   overflow-x: hidden;
   scroll-padding-top: 9rem;
   scroll-behavior: smooth;
@@ -162,4 +161,9 @@ html {
 .signup .form-text a {
   color: whitesmoke;
   font-size: 15px;
+}
+
+body .navigation {
+  display: grid; 
+  grid-template-columns: 280px auto;
 }
