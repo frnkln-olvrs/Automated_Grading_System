@@ -165,9 +165,30 @@ html {
 
 body .navigation {
   display: grid; 
-  grid-template-columns: 280px auto;
+  grid-template-columns: 250px auto;
+  transition: .1s linear;
+}
+
+body .navigation.collapse {
+  display: grid; 
+  grid-template-columns: 90px auto;
+}
+
+body .navigation.collapse .side span {
+  display: none;
 }
 
 .navigation .side .nav-item .nav-link.active {
   background-color: var(--primary-color);
+}
+
+main .title_page {
+  color: var(--primary-color);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: start;
+  gap: 5px;
 }
