@@ -5,7 +5,7 @@
 	include './includes/head.php';
 ?>
 <body>
-  <div class="navigation sticky-top">
+  <div class="home">
     <div class="side">
       <?php
         require_once('./includes/sidepanel.php')
@@ -19,11 +19,11 @@
       </div>
       
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
-        <nav class="d-none d-md-block">
+        <div class="d-none d-md-block">
           <div class="container-fluid d-flex justify-content-center">
             <span class="fs-2 h1 m-0">Subject Assigned</span>
           </div>
-        </nav>
+        </div>
       </div>
 
       <div class="m-4">
@@ -34,35 +34,65 @@
           <p>Release Time: <span>Release Time</span></p>
         </div>
 
-        <div class="content border rounded shadow p-3">
+        <div class="content container-fluid mw-100 border rounded shadow p-3">
           <div class="d-flex flex-column align-items-center">
             <h3>S.Y 2023 - 2024</h3>
             <h4>First Semester</h4>
           </div>
 
-          <table id="example" class="table table-striped" style="width:100%">
+          <table id="home_table" class="table table-striped" style="width:100%">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Subject</th> <!--Code & Description-->
-                <th>Subject ID</th>
-                <th>Prerequisite</th>
-                <th>Year/ Section</th>
-                <th># of Students</th>
-                <th>Room</th>
-                <th>Schedules</th>
-                <th>units</th>
+                <th rowspan="2">#</th>
+                <th rowspan="2">Subject</th> <!-- Code & Description -->
+                <th rowspan="2">Subject ID</th>
+                <th rowspan="2">Prerequisite</th>
+                <th rowspan="2">Year/ Section</th>
+                <th rowspan="2"># of Students</th>
+                <th colspan="2">Room</th>
+                <th colspan="2">Schedules</th>
+                <th colspan="3">Units</th>
+              </tr>
+              <tr>
+                <th>Lecture</th>
+                <th>Laboratory</th>
+                <th>Lecture</th>
+                <th>Laboratory</th>
+                <th>Lec</th>
+                <th>Lab</th>
+                <th>Total</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>count</td>
-                <td><a href="#">CS</a></td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
+                <td>1</td>
+                <td><a href="#">CS137 - Software Engineering 1</a></td>
+                <td>BSCS123456</td>
+                <td>CS121, CS104</td>
+                <td>BSCS 3B</td>
+                <td>36</td>
+                <td>lr1</td>
+                <td>lab1</td>
+                <td>MWF - 10:00-12:00</td>
+                <td>TTH - 1:00-4:00</td>
+                <td>2</td>
+                <td>3</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><a href="#">CS140 - CS Elective 2</a></td>
+                <td>BSCS654321</td>
+                <td>CS128</td>
+                <td>BSCS 3B</td>
+                <td>23</td>
+                <td>lr4</td>
+                <td>lab2</td>
+                <td>MWF - 10:00-12:00</td>
+                <td>TTH - 1:00-4:00</td>
+                <td>2</td>
+                <td>3</td>
+                <td>5</td>
               </tr>
             </tbody>
           </table>

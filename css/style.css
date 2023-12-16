@@ -163,22 +163,22 @@ html {
   font-size: 15px;
 }
 
-body .navigation {
+body .home {
   display: grid; 
-  grid-template-columns: 250px auto;
+  grid-template-columns: 20vw 80vw;
   transition: .1s linear;
 }
 
-body .navigation.collapse {
+body .home.collapse {
   display: grid; 
-  grid-template-columns: 90px auto;
+  grid-template-columns: 9vw 91vw;
 }
 
-body .navigation.collapse .side span {
+body .home.collapse .side span {
   display: none;
 }
 
-.navigation .side .nav-item .nav-link.active {
+.home .side .nav-item .nav-link.active {
   background-color: var(--primary-color);
 }
 
@@ -191,4 +191,10 @@ main .title_page {
   grid-template-columns: auto auto;
   justify-items: start;
   gap: 5px;
+}
+
+.home .row.dt-row .col-sm-12 {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
 }
