@@ -194,7 +194,7 @@ main .title_page {
 }
 
 .home .row.dt-row .col-sm-12 {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
 }

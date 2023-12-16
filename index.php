@@ -35,10 +35,34 @@
         </div>
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
+          <div class="row mb-4">
+            <div class="form-group col-6">
+              <button type="button" class="btn border dropdown-toggle form-select" data-bs-toggle="dropdown">
+                School Year
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">2021 - 2022</a></li>
+                <li><a class="dropdown-item" href="#">2022 - 2023</a></li>
+                <li><a class="dropdown-item" href="#">2023 - 2024</a></li>
+              </ul>
+            </div>
+            
+            <div class="form-group col-6">
+              <button type="button" class="btn border dropdown-toggle form-select" data-bs-toggle="dropdown">
+                Semester
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Midterm</a></li>
+                <li><a class="dropdown-item" href="#">Finalterm</a></li>
+              </ul>
+            </div>
+          </div>
+
           <div class="d-flex flex-column align-items-center">
             <h3>S.Y 2023 - 2024</h3>
             <h4>First Semester</h4>
           </div>
+          
 
           <table id="home_table" class="table table-striped" style="width:100%">
             <thead>
