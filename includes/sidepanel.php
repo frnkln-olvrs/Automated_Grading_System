@@ -6,25 +6,25 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link d-flex align-items-center mb-2 active" aria-current="page">
+        <a href="./index.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $home_page ?>" aria-current="page">
           <i class='bx bx-home-alt-2 fs-3'></i>
           <span class="fs-5 ms-2">Home</span>
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark d-flex align-items-center mb-2">
+        <a href="./students.php" class="nav-link link-dark d-flex align-items-center mb-2 <?= $student_page ?>">
           <i class='bx bx-user fs-3'></i>
           <span class="fs-5 ms-2">Students</span>
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark d-flex align-items-center mb-2">
+        <a href="#" class="nav-link link-dark d-flex align-items-center mb-2  <?= $grade_page ?>">
           <i class='bx bx-clipboard fs-3'></i>
           <span class="fs-5 ms-2">Grade Students</span>          
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark d-flex align-items-center mb-2">
+        <a href="#" class="nav-link link-dark d-flex align-items-center mb-2  <?= $sub_setting_page ?>">
           <i class='bx bx-cog fs-3'></i>
           <span class="fs-5 ms-2">Subject Settings</span>          
         </a>

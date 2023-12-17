@@ -178,6 +178,15 @@ body .home.collapse .side span {
   display: none;
 }
 
+body .home.collapse .side ul li {
+  display: flex;
+  justify-content: center;
+}
+
+body .home.collapse .side img {
+  margin: 0 !important;
+}
+
 .home .side .nav-item .nav-link.active {
   background-color: var(--primary-color);
 }

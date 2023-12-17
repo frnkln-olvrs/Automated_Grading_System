@@ -20,4 +20,5 @@
   <!-- datatables -->
   <link href="./vendor/dataTable-1.13.6/datatables.min.css" rel="stylesheet">
   <script src="./vendor/dataTable-1.13.6/datatables.min.js"></script>
+
 </head>

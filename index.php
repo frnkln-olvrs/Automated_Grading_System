@@ -2,6 +2,7 @@
 <html lang="en">
 <?php 
 	$title = 'Home';
+  $home_page = 'active';
 	include './includes/head.php';
 ?>
 <body>
@@ -36,8 +37,8 @@
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
           <div class="row mb-4">
-            <div class="form-group col-6">
-              <button type="button" class="btn border dropdown-toggle form-select" data-bs-toggle="dropdown">
+            <div class="col-6">
+              <button type="button" class="btn border border-danger dropdown-toggle form-select" data-bs-toggle="dropdown">
                 School Year
               </button>
               <ul class="dropdown-menu">
@@ -47,8 +48,8 @@
               </ul>
             </div>
             
-            <div class="form-group col-6">
-              <button type="button" class="btn border dropdown-toggle form-select" data-bs-toggle="dropdown">
+            <div class="col-6">
+              <button type="button" class="btn border border-danger dropdown-toggle form-select" data-bs-toggle="dropdown">
                 Semester
               </button>
               <ul class="dropdown-menu">
@@ -64,7 +65,7 @@
           </div>
           
 
-          <table id="home_table" class="table table-striped" style="width:100%">
+          <table id="home_table" class="table table-striped" style="width:125%">
             <thead>
               <tr>
                 <th rowspan="2">#</th>
@@ -108,15 +109,15 @@
                 <td><a href="#">CS140 - CS Elective 2</a></td>
                 <td>BSCS654321</td>
                 <td>CS128</td>
-                <td>BSCS 3B</td>
+                <td>BSCS 3A</td>
                 <td>23</td>
                 <td>lr4</td>
                 <td>lab2</td>
-                <td>MWF - 10:00-12:00</td>
-                <td>TTH - 1:00-4:00</td>
-                <td>2</td>
+                <td>MWTH - 7:00-8:30</td>
+                <td>TFS - 2:00-5:00</td>
                 <td>3</td>
-                <td>5</td>
+                <td>4</td>
+                <td>7</td>
               </tr>
             </tbody>
           </table>
@@ -128,6 +129,7 @@
   </div>
 
   <script src="./js/main.js"></script>
+  <script src="./js/index_table.js"></script>
   
 </body>
 </html>
