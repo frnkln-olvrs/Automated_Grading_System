@@ -163,15 +163,17 @@ html {
   font-size: 15px;
 }
 
-body .home {
-  display: grid; 
-  grid-template-columns: 20vw 80vw;
+body .home main {
+  margin-left: 215px;
   transition: .1s linear;
 }
 
 body .home.collapse {
-  display: grid; 
-  grid-template-columns: 9vw 91vw;
+  display: block; 
+}
+
+body .home.collapse main {
+  margin-left: 92px;
 }
 
 body .home.collapse .side span {

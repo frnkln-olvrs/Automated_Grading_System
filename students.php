@@ -30,7 +30,15 @@
       <div class="m-4">
         <div class="table-responsive overflow-hidden">
           <div class="row g-2 mb-2 m-0">
-            
+            <div class="col-3">
+              <button type="button" class="btn border border-danger dropdown-toggle form-select" data-bs-toggle="dropdown">
+                Semester
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Midterm</a></li>
+                <li><a class="dropdown-item" href="#">Finalterm</a></li>
+              </ul>
+            </div>
             <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
               <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
               <div class="input-group">
