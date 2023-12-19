@@ -32,13 +32,40 @@
           <div class="row g-2 mb-2 m-0">
             <div class="col-3">
               <button type="button" class="btn border border-danger dropdown-toggle form-select" data-bs-toggle="dropdown">
-                Semester
+                Subject Code
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Midterm</a></li>
-                <li><a class="dropdown-item" href="#">Finalterm</a></li>
+                <li><a class="dropdown-item" href="#">CS140</a></li>
+                <li><a class="dropdown-item" href="#">CS137</a></li>
               </ul>
             </div>
+
+            <div class="col-3">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Import
+              </button>
+  
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">import file</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
               <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
               <div class="input-group">
