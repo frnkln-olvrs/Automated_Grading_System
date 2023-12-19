@@ -2,6 +2,11 @@
 
 :root {
   --primary-color: #952323;
+  --dark-color: rgb(6, 6, 6);
+}
+
+.bg-none {
+  background-color: #ffffff00;
 }
 
 .brand-color {

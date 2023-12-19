@@ -20,28 +20,26 @@
       </div>
       
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
-        <div class="d-none d-md-block">
+        <div class="d-flex align-items-center">
+          <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 h1 m-0">Students list</span>
+            <span class="fs-2 h1 m-0">Add Student</span>
           </div>
         </div>
       </div>
 
       <div class="m-4">
-        <div class="row">
-          <div class="col-4">
-            <button type="button" class="btn border border-danger dropdown-toggle form-select mb-4" data-bs-toggle="dropdown">
-              Subject Code
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">CS140</a></li>
-              <li><a class="dropdown-item" href="#">CS137</a></li>
-            </ul>
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4">
+          <div class="col">
+            <select type="button" class="btn border dropdown-toggle form-select border-danger mb-4" data-bs-toggle="dropdown">
+              <option>CS140</option>
+              <option>CS137</option>
+            </select>
           </div>
         </div>
         <form>
-          <div class="row">
-            <div class="col-6">
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
               <div class="mb-3">
                 <label for="lname" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="fname" aria-describedby="fname" >
@@ -56,7 +54,7 @@
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col">
               <div class="mb-3">
                 <label for="extension" class="form-label">Extension</label>
                 <select type="button" class="btn border dropdown-toggle form-select" data-bs-toggle="dropdown">
