@@ -42,7 +42,7 @@
 
             <div class="col-3">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <button type="button" class="btn brand-bg-color" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Import
               </button>
   
@@ -72,7 +72,7 @@
                 <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
                 <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
               </div>
-              <button class="btn btn-outline-secondary btn-add ms-3" type="button"><i class='bx bx-plus-circle'></i></button>
+              <button class="btn btn-outline-secondary btn-add ms-3" type="button"><a href="./add_student.php"><i class='bx bx-plus-circle brand-color'></i></a></button>
             </div>
           </div>
           <?php
