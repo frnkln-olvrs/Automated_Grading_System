@@ -20,49 +20,19 @@
       </div>
       
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
-        <div class="d-none d-md-block">
+        <div class="d-flex align-items-center">
+          <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 h1 m-0">Subject Assigned</span>
+            <span class="fs-2 h1 m-0 text-uppercase">midterm</span>
           </div>
         </div>
       </div>
 
       <div class="m-4">
-        <div class="details">
-          <p>Name: <span>lastname, firstname mi</span></p>
-          <p>Desgnation: <span>Desgnation</span></p>
-          <p>Academic Rank: <span>Academic Rank</span></p>
-          <p>Release Time: <span>Release Time</span></p>
-        </div>
+        <span class="fs-2 h1 m-0 fw-bold brand-color">CS 137</span>
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
-          <div class="row mb-4">
-            <div class="col-6">
-              <button type="button" class="btn border border-danger dropdown-toggle form-select" data-bs-toggle="dropdown">
-                School Year
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">2021 - 2022</a></li>
-                <li><a class="dropdown-item" href="#">2022 - 2023</a></li>
-                <li><a class="dropdown-item" href="#">2023 - 2024</a></li>
-              </ul>
-            </div>
-            
-            <div class="col-6">
-              <button type="button" class="btn border border-danger dropdown-toggle form-select" data-bs-toggle="dropdown">
-                Semester
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Midterm</a></li>
-                <li><a class="dropdown-item" href="#">Finalterm</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="d-flex flex-column align-items-center">
-            <h3>S.Y 2023 - 2024</h3>
-            <h4>First Semester</h4>
-          </div>
+          
           
 
           <table id="home_table" class="table table-striped" style="width:125%">
