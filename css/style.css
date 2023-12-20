@@ -13,14 +13,15 @@
   color: var(--primary-color) !important;
 }
 
-.brand-bg-color{
+.brand-bg-color {
   background-color: var(--primary-color) !important;
   color: whitesmoke !important;
   border: none;
+  transition: .1s linear;
 }
 
-.brand-bg-color:hover{
-  background-color: #F78CA2;
+.brand-bg-color:hover {
+  background-color: #7d1b1b !important;
   color: white;
 }
 
@@ -225,7 +226,14 @@ main .title_page {
 }
 
 .home .row.dt-row .col-sm-12 {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: auto;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.year_select {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-items: center;
+  row-gap: 25px;
 }

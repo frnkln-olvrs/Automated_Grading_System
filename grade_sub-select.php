@@ -21,6 +21,7 @@
       
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
         <div class="d-flex align-items-center">
+          <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
             <span class="fs-2 h1 m-0">Grade Posted</span>
           </div>
@@ -28,30 +29,44 @@
       </div>
 
       <div class="m-4">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4">
+          <div class="col">
+            <select type="button" class="btn border dropdown-toggle form-select border-danger mb-4" data-bs-toggle="dropdown">
+              <option>1st Semester</option>
+              <option>2nd Semester</option>
+            </select>
+          </div>
+        </div>
+
         <div class="year_select">
           <a href="#">
-            <div class="brand-bg-color p-4 fs-3 rounded">
-              <span>2018-2019</span>
+            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
+              <span>CS 137</span>
             </div>
           </a>
           <a href="#">
-            <div class="brand-bg-color p-4 fs-3 rounded">
-              <span>2019-2020</span>
+            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
+              <span>CS 139</span>
             </div>
           </a>
           <a href="#">
-            <div class="brand-bg-color p-4 fs-3 rounded">
-              <span>2020-2021</span>
+            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
+              <span>CS 140</span>
             </div>
           </a>
           <a href="#">
-            <div class="brand-bg-color p-4 fs-3 rounded">
-              <span>2021-2022</span>
+            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
+              <span>CS 131</span>
             </div>
           </a>
-          <a href="./grade_sub-select.php">
-            <div class="brand-bg-color p-4 fs-3 rounded">
-              <span>2022-2023</span>
+          <a href="#">
+            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
+              <span>CS 105</span>
+            </div>
+          </a>
+          <a href="#">
+            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
+              <span>CS 133</span>
             </div>
           </a>
         </div>
