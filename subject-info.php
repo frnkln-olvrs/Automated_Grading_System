@@ -140,36 +140,38 @@
               </tr>
             </thead>
             <tbody>
-              <td>1</td>
-              <td>2021-02334</td>
-              <td>Juan Gardo</td>
-              <td>juan@email.com</td>
-              <td>2</td>
-
-              <td>9</td>
-              <td>15</td>
-              <td>22</td>
-              <td>15.33</td>
-              <td>4.6</td>
-
-              <td>9</td>
-              <td>15</td>
-              <td>22</td>
-              <td>15.33</td>
-              <td>4.6</td>
-
-              <td>9</td>
-              <td>15</td>
-              <td>22</td>
-              <td>15.33</td>
-              <td>4.6</td>
-
-              <td>99</td>
-              <td>99.00</td>
-              <td>49.9</td>
-
-              <td>90</td>
-              <td>1.50</td>
+              <tr>
+                <td>1</td>
+                <td>2021-02334</td>
+                <td>Juan Gardo</td>
+                <td>juan@email.com</td>
+                <td>2</td>
+  
+                <td>9</td>
+                <td>15</td>
+                <td>22</td>
+                <td>15.33</td>
+                <td>4.6</td>
+  
+                <td>9</td>
+                <td>15</td>
+                <td>22</td>
+                <td>15.33</td>
+                <td>4.6</td>
+  
+                <td>9</td>
+                <td>15</td>
+                <td>22</td>
+                <td>15.33</td>
+                <td>4.6</td>
+  
+                <td>99</td>
+                <td>99.00</td>
+                <td>49.9</td>
+  
+                <td>90</td>
+                <td>1.50</td>
+              </tr>
             </tbody>
           </table>
 
