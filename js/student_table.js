@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  dataTable = $("#product").DataTable({
+  dataTable = $("#students").DataTable({
       dom: 'Brtp',
       responsive: true,
       fixedHeader: true,
@@ -49,14 +49,4 @@ $(document).ready(function(){
       
       return input;
   }
-
-  $('select#product-category').on('change', function(e){
-      var status = $(this).val();
-      dataTable.columns([3]).search(status).draw();
-  });
-
-  $('select#product-status').on('change', function(e){
-      var status = $(this).val();
-      dataTable.columns([4]).search(status).draw();
-  });
 })

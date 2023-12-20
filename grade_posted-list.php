@@ -29,54 +29,105 @@
       </div>
 
       <div class="m-4">
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4">
-          <div class="col">
-            <select type="button" class="btn border dropdown-toggle form-select border-danger mb-4" data-bs-toggle="dropdown">
-              <option>1st Semester</option>
-              <option>2nd Semester</option>
-            </select>
+        <div class="table-responsive overflow-hidden">
+          <div id="MyButtons" class="d-flex mb-2"></div>
+          <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
+            
+            <div class="form-group col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0 ms-lg-auto">
+              <select name="student-point_eqv" id="student-point_eqv" class="form-select me-md-2">
+                <option value="">Point Eqv.</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                
+              </select>
+            </div>
+
+            <div class="form-group mx-4 col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0">
+              <select name="student-remark" id="student-remark" class="form-select me-md-2">
+                <option value="">Remarks</option>
+                <option value="Passed">Passed</option>
+                <option value="Failed">Failed</option>
+              </select>
+            </div>
+            
+            <div class="input-group">
+              <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
+              <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+            </div>
           </div>
         </div>
-
-        <div class="year_select">
-          <a href="#">
-            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
-              <span>CS 137</span>
-            </div>
-          </a>
-          <a href="#">
-            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
-              <span>CS 139</span>
-            </div>
-          </a>
-          <a href="#">
-            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
-              <span>CS 140</span>
-            </div>
-          </a>
-          <a href="#">
-            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
-              <span>CS 131</span>
-            </div>
-          </a>
-          <a href="#">
-            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
-              <span>CS 105</span>
-            </div>
-          </a>
-          <a href="#">
-            <div class="brand-bg-color p-4 px-5 fs-3 rounded">
-              <span>CS 133</span>
-            </div>
-          </a>
-        </div>
+        <?php
+          $student_array = array(
+            array(
+              'Student ID' => '2021-00123',
+              'Student Name' => 'Burnt Pisa',
+              'Email' => 'example@email.com',
+              'Grade' => '90',
+              'Point Eqv' => '1.75',
+              'Remark' => 'Passed',
+            ),
+            array(
+              'Student ID' => '2021-04132',
+              'Student Name' => 'Juan Nuaj',
+              'Email' => 'juan@email.com',
+              'Grade' => '82',
+              'Point Eqv' => '2.50',
+              'Remark' => 'Passed',
+            ),
+            array(
+              'Student ID' => '2021-00003',
+              'Student Name' => 'joe Gardo',
+              'Email' => 'joe@email.com',
+              'Grade' => '100',
+              'Point Eqv' => '1',
+              'Remark' => 'Passed',
+            ),
+          );
+        ?>
+        <table id="Student_grade" class="table table-striped table-sm" style="width:100%">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Student ID</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Point Eqv.</th>
+              <th scope="col">Reamarks</th>
+              <th scope="col" width="5%">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              $counter = 1;
+              foreach ($student_array as $item){
+            ?>
+              <tr>
+                <td><?= $counter ?></td>
+                <td><?= $item['Student ID'] ?></td>
+                <td><?= $item['Student Name'] ?></td>
+                <td><?= $item['Email'] ?></td>
+                <td><?= $item['Grade'] ?></td>
+                <td><?= $item['Point Eqv'] ?></td>
+                <td><?= $item['Remark'] ?></td>
+                <td class="text-center">
+                  <i class='bx bx-trash-alt btn' ></i>
+                </td>
+              </tr>
+            <?php
+              $counter++;
+              }
+            ?>
+          </tbody>
+        </table>
       </div>
-
     </main>
   </div>
 
   <script src="./js/main.js"></script>
-  <script src="./js/student_table.js"></script>
+  <script src="./js/student_grade-table.js"></script>
   
 </body>
 </html>

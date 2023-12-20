@@ -39,7 +39,7 @@
         </div>
 
         <div class="year_select">
-          <a href="#">
+          <a href="./grade_posted-list.php">
             <div class="brand-bg-color p-4 px-5 fs-3 rounded">
               <span>CS 137</span>
             </div>
