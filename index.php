@@ -29,10 +29,10 @@
 
       <div class="m-4">
         <div class="details">
-          <p>Name: <span>lastname, firstname mi</span></p>
-          <p>Desgnation: <span>Desgnation</span></p>
-          <p>Academic Rank: <span>Academic Rank</span></p>
-          <p>Release Time: <span>Release Time</span></p>
+          <p class="fw-bolder">Name: <span class="fw-bold brand-color">lastname, firstname mi</span></p>
+          <p class="fw-bolder">Desgnation: <span class="fw-bold brand-color">Desgnation</span></p>
+          <p class="fw-bolder">Academic Rank: <span class="fw-bold brand-color">Academic Rank</span></p>
+          <p class="fw-bolder">Release Time: <span class="fw-bold brand-color">Release Time</span></p>
         </div>
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
