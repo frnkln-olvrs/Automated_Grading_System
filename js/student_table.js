@@ -4,15 +4,12 @@ $(document).ready(function(){
       responsive: true,
       fixedHeader: true,
       pageLength: 5,
-      buttons: {
-        buttons: [
-          { 
-            extend: 'excel', 
-            className: 'excelButton' 
-          },
-          
-        ]
-      },
+      buttons: [
+        {
+          extend: 'excel',
+          split: [ 'pdf', 'csv'],
+        }
+      ],
       'columnDefs': [ {
           'targets': [3,4,5,6,7], /* column index */
           'orderable': false, /* true or false */

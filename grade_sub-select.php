@@ -75,7 +75,9 @@
     </main>
   </div>
 
-  <script src="./js/main.js"></script>
+  <?php
+    require_once('./includes/js.php');
+  ?>
   <script src="./js/student_table.js"></script>
   
 </body>

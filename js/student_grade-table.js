@@ -4,14 +4,12 @@ $(document).ready(function(){
     responsive: true,
     fixedHeader: true,
     pageLength: 10,
-    buttons: {
-      buttons: [
-        {
-          extend: 'excel',
-          split: [ 'pdf'],
-        }
-      ]
-    },
+    buttons: [
+      {
+        extend: 'excel',
+        split: [ 'pdf', 'csv'],
+      }
+    ],
     'columnDefs': [ {
       'targets': [1,3,6,7], /* column index */
       'orderable': false, /* true or false */
@@ -59,3 +57,4 @@ $(document).ready(function(){
     dataTable.columns([6]).search(status).draw();
   });
 })
+

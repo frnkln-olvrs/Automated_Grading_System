@@ -95,7 +95,7 @@
               ),
             );
           ?>
-          <table id="students" class="table table-striped table-sm">
+          <table id="students" class="table table-striped table-sm" style="width:100%">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -138,7 +138,9 @@
     </main>
   </div>
 
-  <script src="./js/main.js"></script>
+  <?php
+    require_once('./includes/js.php');
+  ?>
   <script src="./js/student_table.js"></script>
   
 </body>
