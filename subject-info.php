@@ -76,7 +76,7 @@
               <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="./add_student.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./add_standard.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
 

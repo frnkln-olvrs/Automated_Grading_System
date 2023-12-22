@@ -230,10 +230,3 @@ main .title_page {
   overflow-x: auto;
   overflow-y: auto;
 }
-
-.year_select {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  justify-items: center;
-  row-gap: 25px;
-}
