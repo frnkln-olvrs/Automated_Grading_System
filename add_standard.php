@@ -31,7 +31,7 @@
       <div class="m-4">
         <div class="row row-cols-1 row-cols-md-2 g-3">
           <div class="col">
-            <a href="#">
+            <a href="./add_standard-form.php">
               <div class="brand-bg-color p-4 fs-3 rounded">
                 <span>Quiz</span>
               </div>

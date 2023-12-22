@@ -5,6 +5,16 @@
   --dark-color: rgb(6, 6, 6);
 }
 
+.color-black {
+  color: var(--dark-color);
+  transition: .1s linear;
+}
+
+.color-black:hover {
+  color: rgb(20, 20, 20) !important;
+  letter-spacing: 2px;
+} 
+
 .bg-none {
   background-color: #ffffff00;
 }
