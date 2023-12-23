@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Student list';
+	$title = 'Add Subject settings';
   $home_page = 'active';
 	include './includes/head.php';
 ?>
@@ -23,7 +23,7 @@
         <div class="d-flex align-items-center">
           <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 h1 m-0">Add Quiz</span>
+            <span class="fs-2 h1 m-0">Add Criteria</span>
           </div>
         </div>
       </div>
@@ -33,21 +33,17 @@
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date" aria-describedby="fname" >
+                <label for="criteria_name" class="form-label">Criteria Name</label>
+                <input type="text" class="form-control" id="criteria_name" aria-describedby="criteria_name" >
               </div>
               <div class="mb-3">
-                <label for="quiz_no" class="form-label">Quiz no.</label>
-                <input type="number" class="form-control" id="quiz_no" aria-describedby="fname">
-              </div>
-              <div class="mb-3">
-                <label for="quiz_quant" class="form-label">Quiz Items quantity</label>
-                <input type="number" class="form-control" id="quiz_quant" aria-describedby="fname">
+                <label for="criteria_weight" class="form-label">Weight</label>
+                <input type="number" class="form-control" id="criteria_weight" aria-describedby="criteria_weight">
               </div>
             </div>
           </div>
           <button onclick="history.back()" type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" class="btn brand-bg-color">Add</button>
+          <button type="submit" class="btn brand-bg-color">Save</button>
         </form>
       </div>
 

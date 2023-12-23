@@ -36,7 +36,7 @@
               <span class="fs-3 h1 m-0 brand-color">-Software Engineering 1</span>
             </div>
           </div>
-          <a href="#" class="col-2 color-black d-flex align-items-center justify-content-md-end justify-content-start mb-2">
+          <a href="./subject_setting.php" class="col-2 color-black d-flex align-items-center justify-content-md-end justify-content-start mb-2">
             <span>Settings</span>
             <i class='bx bx-cog fs-3 ms-1 brand-color'></i>
           </a>
