@@ -23,6 +23,10 @@
   color: var(--primary-color) !important;
 }
 
+.brand-border-color {
+  border: var(--primary-color) 2px solid !important;
+}
+
 .brand-bg-color {
   background-color: var(--primary-color) !important;
   color: whitesmoke !important;
@@ -33,6 +37,12 @@
 .brand-bg-color:hover {
   background-color: #7d1b1b !important;
   color: white;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--primary-color) !important;
+  color: whitesmoke !important;
+  border: none;
 }
 
 * {
