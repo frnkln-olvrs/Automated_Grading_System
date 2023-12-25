@@ -83,9 +83,9 @@
           <table id="subject-info" class="table table-striped" style="width:250%">
             <thead>
               <tr>
-                <th rowspan="5">#</th>
+                <th rowspan="5" class="align-middle">#</th>
                 <th rowspan="3">Subject ID</th>
-                <th rowspan="3">Subject Name</th>
+                <th rowspan="3">Name</th>
                 <th rowspan="3">Email</th>
                 <th rowspan="3">Attendance</th>
                 <th colspan="18">Standard</th>
@@ -107,7 +107,7 @@
           
                 <th>Oct. 14, 2023</th>
                 <th>Nov. 23, 2023</th>
-                <th>Dev. 1, 2023</th>
+                <th>Dec. 1, 2023</th>
                 <th rowspan="3">Ave</th>
                 <th rowspan="3">Weight</th>
 
@@ -160,7 +160,7 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td>2021-02334</td>
+                <td><a class="text-dark" href="./student_record.php">2021-02334</a></td>
                 <td>Juan Gardo</td>
                 <td>juan@email.com</td>
                 <td>2</td>
@@ -193,7 +193,7 @@
 
               <tr>
                 <td>2</td>
-                <td>2021-00150</td>
+                <td><a href="#">2021-00150</a></td>
                 <td>Franklin Oliveros</td>
                 <td>zxc@email.com</td>
                 <td>1</td>

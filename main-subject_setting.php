@@ -138,7 +138,7 @@
                   </tr>
                   <tr>
                     <td>Quiz</td>
-                    <td>20% </td>
+                    <td>2 0% </td>
                     <td class="text-center">
                       <a href="# "><i class='bx bx-edit' ></i></a>
                       <i class='bx bx-trash-alt' ></i>
