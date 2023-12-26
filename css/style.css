@@ -45,6 +45,14 @@
   border: none;
 }
 
+.dropdown-menu-left {
+  left: -78px !important;
+}
+
+header .dropdown-toggle::after {
+  display: none !important;
+}
+
 * {
   font-family: 'Roboto', sans-serif;
   margin: 0;
