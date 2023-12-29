@@ -37,7 +37,7 @@
             </select>
           </div>
         </div>
-        <form>
+        <form action="./students.php">
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="mb-3">

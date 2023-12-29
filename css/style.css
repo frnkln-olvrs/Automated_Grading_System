@@ -258,3 +258,9 @@ main .title_page {
   overflow-x: auto;
   overflow-y: auto;
 }
+
+#edit_att_req:hover,
+#edit_att_req2:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}

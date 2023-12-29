@@ -50,7 +50,8 @@
               <div class="row m-2 row-cols-1 row-cols-md-2 d-flex justify-content-between">
                 <form class="d-flex justify-content-start align-items-center">
                   <label class="me-2">Number of absences:</label>
-                  <input class="border-bottom" id="disabledTextInput" type="number">
+                  <input class="border-bottom px-2" id="disabledTextInput" type="number" title="3" disabled>
+                  <i class='bx bx-edit ms-2' id="edit_att_req"></i>
                 </form>
                 <div class="col-3 d-flex justify-content-end">
                   <a href="./add_standard-setting.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
@@ -109,7 +110,8 @@
               <div class="row m-2 row-cols-1 row-cols-md-2 d-flex justify-content-between">
                 <form class="d-flex justify-content-start align-items-center">
                   <label class="me-2">Number of absences:</label>
-                  <input class="border-bottom" id="disabledTextInput" type="number">
+                  <input class="border-bottom px-2" id="disabledTextInput2" type="number" title="3" disabled>
+                  <i class='bx bx-edit ms-2' id="edit_att_req2"></i>
                 </form>
                 <div class="col-3 d-flex justify-content-end">
                   <a href="./add_standard-setting.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>

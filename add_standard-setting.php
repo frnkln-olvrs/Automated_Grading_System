@@ -29,7 +29,7 @@
       </div>
 
       <div class="m-5 py-3">
-        <form>
+        <form action="/main-subject_setting.php">
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="mb-3">

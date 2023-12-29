@@ -122,8 +122,8 @@
                   <td><?= $item['Student ID'] ?></td>
                   <td><?= $item['Email'] ?></td>
                   <td class="text-center">
-                    <a href="# "><i class='bx bx-edit' ></i></a>
-                    <i class='bx bx-trash-alt' ></i>
+                    <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                    <i class='bx bx-trash-alt text-danger' ></i>
                   </td>
                 </tr>
               <?php

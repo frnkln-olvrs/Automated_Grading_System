@@ -91,7 +91,7 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td><a href="./subject-info.php">CS137 - Software Engineering 1</a></td>
+                <td><a href="./subject-info.php" class="brand-color">CS137 - Software Engineering 1</a></td>
                 <td>BSCS123456</td>
                 <td>CS121, CS104</td>
                 <td>BSCS 3B</td>
@@ -106,7 +106,7 @@
               </tr>
               <tr>
                 <td>2</td>
-                <td><a href="#">CS140 - CS Elective 2</a></td>
+                <td><a href="#" class="brand-color">CS140 - CS Elective 2</a></td>
                 <td>BSCS654321</td>
                 <td>CS128</td>
                 <td>BSCS 3A</td>
