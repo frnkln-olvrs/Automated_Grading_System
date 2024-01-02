@@ -74,32 +74,32 @@
                     <td>Attendance</td>
                     <td>5% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                   <tr>
                     <td>Quiz</td>
                     <td>30% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                   <tr>
                     <td>Activity</td>
                     <td>15% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                   <tr>
                     <td>Major Exam</td>
                     <td>50% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                 </tbody>
@@ -134,32 +134,32 @@
                     <td>Attendance</td>
                     <td>10% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                   <tr>
                     <td>Quiz</td>
-                    <td>2 0% </td>
+                    <td>20% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                   <tr>
                     <td>Activity</td>
                     <td>20% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                   <tr>
                     <td>Major Exam</td>
                     <td>50% </td>
                     <td class="text-center">
-                      <a href="# "><i class='bx bx-edit' ></i></a>
-                      <i class='bx bx-trash-alt' ></i>
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
                     </td>
                   </tr>
                 </tbody>

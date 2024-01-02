@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end border-dark position-fixed" style="max-width: 215px; height: 100%; background-color: #EDEDED;">
-  <a href="./inndex.php" class="d-flex align-items-center justify-content-center mb-md-0 link-dark text-decoration-none">
+  <a href="./index.php" class="d-flex align-items-center justify-content-center mb-md-0 link-dark text-decoration-none">
     <img src="./img/wmsu_logo.png" class="me-2" alt="" width="50px" height="50px">
     <span class="fs-2 h1 m-0">WMSU</span>
   </a>

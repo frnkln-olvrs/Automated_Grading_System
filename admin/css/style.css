@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+:root {
+  --primary-color: #952323;
+  --dark-color: rgb(6, 6, 6);
+}
+
+.color-black {
+  color: var(--dark-color);
+  transition: .1s linear;
+}
+
+.color-black:hover {
+  color: rgb(20, 20, 20) !important;
+  letter-spacing: 2px;
+} 
+
+.bg-none {
+  background-color: #ffffff00;
+}
+
+.brand-color {
+  color: var(--primary-color) !important;
+}
+
+.brand-border-color {
+  border: var(--primary-color) 2px solid !important;
+}
+
+.brand-bg-color {
+  background-color: var(--primary-color) !important;
+  color: whitesmoke !important;
+  border: none;
+  transition: .1s linear;
+}
+
+.brand-bg-color:hover {
+  background-color: #7d1b1b !important;
+  color: white;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--primary-color) !important;
+  color: whitesmoke !important;
+  border: none;
+}
+
+.dropdown-menu-left {
+  left: -78px !important;
+}
+
+header .dropdown-toggle::after {
+  display: none !important;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none !important; 
+  transition: .1s linear;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+body .home main {
+  margin-left: 215px;
+  transition: .1s linear;
+}
+
+body .home.collapse {
+  display: block; 
+}
+
+body .home.collapse main {
+  margin-left: 92px;
+}
+
+body .home.collapse .side span {
+  display: none;
+}
+
+body .home.collapse .side ul li {
+  display: flex;
+  justify-content: center;
+}
+
+body .home.collapse .side img {
+  margin: 0 !important;
+}
+
+.home .side .nav-item .nav-link.active {
+  background-color: var(--primary-color);
+}
+
+header .dropdown-menu.text-small.shadow.show {
+  left: -135px !important;
+}
+
+.curriculum .bx {
+  font-size: 75px;
+  opacity: 0.5;
+}

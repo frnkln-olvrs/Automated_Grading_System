@@ -102,24 +102,24 @@
                 <th>Aug. 9, 2023</th>
                 <th>Sep. 10, 2023</th>
                 <th>Oct. 14, 2023</th>
-                <th rowspan="3">Ave</th>
-                <th rowspan="3">Weight</th>
+                <th rowspan="3" class="align-middle">Ave</th>
+                <th rowspan="3" class="align-middle">Weight</th>
           
                 <th>Oct. 14, 2023</th>
                 <th>Nov. 23, 2023</th>
                 <th>Dec. 1, 2023</th>
-                <th rowspan="3">Ave</th>
-                <th rowspan="3">Weight</th>
+                <th rowspan="3" class="align-middle">Ave</th>
+                <th rowspan="3" class="align-middle">Weight</th>
 
                 <th>Jun. 8, 2023</th>
                 <th>Sep. 20, 2023</th>
                 <th>Oct. 2, 2023</th>
-                <th rowspan="3">Ave</th>
-                <th rowspan="3">Weight</th>
+                <th rowspan="3" class="align-middle">Ave</th>
+                <th rowspan="3" class="align-middle">Weight</th>
 
                 <th>dec. 10, 2023</th>
-                <th rowspan="3">Ave</th>
-                <th rowspan="3">Weight</th>
+                <th rowspan="3" class="align-middle">Ave</th>
+                <th rowspan="3" class="align-middle">Weight</th>
               </tr>
               <tr>
                 <th rowspan="2">2021-00000</th>
@@ -191,38 +191,41 @@
                 <td>2.50</td>
               </tr>
 
-              <tr>
-                <td>2</td>
-                <td><a href="#">2021-00150</a></td>
-                <td>Franklin Oliveros</td>
-                <td>zxc@email.com</td>
-                <td>1</td>
-  
-                <td>10</td>
-                <td>19</td>
-                <td>29</td>
-                <td>19.33</td>
-                <td>5.6</td>
-  
-                <td>9</td>
-                <td>15</td>
-                <td>22</td>
-                <td>15.33</td>
-                <td>4.6</td>
-  
-                <td>10</td>
-                <td>20</td>
-                <td>30</td>
-                <td>20</td>
-                <td>1</td>
-  
-                <td>99</td>
-                <td>99.00</td>
-                <td>49.9</td>
-  
-                <td>90</td>
-                <td>1.50</td>
-              </tr>
+              <a href="#">
+
+                <tr>
+                  <td>2</td>
+                  <td><a href="#">2021-00150</a></td>
+                  <td>Franklin Oliveros</td>
+                  <td>zxc@email.com</td>
+                  <td>1</td>
+    
+                  <td>10</td>
+                  <td>19</td>
+                  <td>29</td>
+                  <td>19.33</td>
+                  <td>5.6</td>
+    
+                  <td>9</td>
+                  <td>15</td>
+                  <td>22</td>
+                  <td>15.33</td>
+                  <td>4.6</td>
+    
+                  <td>10</td>
+                  <td>20</td>
+                  <td>30</td>
+                  <td>20</td>
+                  <td>1</td>
+    
+                  <td>99</td>
+                  <td>99.00</td>
+                  <td>49.9</td>
+    
+                  <td>90</td>
+                  <td>1.50</td>
+                </tr>
+              </a>
             </tbody>
           </table>
 

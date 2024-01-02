@@ -61,6 +61,7 @@ header .dropdown-toggle::after {
   outline: none;
   border: none;
   text-decoration: none !important; 
+  transition: .1s linear;
 }
 
 html {
