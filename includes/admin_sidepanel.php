@@ -12,7 +12,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="./students.php" class="nav-link link-dark d-flex align-items-center mb-2 <?= $profiling_page ?>">
+      <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 <?= $profiling_page ?>">
         <i class='bx bxs-dashboard fs-4' ></i>
         <span class="fs-6 ms-2">Profiling</span>
       </a>
