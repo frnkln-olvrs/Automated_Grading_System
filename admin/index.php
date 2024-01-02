@@ -28,7 +28,13 @@
       </div>
 
       <div class="m-4">
-
+        <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-3">
+          <div class="input-group">
+            <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
+            <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+          </div>
+          <a href="./add_curri.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+        </div>
 
         <div class="curriculum row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
           <div class="col">    
@@ -92,7 +98,7 @@
           </div>
 
           <div class="col">    
-            <a href="#">
+            <a href="./course_select.php">
               <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bxs-folder-open opacity-50' ></i>
                 <div class="d-flex flex-column justify-content-start">
@@ -110,7 +116,6 @@
   </div>
 
   <script src="./js/main.js"></script>
-  <script src="./js/student_table.js"></script>
   
 </body>
 </html>

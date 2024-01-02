@@ -69,7 +69,7 @@
             <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
               <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
               <div class="input-group">
-                <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
+                <input type="text" name="keyword" id="keyword" placeholder="Search Student" class="form-control">
                 <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
               </div>
               <a href="./add_student.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>

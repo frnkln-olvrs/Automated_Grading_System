@@ -10,17 +10,17 @@
       <div class="navbar-collapse offcanvas-collapse">
         <ul class="navbar-nav me-auto d-flex align-items-center gap-2">
           <li class="nav-item dropdown">
-  <div class="dropdown">
-    <a class="nav-link dropdown-toggle px-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bx bx-bell fs-4" style="color: whitesmoke;"></i>
-    </a>
-    <ul class="dropdown-menu text-small shadow" aria-labelledby="navbarDropdown">
-      <li class="fs-6 fw-bold text-center">Notification</li>
-      <hr class="dropdown-divider">
-      <!-- Additional dropdown items go here -->
-    </ul>
-  </div>
-</li>
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle px-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-bell fs-4" style="color: whitesmoke;"></i>
+              </a>
+              <ul class="dropdown-menu text-small shadow" aria-labelledby="navbarDropdown">
+                <li class="fs-6 fw-bold text-center">Notification</li>
+                <hr class="dropdown-divider">
+                <!-- Additional dropdown items go here -->
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
