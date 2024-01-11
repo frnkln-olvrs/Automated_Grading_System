@@ -31,7 +31,7 @@
       <div class="m-4">
         <div class="curriculum row row-cols-1 row-cols-md-2 g-3">
           <div class="col">    
-            <a href="#">
+            <a href="./curri_page.php">
               <div class="d-flex align-items-center brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bx-clipboard me-3' ></i>
                 <div class="d-flex flex-column justify-content-start">

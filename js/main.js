@@ -1,8 +1,11 @@
 let navigation = document.querySelector('.home');
 
-document.querySelector('#collapse-side').onclick = () => {
-  navigation.classList.toggle('collapse');
-}
+// document.querySelector('#collapse-side').onclick = () => {
+//   navigation.classList.toggle('collapse');
+// }
+
+$("#collapse-side").removeClass("collapse"); 
+$("#collapse-side").addClass("collapse");
 
 $("#edit_att_req").click(function(event){
   event.preventDefault();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Grade Posted';
+	$title = 'Profiling';
   $profiling_page = 'active';
 	include '../includes/admin_head.php';
 ?>
