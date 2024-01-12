@@ -66,11 +66,25 @@
           <?php
             $student_array = array(
               array(
-                'sub_code' => 'Burnt',
-                'sub_prequisite' => 'Pizza',
-                'lec' => 'Here',
-                'lab' => 'Extensd',
-                'total' => '2021-00123',
+                'sub_code' => 'CS137 - Software Engineering 1',
+                'sub_prequisite' => 'CS121, CS104',
+                'lec' => '2',
+                'lab' => '3',
+                'total' => '5',
+              ),
+              array(
+                'sub_code' => 'CS140 - CS Elective 2',
+                'sub_prequisite' => 'CS128',
+                'lec' => '3',
+                'lab' => '4',
+                'total' => '7',
+              ),
+              array(
+                'sub_code' => 'CS137 - Software Engineering 1',
+                'sub_prequisite' => 'CS121, CS104',
+                'lec' => '2',
+                'lab' => '3',
+                'total' => '5',
               ),
             );
           ?>
@@ -121,5 +135,6 @@
 
   <script src="./js/main.js"></script>
   <script src="./js/curriculum-table.js"></script>
+  
 </body>
 </html>
