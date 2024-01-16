@@ -60,7 +60,7 @@
               <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="#" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./curri_add_sub.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php
@@ -82,9 +82,9 @@
               array(
                 'sub_code' => 'CS137 - Software Engineering 1',
                 'sub_prequisite' => 'CS121, CS104',
-                'lec' => '2',
-                'lab' => '3',
-                'total' => '5',
+                'lec' => '1',
+                'lab' => '2',
+                'total' => '8',
               ),
             );
           ?>

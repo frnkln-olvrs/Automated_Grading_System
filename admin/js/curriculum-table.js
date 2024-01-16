@@ -5,10 +5,10 @@ $(document).ready(function(){
     fixedHeader: true,
     pageLength: 5,
     buttons: [
-    {
-      extend: 'excel',
-      split: [ 'pdf', 'csv'],
-    }
+      {
+        extend: 'excel',
+        split: [ 'pdf', 'csv'],
+      }
     ],
     'columnDefs': [ {
         'targets': [1,2,6], /* column index */
