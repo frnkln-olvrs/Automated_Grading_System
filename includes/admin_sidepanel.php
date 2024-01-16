@@ -6,17 +6,43 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="./index.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $curriculum_page ?>" aria-current="page">
+      <a href="./index.php" class="nav-link link-dark d-flex align-items-center mb-2 <?= $curriculum_page ?>" aria-current="page">
         <i class='bx bxs-graduation fs-4'></i>
         <span class="fs-6 ms-2">Curriculum</span>
       </a>
     </li>
+
     <li class="nav-item">
-      <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 <?= $profiling_page ?>">
-        <i class='bx bxs-dashboard fs-4' ></i>
-        <span class="fs-6 ms-2">Profiling</span>
-      </a>
+      <div class="btn-group d-flex flex-column">
+        <div class="link-grp d-flex justify-content-between">
+          <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 <?= $profiling_page ?>" type="button">
+            <i class='bx bxs-dashboard fs-4'></i>
+            <span class="fs-6 ms-2">Profiling</span>
+          </a>
+          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $profiling_page ?> " data-bs-toggle="collapse" data-bs-target="#profiling_toggle" aria-expanded="false">
+            <i class='bx bx-chevron-down'></i>
+          </button>
+        </div>
+
+        <div class="collapse" id="profiling_toggle" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="./profiling.php" class="link-dark nav-link <?= $profiling_page ?>">
+              <i class='bx bx-git-commit'></i>
+              <span class="fs-6 ms-2">Profiling</span>
+            </a></li>
+            <li><a href="#" class="link-dark nav-link <?= $comci_page ?>">
+              <i class='bx bx-git-commit'></i>
+              <span class="fs-6 ms-2">Department of Computer Science</span>
+            </a></li>
+            <li><a href="#" class="link-dark nav-link <?= $it_page ?>">
+              <i class='bx bx-git-commit'></i>
+              <span class="fs-6 ms-2">Department of Information Technology</span>
+            </a></li>
+          </ul>
+        </div>
+      </div>
     </li>
+
     <li class="nav-item">
       <a href="./grade_year-select.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $manage_page ?>">
         <i class='bx bx-user fs-4' ></i>
