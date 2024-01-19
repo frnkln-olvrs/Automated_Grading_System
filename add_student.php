@@ -72,8 +72,10 @@
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" class="btn brand-bg-color">Submit</button>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn brand-bg-color">Submit</button>
+          </div>
         </form>
       </div>
 

@@ -31,13 +31,27 @@
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
 
-          <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
-            <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
+          <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-4">
+            
+            <div class="form-group col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0 ms-lg-auto">
+              <select name="faculty-academic_rank" id="faculty-academic_rank" class="form-select me-md-2">
+                <option value="">Academic Rank</option>
+                <option value="#">?</option>
+              </select>
+            </div>
+
+            <div class="form-group mx-4 col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0">
+              <select name="faculty_type" id="faculty_type" class="form-select me-md-2">
+                <option value="">Faculty Type</option>
+                <option value="#">?</option>
+              </select>
+            </div>
+
             <div class="input-group">
               <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="./curri_add_sub.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./add_faculty.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php
@@ -100,6 +114,6 @@
   </div>
 
   <script src="./js/main.js"></script>
-  
+  <script src="./js/profiling_table.js"></script>
 </body>
 </html>
