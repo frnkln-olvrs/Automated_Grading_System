@@ -53,6 +53,11 @@ header .dropdown-toggle::after {
   display: none !important;
 }
 
+*:focus, *:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 * {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -107,4 +112,8 @@ header .dropdown-menu.text-small.shadow.show {
 .curriculum .bx {
   font-size: 75px;
   opacity: 0.5;
+}
+
+#main_profiling_wrapper button.btn.btn-secondary {
+  display: none;
 }

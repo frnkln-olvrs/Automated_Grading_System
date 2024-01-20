@@ -53,6 +53,12 @@ header .dropdown-toggle::after {
   display: none !important;
 }
 
+*:focus, *:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
 * {
   font-family: 'Roboto', sans-serif;
   margin: 0;

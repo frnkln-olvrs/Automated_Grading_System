@@ -3,7 +3,11 @@ $(document).ready(function(){
     dom: 'Brtp',
     responsive: true,
     pageLength: 10,
-    buttons: none,
+    buttons: [
+      {
+        remove: 'true',
+      }
+    ],
     'columnDefs': [ {
         'targets': [1,2,6], /* column index */
         'orderable': false, /* true or false */
@@ -38,4 +42,14 @@ $(document).ready(function(){
     
     return input;
   }
+
+  $('select#faculty-academic_rank').on('change', function(e){
+    var status = $(this).val();
+    dataTable.columns([3]).search(status).draw();
+  });
+
+  $('select#faculty_type').on('change', function(e){
+    var status = $(this).val();
+    dataTable.columns([5]).search(status).draw();
+  });
 })
