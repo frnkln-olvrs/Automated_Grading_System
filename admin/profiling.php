@@ -49,7 +49,7 @@
             </div>
 
             <div class="input-group">
-              <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
+              <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
             <a href="./add_faculty.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
