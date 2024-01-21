@@ -28,7 +28,30 @@
       </div>
 
       <div class="m-4">
-
+      <form action="./curri_page.php">
+          <div class="row row-cols-1">
+            <div class="container-fluid d-flex justify-content-start">
+              <span class="fs-2 fw-bold h1 m-0 brand-color mb-3">Change Password</span>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="current_pw" class="form-label">Current Password</label>
+                <input type="text" class="form-control" id="current_pw" aria-describedby="current_pw">
+              </div>
+              <div class="mb-3">
+                <label for="new_pw" class="form-label">New Password</label>
+                <input type="text" class="form-control" id="new_pw" aria-describedby="new_pw">
+              </div>
+              <div class="mb-3">
+                <label for="confirm_pw" class="form-label">Confirm Password</label>
+                <input type="text" class="form-control" id="confirm_pw" aria-describedby="confirm_pw">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn brand-bg-color">Change</button>
+          </div>
+        </form>
         
       </div>
 
