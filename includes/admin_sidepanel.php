@@ -57,11 +57,11 @@
 
         <div class="collapse" id="mnge_acc_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark nav-link <?= $acc_setup ?>">
+            <li><a href="./acc_setup.php" class="link-dark nav-link <?= $acc_setup ?>">
               <i class='bx bx-git-commit'></i>
               <span class="fs-6 ms-2">Account Setup</span>
             </a></li>
-            <li><a href="#" class="link-dark nav-link <?= $user_acc ?>">
+            <li><a href="./user_acc.php" class="link-dark nav-link <?= $user_acc ?>">
               <i class='bx bx-git-commit'></i>
               <span class="fs-6 ms-2">User Account</span>
             </a></li>
