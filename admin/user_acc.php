@@ -30,10 +30,10 @@
       <div class="m-4">
         <div class="content container-fluid mw-100 border rounded shadow p-3">
 
-          <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-2">
-
+          <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
+          <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
             <div class="input-group">
-              <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
+              <input type="text" name="keyword" id="keyword" placeholder="Search Student" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
           </div>
@@ -53,7 +53,7 @@
               ),
             );
           ?>
-          <table id="main_profiling" class="table table-striped table-sm" style="width:100%">
+          <table id="user_acc" class="table table-striped table-sm" style="width:100%">
             <thead>
               <tr>
                 <th>#</th>
@@ -100,6 +100,6 @@
   </div>
 
   <script src="./js/main.js"></script>
-  <script src="./js/profiling_table.js"></script>
+  <script src="./js/user_acc-table.js"></script>
 </body>
 </html>

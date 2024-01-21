@@ -114,6 +114,8 @@ header .dropdown-menu.text-small.shadow.show {
   opacity: 0.5;
 }
 
-#main_profiling_wrapper button.btn.btn-secondary {
+#main_profiling_wrapper button.btn.btn-secondary,
+#manage_acc_wrapper button.btn.btn-secondary,
+#acc_setup_wrapper button.btn.btn-secondary {
   display: none;
 }

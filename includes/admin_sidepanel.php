@@ -71,11 +71,32 @@
     </li>
 
     <li class="nav-item">
-      <a href="./main-subject_setting.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $faculty_page ?>">
-        <i class='bx bxs-user-circle fs-4' ></i>
-        <span class="fs-6 ms-2">Faculty</span>          
-      </a>
+      <div class="btn-group d-flex flex-column">
+        <div class="link-grp d-flex justify-content-between">
+          <a href="./faculty.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $faculty_page ?>">
+            <i class='bx bxs-user-circle fs-4' ></i>
+            <span class="fs-6 ms-2">Faculty</span>          
+          </a>
+          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $profiling_page ?> " data-bs-toggle="collapse" data-bs-target="#faculty_toggle" aria-expanded="false">
+            <i class='bx bx-chevron-down'></i>
+          </button>
+        </div>
+
+        <div class="collapse" id="faculty_toggle" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark nav-link <?= $comci_page ?>">
+              <i class='bx bx-git-commit'></i>
+              <span class="fs-6 ms-2">Department of Computer Science</span>
+            </a></li>
+            <li><a href="#" class="link-dark nav-link <?= $it_page ?>">
+              <i class='bx bx-git-commit'></i>
+              <span class="fs-6 ms-2">Department of Information Technology</span>
+            </a></li>
+          </ul>
+        </div>
+      </div>
     </li>
+
     <li class="nav-item">
       <a href="./main-subject_setting.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $grade_page ?>">
         <i class='bx bx-library fs-4'></i>

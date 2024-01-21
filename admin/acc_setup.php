@@ -52,7 +52,7 @@
               ),
             );
           ?>
-          <table id="main_profiling" class="table table-striped table-sm" style="width:100%">
+          <table id="acc_setup" class="table table-striped table-sm" style="width:100%">
             <thead>
               <tr>
                 <th>#</th>
@@ -102,6 +102,6 @@
   </div>
 
   <script src="./js/main.js"></script>
-  <script src="./js/profiling_table.js"></script>
+  <script src="./js/acc_setup-table.js"></script>
 </body>
 </html>
