@@ -73,11 +73,11 @@
     <li class="nav-item">
       <div class="btn-group d-flex flex-column">
         <div class="link-grp d-flex justify-content-between">
-          <a href="./faculty.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $faculty_page ?>">
+          <a href="./faculty.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 border-end border-3 border-white <?= $faculty_page ?>">
             <i class='bx bxs-user-circle fs-4' ></i>
             <span class="fs-6 ms-2">Faculty</span>          
           </a>
-          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $profiling_page ?> " data-bs-toggle="collapse" data-bs-target="#faculty_toggle" aria-expanded="false">
+          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $faculty_page ?> " data-bs-toggle="collapse" data-bs-target="#faculty_toggle" aria-expanded="false">
             <i class='bx bx-chevron-down'></i>
           </button>
         </div>

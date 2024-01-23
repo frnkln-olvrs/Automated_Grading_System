@@ -86,45 +86,48 @@
               ),
             );
           ?>
-          <table id="main_profiling" class="table table-striped table-sm" style="width:100%">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Full Name</th> <!--Code & description-->
-                <th>Email</th>
-                <th>Academic Rank</th>
-                <th>Designation</th>
-                <th>Faculty Type</th>
-                <th>Start of Service</th>
-                <th>End of Service</th>
-                <th width="5%">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-                $counter = 1;
-                foreach ($student_array as $item){
-              ?>
+          <div class="scroll">
+            <table id="main_profiling" class="table table-striped table-sm" style="width:125%">
+              <thead>
                 <tr>
-                  <td><?= $counter ?></td>
-                  <td><?= $item['full_name'] ?></td>
-                  <td><?= $item['email'] ?></td>
-                  <td><?= $item['academic_rank'] ?></td>
-                  <td><?= $item['designation'] ?></td>
-                  <td><?= $item['faculty_type'] ?></td>
-                  <td><?= $item['start_of_service'] ?></td>
-                  <td><?= $item['end_service'] ?></td>
-                  <td class="text-center">
-                    <a href="# "><i class='bx bx-edit text-success' ></i></a>
-                    <i class='bx bx-trash-alt text-danger' ></i>
-                  </td>
+                  <th>#</th>
+                  <th>Full Name</th> <!--Code & description-->
+                  <th>Email</th>
+                  <th>Academic Rank</th>
+                  <th>Designation</th>
+                  <th>Faculty Type</th>
+                  <th>Start of Service</th>
+                  <th>End of Service</th>
+                  <th width="5%">Action</th>
                 </tr>
-              <?php
-                $counter++;
-                }
-              ?>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php
+                  $counter = 1;
+                  foreach ($student_array as $item){
+                ?>
+                  <tr>
+                    <td><?= $counter ?></td>
+                    <td><?= $item['full_name'] ?></td>
+                    <td><?= $item['email'] ?></td>
+                    <td><?= $item['academic_rank'] ?></td>
+                    <td><?= $item['designation'] ?></td>
+                    <td><?= $item['faculty_type'] ?></td>
+                    <td><?= $item['start_of_service'] ?></td>
+                    <td><?= $item['end_service'] ?></td>
+                    <td class="text-center">
+                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                      <i class='bx bx-trash-alt text-danger' ></i>
+                    </td>
+                  </tr>
+                <?php
+                  $counter++;
+                  }
+                ?>
+              </tbody>
+            </table>
+
+          </div>
 
         </div>
       </div>

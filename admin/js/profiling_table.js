@@ -1,7 +1,7 @@
 $(document).ready(function(){
   dataTable = $("#main_profiling").DataTable({
     dom: 'Brtp',
-    responsive: true,
+    scrollX: true,
     pageLength: 10,
     buttons: [
       {
