@@ -91,7 +91,7 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Full Name</th> <!--Code & description-->
+                  <th>Full Name</th>
                   <th>Email</th>
                   <th>Academic Rank</th>
                   <th>Designation</th>

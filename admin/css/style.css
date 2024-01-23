@@ -116,6 +116,17 @@ header .dropdown-menu.text-small.shadow.show {
 
 #main_profiling_wrapper button.btn.btn-secondary,
 #manage_acc_wrapper button.btn.btn-secondary,
-#acc_setup_wrapper button.btn.btn-secondary {
+#acc_setup_wrapper button.btn.btn-secondary,
+#main_faculty_regular_wrapper button.btn.btn-secondary,
+#main_faculty_visiting_wrapper button.btn.btn-secondary {
   display: none;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    white-space: nowrap !important;
+}
+
+#main_faculty_visiting_wrapper {
+    overflow:auto;
 }
