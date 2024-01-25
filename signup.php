@@ -1,3 +1,26 @@
+<?php 
+session_start();
+
+if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 1) {
+  header('location: ./index.php');
+} 
+else if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 2) {
+  header('location: ./admin/index.php');
+}
+
+require_once './tools/functions.php';
+require_once './classes/signin.class.php';
+
+if(isset($_POST['signup'])) {
+  // $user = new User();
+  //sanitize
+
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <?php 

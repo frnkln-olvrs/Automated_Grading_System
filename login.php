@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 1) {
-  header('location: ./index.php');
+  header('location: index.php');
 } 
 else if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 2) {
   header('location: ./admin/index.php');
@@ -19,9 +19,9 @@ if(isset($_POST['login'])) {
 
   if($user->sign_in_user()) {
     $_SESSION['user_role'] = $user->user_role;
+    $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
-    $_SESSION['f_name'] = $user->f_name;
-    $_SESSION['l_name'] = $user->l_name;
+    $_SESSION['name'] = $user->name;
     $_SESSION['m_name'] = $user->m_name;
     $_SESSION['acad_rank'] = $user->acad_rank;
 
@@ -53,26 +53,26 @@ if(isset($_POST['login'])) {
           <img src="./img/wmsu_logo.png" alt="wmsu-logo" class="img-fluid">
         </p>
         <h1 class="fs-1 fw-bold my-3 mb-4 text-white text-center brand-color">MyWMSU</h1>
-        <form action="#" method="post" onSubmit="return validate()">
+        <form action="./index.php" method="post" onSubmit="return validate()">
             <div class="field">
               <i class='bx bxs-user'></i>
-              <input type="text" name="school_id" id="school_id" required value="<?php if(isset($_POST['email'])) { 
-                                                                                echo $_POST['email'];
+              <input type="text" name="school_id" id="school_id" required value="<?php if(isset($_POST['emp_id'])) { 
+                                                                                echo $_POST['emp_id'];
                                                                               } ?>">
               <?php 
-              if (isset($_POST['email']) && !validate_field($_POST['email'])) {
+              if (isset($_POST['emp_id']) && !validate_field($_POST['emp_id'])) {
               ?>
-              <span>Enter your email</span>
+              <span>Enter your ID</span>
               <?php 
               }
               ?>
 
-              <label for="id">School ID</label>
+              <label for="school_id">School ID</label>
             </div>
 
             <div class="field">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" name="password" id="password" required required value="<?php if (isset($_POST['password'])) {
+              <input type="password" name="password" id="password" required value="<?php if (isset($_POST['password'])) {
 																												                                          	echo $_POST['password'];
 																												                                          } ?>">
               <?php
@@ -93,7 +93,7 @@ if(isset($_POST['login'])) {
 					    ?>
               <label for="password">Password</label>
             </div>
-            <a href="#" id="forgot-pass" class="forgot-pass form-text d-flex justify-content-end">Forgot your password?</a>
+            <a href="#" id="forgot-pass" class="forgot-pass form-text d-flex justify-content-end" name="login" id="login">Forgot your password?</a>
             <button type="submit" class="btn d-flex p-3 justify-content-center">LOGIN</button>
             <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div>
         </form>    

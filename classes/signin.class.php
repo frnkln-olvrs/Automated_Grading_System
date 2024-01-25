@@ -4,12 +4,12 @@ require_once 'database.php';
 
 class Account {
 
+  public $id;
   public $emp_id;
   public $user_role;
   public $email;
   public $password;
-  public $f_name;
-  public $l_name;
+  public $name;
   public $m_name;
   public $acad_rank;
 
@@ -29,10 +29,10 @@ class Account {
       $accountData =$query->fetch(PDO::FETCH_ASSOC);
 
       if ($accountData && password_verify($this->password, $accountData['password'])) {
+        $this->id = $accountData['user_id'];
         $this->user_role = $accountData['user_role'];
         $this->email = $accountData['email'];
-        $this->f_name = $accountData['f_name'];
-        $this->l_name = $accountData['l_name'];
+        $this->name = $accountData['f_name'] . ' ' . $accountData['l_name'];
         $this->m_name = $accountData['m_name'];
         $this->acad_rank = $accountData['acad_rank'];
         return true;
