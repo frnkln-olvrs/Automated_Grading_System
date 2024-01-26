@@ -25,15 +25,15 @@ if(isset($_POST['login'])) {
     $_SESSION['m_name'] = $user->m_name;
     $_SESSION['acad_rank'] = $user->acad_rank;
 
-    if($_SESSION['user_role'] == 2) {
-      header('location: ./admin/index.php');
-    }
-    else if($_SESSION['user_role'] == 1) {
+    if($_SESSION['user_role'] == 1) {
       header('location: ./index.php');
+    }
+    else if($_SESSION['user_role'] == 2) {
+      header('location: ./admin/index.php');
     }
   }
   else {
-    $error = 'Invaliid email/password';
+    $error = 'Invalid email/password';
   }
 }
 
@@ -53,10 +53,10 @@ if(isset($_POST['login'])) {
           <img src="./img/wmsu_logo.png" alt="wmsu-logo" class="img-fluid">
         </p>
         <h1 class="fs-1 fw-bold my-3 mb-4 text-white text-center brand-color">MyWMSU</h1>
-        <form action="./index.php" method="post" onSubmit="return validate()">
+        <form action="#" method="post" id="loginForm" onSubmit="return validate()">
             <div class="field">
               <i class='bx bxs-user'></i>
-              <input type="text" name="school_id" id="school_id" required value="<?php if(isset($_POST['emp_id'])) { 
+              <input type="text" name="emp_id" id="emp_id" required value="<?php if(isset($_POST['emp_id'])) { 
                                                                                 echo $_POST['emp_id'];
                                                                               } ?>">
               <?php 
@@ -67,7 +67,7 @@ if(isset($_POST['login'])) {
               }
               ?>
 
-              <label for="school_id">School ID</label>
+              <label for="emp_id">School ID</label>
             </div>
 
             <div class="field">
@@ -100,5 +100,30 @@ if(isset($_POST['login'])) {
       </div>
     </div>
   </main>
+
+  <script>
+    function validate() {
+      var empId = document.getElementById('emp_id').value;
+      var password = document.getElementById('password').value;
+
+      if (empId.trim() === '') {
+        alert('Enter your ID');
+        return false;
+      }
+    
+      if (password.trim() === '') {
+        alert('Enter your Password');
+        return false;
+      }
+    
+      return true;
+    }
+  </script>
+
+  <script>
+    document.getElementById('loginForm').onsubmit = function() {
+      return validate();
+    };
+  </script>
 </body>
 </html>

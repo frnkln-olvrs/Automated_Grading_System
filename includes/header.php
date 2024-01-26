@@ -24,7 +24,7 @@
             <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
               <li class="border-bottom fs-6 fw-bold pb-2 text-center">User Name</li>
               <li><a class="dropdown-item" href="./acc_setting.php">Account Settings</a></li>
-              <li><a class="dropdown-item" href="./login.php">Logout</a></li>
+              <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
             </ul>
           </li>
         </ul>
