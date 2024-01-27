@@ -94,36 +94,11 @@ if(isset($_POST['login'])) {
               <label for="password">Password</label>
             </div>
             <a href="#" id="forgot-pass" class="forgot-pass form-text d-flex justify-content-end" name="login" id="login">Forgot your password?</a>
-            <button type="submit" class="btn d-flex p-3 justify-content-center">LOGIN</button>
+            <button type="submit" name="login" class="btn d-flex p-3 justify-content-center">LOGIN</button>
             <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div>
         </form>    
       </div>
     </div>
   </main>
-
-  <script>
-    function validate() {
-      var empId = document.getElementById('emp_id').value;
-      var password = document.getElementById('password').value;
-
-      if (empId.trim() === '') {
-        alert('Enter your ID');
-        return false;
-      }
-    
-      if (password.trim() === '') {
-        alert('Enter your Password');
-        return false;
-      }
-    
-      return true;
-    }
-  </script>
-
-  <script>
-    document.getElementById('loginForm').onsubmit = function() {
-      return validate();
-    };
-  </script>
 </body>
 </html>

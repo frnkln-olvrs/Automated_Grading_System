@@ -40,8 +40,7 @@ class Account {
     }
 
     return false;
-  }
-  
+  }  
 }
 
 ?>
