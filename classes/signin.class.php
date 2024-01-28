@@ -32,8 +32,8 @@ class Account {
         $this->id = $accountData['user_id'];
         $this->user_role = $accountData['user_role'];
         $this->email = $accountData['email'];
-        $this->name = $accountData['f_name'] . ' ' . $accountData['l_name'];
-        $this->m_name = $accountData['m_name'];
+        $m_name_secondLetter = strlen($accountData['m_name']) > 1 ? '.' : '';
+        $this->name = $accountData['l_name'] . ', ' . $accountData['f_name'] . ' ' . substr($accountData['m_name'], 0, 1) . $m_name_secondLetter;
         $this->acad_rank = $accountData['acad_rank'];
         return true;
       }

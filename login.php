@@ -22,7 +22,6 @@ if(isset($_POST['login'])) {
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
-    $_SESSION['m_name'] = $user->m_name;
     $_SESSION['acad_rank'] = $user->acad_rank;
 
     if($_SESSION['user_role'] == 1) {
@@ -94,8 +93,8 @@ if(isset($_POST['login'])) {
               <label for="password">Password</label>
             </div>
             <a href="#" id="forgot-pass" class="forgot-pass form-text d-flex justify-content-end" name="login" id="login">Forgot your password?</a>
-            <button type="submit" name="login" class="btn d-flex p-3 justify-content-center">LOGIN</button>
-            <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div>
+            <button type="submit" name="login" class="btn d-flex p-2 p-sm-3 justify-content-center">LOGIN</button>
+            <!-- <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div> -->
         </form>    
       </div>
     </div>

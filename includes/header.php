@@ -22,7 +22,7 @@
               <img src="./img/profile-img/profile.png" class="rounded-circle me-1" alt="User Image" width="35px" height="35px">
             </a>
             <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
-              <li class="border-bottom fs-6 fw-bold pb-2 text-center">User Name</li>
+              <li class="border-bottom fs-6 fw-bold pb-2 text-center"><?= ucwords($_SESSION['name']) ?></li>
               <li><a class="dropdown-item" href="./acc_setting.php">Account Settings</a></li>
               <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
             </ul>

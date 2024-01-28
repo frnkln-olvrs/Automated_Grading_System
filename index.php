@@ -39,9 +39,9 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
       <div class="m-4">
         <div class="details">
-          <p class="fw-bolder">Name: <span class="fw-bold brand-color">lastname, firstname mi</span></p>
+          <p class="fw-bolder">Name: <span class="fw-bold brand-color"><?= ucwords($_SESSION['name']) ?></span></p>
           <p class="fw-bolder">Desgnation: <span class="fw-bold brand-color">Desgnation</span></p>
-          <p class="fw-bolder">Academic Rank: <span class="fw-bold brand-color">Academic Rank</span></p>
+          <p class="fw-bolder">Academic Rank: <span class="fw-bold brand-color"><?= ucwords($_SESSION['acad_rank']) ?></span></p>
           <p class="fw-bolder">Release Time: <span class="fw-bold brand-color">Release Time</span></p>
         </div>
 
@@ -78,15 +78,15 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           <table id="home_table" class="table table-striped" style="width:125%">
             <thead>
               <tr>
-                <th rowspan="2">#</th>
-                <th rowspan="2">Subject</th> <!-- Code & Description -->
-                <th rowspan="2">Subject ID</th>
-                <th rowspan="2">Prerequisite</th>
-                <th rowspan="2">Year/ Section</th>
-                <th rowspan="2"># of Students</th>
-                <th colspan="2">Room</th>
-                <th colspan="2">Schedules</th>
-                <th colspan="3">Units</th>
+                <th rowspan="2" class="align-middle">#</th>
+                <th rowspan="2" class="align-middle">Subject</th> <!-- Code & Description -->
+                <th rowspan="2" class="align-middle">Subject ID</th>
+                <th rowspan="2" class="align-middle">Prerequisite</th>
+                <th rowspan="2" class="align-middle">Year/ Section</th>
+                <th rowspan="2" class="align-middle"># of Students</th>
+                <th colspan="2" class="text-center">Room</th>
+                <th colspan="2" class="text-center">Schedules</th>
+                <th colspan="3" class="text-center">Units</th>
               </tr>
               <tr>
                 <th>Lecture</th>

@@ -46,7 +46,7 @@
 }
 
 .dropdown-menu-left {
-  left: -78px !important;
+  left: -100px !important;
 }
 
 header .dropdown-toggle::after {
@@ -280,4 +280,21 @@ main .title_page {
 #edit_att_req2:hover {
   color: var(--primary-color);
   cursor: pointer;
+}
+
+
+@media only screen and (max-width:800px) {
+  /* For tablets: */
+  .login img.img-fluid,
+  .signup img.img-fluid {
+    height: 175px;
+  }
+}
+
+@media only screen and (max-width:500px) {
+  /* For mobile phones: */
+  .login img.img-fluid,
+  .signup img.img-fluid {
+    height: 150px;
+  }
 }
