@@ -20,8 +20,12 @@ if(isset($_POST['login'])) {
   if($user->sign_in_user()) {
     $_SESSION['user_role'] = $user->user_role;
     $_SESSION['user_id'] = $user->id;
+    $_SESSION['emp_id'] = $user->emp_id;
     $_SESSION['email'] = $user->email;
-    $_SESSION['name'] = $user->name;
+    $_SESSION['l_name'] = $user->l_name;
+    $_SESSION['f_name'] = $user->f_name;
+    $_SESSION['name'] = $user->name;    
+    $_SESSION['m_name'] = $user->m_name;
     $_SESSION['acad_rank'] = $user->acad_rank;
 
     if($_SESSION['user_role'] == 1) {
@@ -74,6 +78,8 @@ if(isset($_POST['login'])) {
               <input type="password" name="password" id="password" required value="<?php if (isset($_POST['password'])) {
 																												                                          	echo $_POST['password'];
 																												                                          } ?>">
+              <label for="password">Password</label>
+            </div>
               <?php
 					    if (isset($_POST['password']) && !validate_field($_POST['password'])) {
 					    ?>
@@ -84,14 +90,12 @@ if(isset($_POST['login'])) {
 					    <?php
 					    if (isset($_POST['login']) && isset($error)) {
 					    ?>
-					    	<p>
+					    	<p style="margin-top: -25px; color: white;">
 					    		<?= $error ?>
 					    	</p>
 					    <?php
 					    }
 					    ?>
-              <label for="password">Password</label>
-            </div>
             <a href="#" id="forgot-pass" class="forgot-pass form-text d-flex justify-content-end" name="login" id="login">Forgot your password?</a>
             <button type="submit" name="login" class="btn d-flex p-2 p-sm-3 justify-content-center">LOGIN</button>
             <!-- <div id="emailHelp" class="form-text d-flex justify-content-center">Don't have an account? <a href="signup.php"> Sign up</a></div> -->

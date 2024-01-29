@@ -6,6 +6,9 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ./login.php');
 }
 
+require_once './classes/signin.class.php';
+require_once './tools/functions.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -43,30 +46,30 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             <div class="col">
               <div class="mb-3">
                 <label for="emp_id" class="form-label">Employee ID</label>
-                <input type="text" class="form-control" id="emp_id" aria-describedby="emp_id" value="2021-00001">
+                <input type="text" class="form-control" id="emp_id" aria-describedby="emp_id" value="<?= ucwords($_SESSION['emp_id']) ?>">
               </div>
               <div class="mb-3">
                 <label for="lname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lname" aria-describedby="lname" value="Name">
+                <input type="text" class="form-control" id="lname" aria-describedby="lname" value="<?= ucwords($_SESSION['l_name']) ?>">
               </div>
               <div class="mb-3">
                 <label for="fname" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="fname" aria-describedby="fname" value="User">
+                <input type="text" class="form-control" id="fname" aria-describedby="fname" value="<?= ucwords($_SESSION['f_name']) ?>">
               </div>
               <div class="mb-3">
                 <label for="mname" class="form-label">Middle Name</label>
-                <input type="text" class="form-control" id="mname" aria-describedby="mname" value="">
+                <input type="text" class="form-control" id="mname" aria-describedby="mname" value="<?= ucwords($_SESSION['m_name']) ?>">
               </div>
             </div>
 
             <div class="col">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" aria-describedby="email" value="email@gmail.com">
+                <input type="text" class="form-control" id="email" aria-describedby="email" value="<?= ucwords($_SESSION['email']) ?>">
               </div>
               <div class="mb-3">
                 <label for="acad_rank" class="form-label">Academic Rank</label>
-                <input type="text" class="form-control" id="acad_rank" aria-describedby="acad_rank" value="RANK" >
+                <input type="text" class="form-control" id="acad_rank" aria-describedby="acad_rank" value="<?= ucwords($_SESSION['acad_rank']) ?>" >
               </div>
               <div class="mb-3">
                 <label for="designation" class="form-label">Designation</label>
