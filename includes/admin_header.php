@@ -1,5 +1,5 @@
 <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0" style="background-color: #952323;">
-  <button class="d-flex bg-transparent" type="button" id="collapse-side">
+  <button class="d-flex bg-transparent" type="button" id="collapse_btn">
     <i class='bx bx-menu me-0 px-3 color-white fs-3' style="color: whitesmoke;"></i>
   </button>
   <button class="navbar-toggler d-md-none collapsed me-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">

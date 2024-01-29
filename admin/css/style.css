@@ -79,7 +79,7 @@ body .home main {
   margin-left: 215px;
   transition: .1s linear;
 }
-
+/* sidepanel collapse */
 body .home.collapse {
   display: block; 
 }
@@ -130,3 +130,5 @@ table.dataTable tbody td {
 #main_faculty_visiting_wrapper {
     overflow:auto;
 }
+
+
