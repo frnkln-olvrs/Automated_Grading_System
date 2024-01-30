@@ -283,7 +283,7 @@ main .title_page {
 }
 
 
-@media only screen and (max-width:800px) {
+@media only screen and (min-width:992px) {
   /* For tablets: */
   .login img.img-fluid,
   .signup img.img-fluid {
@@ -291,7 +291,7 @@ main .title_page {
   }
 }
 
-@media only screen and (max-width:500px) {
+@media only screen and (max-width:768px) {
   /* For mobile phones: */
   .login img.img-fluid,
   .signup img.img-fluid {

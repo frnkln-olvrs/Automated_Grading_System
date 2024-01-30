@@ -6,6 +6,9 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+require_once '../classes/user.class.php';
+require_once '../tools/functions.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -49,19 +52,8 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           </div>
           
           <?php
-            $student_array = array(
-              array(
-                'emp_id' => '2019-0001',
-                'last_name' => 'Carlos',
-                'frist_name' => 'Juan',
-                'mid_i' => 'O.',
-                'email' => 'juancarlos@gmail.com',
-                'designation' => 'Professor',
-                'acad_rank' => 'Professor II',
-                'faculty_type' => 'Regular',
-                'password' => 'qwerty1234',
-              ),
-            );
+            $user = new User();
+            $userArray = $user->show();
           ?>
           <table id="manage_acc" class="table table-striped table-sm" style="width:100%">
             <thead>
@@ -81,21 +73,23 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             <tbody>
               <?php
                 $counter = 1;
-                foreach ($student_array as $item){
+                foreach ($userArray as $item){
+                  if ($item['user_role'] == '1') {
               ?>
-                <tr>
-                  <td><?= $counter ?></td>
-                  <td><?= $item['emp_id'] ?></td>
-                  <td><?= $item['last_name'] ?></td>
-                  <td><?= $item['frist_name'] ?></td>
-                  <td><?= $item['mid_i'] ?></td>
-                  <td><?= $item['email'] ?></td>
-                  <td><?= $item['designation'] ?></td>
-                  <td><?= $item['acad_rank'] ?></td>
-                  <td><?= $item['faculty_type'] ?></td>
-                  <td><?= $item['password'] ?></td>
-                </tr>
+                  <tr>
+                    <td><?= $counter ?></td>
+                    <td><?= $item['emp_id'] ?></td>
+                    <td><?= $item['l_name'] ?></td>
+                    <td><?= $item['f_name'] ?></td>
+                    <td><?= $item['m_name'] ?></td>
+                    <td><?= $item['email'] ?></td>
+                    <td><?= $item['designation'] ?></td>
+                    <td><?= $item['acad_rank'] ?></td>
+                    <td><?= $item['faculty_type'] ?></td>
+                    <td><?= $item['password'] ?></td>
+                  </tr>
               <?php
+                  }
                 $counter++;
                 }
               ?>
