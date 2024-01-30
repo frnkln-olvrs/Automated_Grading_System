@@ -47,77 +47,34 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         </div>
 
         <div class="curriculum row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          <?php 
+          require_once '../classes/curr_year.php';
+          $curr_year = new Curr_year();
+          $curr_yearArray = $curr_year->show();
+          if ($curr_yearArray) {
+            foreach($curr_yearArray as $item) {
+              $year_start = strtotime($item['year_start']);
+              $start = date('Y', $year_start);
+              $year_end = strtotime($item['year_end']);
+              $end = date('Y', $year_end);
+          ?>
+
           <div class="col">    
-            <a href="#">
+            <a href="./course_select.php?=<?= $item['curr_year_id'] ?>">
               <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bxs-folder-open opacity-50' ></i>
                 <div class="d-flex flex-column justify-content-start">
                   <span>curriculum</span>
-                  <span>2018-2019</span>
+                  <span><?= $start ?>-<?= $end ?></span>
                 </div>
               </div>
             </a>
           </div>
 
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bxs-folder-open opacity-50' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>curriculum</span>
-                  <span>2019-2020</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bxs-folder-open opacity-50' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>curriculum</span>
-                  <span>2020-2021</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bxs-folder-open opacity-50' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>curriculum</span>
-                  <span>2021-2022</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bxs-folder-open opacity-50' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>curriculum</span>
-                  <span>2022-2023</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col">    
-            <a href="./course_select.php">
-              <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bxs-folder-open opacity-50' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>curriculum</span>
-                  <span>2023-2024</span>
-                </div>
-              </div>
-            </a>
-          </div>
+          <?php 
+            }
+          }
+          ?>
 
         </div>
       </div>

@@ -44,11 +44,11 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             <div class="col">
               <div class="mb-3">
                 <label for="CY_start" class="form-label">Curriculum Year Start</label>
-                <input type="number" class="form-control" placeholder="yyyy" min="1999" max="2024" id="CY_start" aria-describedby="CY_start"> <!-- max = Current year -->
+                <input type="date" class="form-control" placeholder="yyyy" min="1999" max="2024" id="CY_start" aria-describedby="CY_start"> <!-- max = Current year -->
               </div>
               <div class="mb-3">
                 <label for="CY_end" class="form-label">Curriculum Year End</label>
-                <input type="number" class="form-control" placeholder="yyyy" min="1999" max="2024" id="CY_end" aria-describedby="CY_end" > <!-- max = Current year + 1 -->
+                <input type="date" class="form-control" placeholder="yyyy" min="1999" max="2024" id="CY_end" aria-describedby="CY_end" > <!-- max = Current year + 1 -->
               </div>
             </div>
           </div>
