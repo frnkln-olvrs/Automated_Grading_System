@@ -53,10 +53,6 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           $curr_yearArray = $curr_year->show();
           if ($curr_yearArray) {
             foreach($curr_yearArray as $item) {
-              $year_start = strtotime($item['year_start']);
-              $start = date('Y', $year_start);
-              $year_end = strtotime($item['year_end']);
-              $end = date('Y', $year_end);
           ?>
 
           <div class="col">    
@@ -65,7 +61,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                 <i class='bx bxs-folder-open opacity-50' ></i>
                 <div class="d-flex flex-column justify-content-start">
                   <span>curriculum</span>
-                  <span><?= $start ?>-<?= $end ?></span>
+                  <span><?= $item['year_start'] ?>-<?= $item['year_end'] ?></span>
                 </div>
               </div>
             </a>

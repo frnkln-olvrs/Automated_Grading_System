@@ -71,13 +71,40 @@ class Curr_year {
   }
 
   function show() {
-    $sql = "SELECT * FROM curr_year ORDER BY curr_year_id ASC;";
+    $sql = "SELECT * FROM curr_year ORDER BY year_start ASC;";
     $query = $this->db->connect()->prepare($sql);
     $data = null;
     if ($query->execute()) {
       $data = $query->fetchAll();
     }
     return $data;
+  }
+
+  function validateYear($inputYear) {
+    // Get the current year
+    $currentYear = date('Y');
+
+    // Convert input year to an integer
+    $inputYear = intval($inputYear);
+
+    // Check if the input year is less than or equal to the current year
+    if ($inputYear <= $currentYear) {
+        return true; // Valid input
+    } else {
+        return false; // Invalid input
+    }
+  }
+
+  function is_year_exist() {
+    $sql = "SELECT * FROM curr_year WHERE year_start = :year_start;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':year_start', $this->year_start);
+    if ($query->execute()) {
+      if ($query->rowCount() > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
