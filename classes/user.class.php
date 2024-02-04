@@ -44,6 +44,20 @@ class User {
     }
   }
 
+  // function edit_sale() {
+  //   $sql = "UPDATE user SET no_sale=:no_sale  WHERE user_id = :user_id;";
+
+  //   $query = $this->db->connect()->prepare($sql);
+  //   $query->bindParam(':no_sale', $this->no_sale);
+  //   $query->bindParam(':user_id', $this->user_id);
+
+  //   if ($query->execute()) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
   function is_email_exist() {
     $sql = "SELECT * FROM user WHERE email = :email;";
     $query = $this->db->connect()->prepare($sql);
@@ -76,6 +90,16 @@ class User {
             $data = $query->fetchAll();
         }
         return $data;
+  }
+
+  function fetch($record_user_id) {
+    $sql = "SELECT * FROM user WHERE user_id = :user_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':user_id', $record_user_id);
+    if ($query->execute()) {
+      $data = $query->fetch();
+    }
+    return $data;
   }
 }
 

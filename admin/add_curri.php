@@ -6,11 +6,46 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+require_once '../tools/functions.php';
+require_once '../classes/curr_year.class.php';
+require_once '../classes/user.class.php';
+
+if (isset($_POST['add_curr-year'])) {
+
+  $user = new User();
+
+  $record = $user->fetch($_SESSION['user_id']);
+  $user->user_id = $_SESSION['user_id'];
+
+  $curr_year = new Curr_year();
+  //sanitize
+  $curr_year->user_id = $_SESSION['user_id'];
+  $curr_year->year_start = htmlentities($_POST['year_start']);
+  $curr_year->year_end = htmlentities($_POST['year_end']);
+
+  if (        
+    validate_field($curr_year->year_start) &&
+    validate_field($curr_year->year_end)
+  ) {
+    if ($curr_year->add()) {
+      header('location: ./index.php');
+      $message = 'Curriculum Year is successfuly added.';
+      // }elseif(check_email($_POST['email'])){
+      //     $message = 'Email is already taken.'; check ko sana email if taken na -hilal
+    } else {
+      $message = 'Something went wrong adding Curriculum Year.';
+    }
+  }
+
+}
+
+$currentYear = date('Y');
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 	$title = 'Grade Posted';
   $curriculum_page = 'active';
 	include '../includes/admin_head.php';
@@ -39,21 +74,45 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
       </div>
 
       <div class="m-4">
-        <form action="./index.php">
+        <form action="#" method="post">
+        <?php
+        if (isset($_POST['add_curr-year']) && isset($message)) {
+
+          echo "<script> alert('" . $message . "'); window.location.href='./add_curri.php'; </script>";
+        }
+        ?>
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="mb-3">
-                <label for="CY_start" class="form-label">Curriculum Year Start</label>
-                <input type="date" class="form-control" placeholder="yyyy" min="1999" max="2024" id="CY_start" aria-describedby="CY_start"> <!-- max = Current year -->
-              </div>
+                <label for="year_start" class="form-label">Curriculum Year Start</label>
+                <input type="date" class="form-control" placeholder="yyyy" min="1999" max="<?php echo $currentYear; ?>" id="year_start" aria-describedby="year_start" name="year_start" value="<?php if (isset($_POST['year_start'])) {
+                                                                                                                                                                                                echo $_POST['year_start'];
+                                                                                                                                                                                              } ?>">
+                <?php
+                if (isset($_POST['year_start']) && !validate_field($_POST['year_start'])) {
+                ?>
+                  Please enter starting Year
+                <?php
+                }
+                ?>                    
+               </div>
               <div class="mb-3">
-                <label for="CY_end" class="form-label">Curriculum Year End</label>
-                <input type="date" class="form-control" placeholder="yyyy" min="1999" max="2024" id="CY_end" aria-describedby="CY_end" > <!-- max = Current year + 1 -->
+                <label for="year_end" class="form-label">Curriculum Year End</label>
+                <input type="date" class="form-control" placeholder="yyyy" min="1999" max="<?php echo $currentYear + 1; ?>" id="year_end" aria-describedby="year_end" name="year_end" value="<?php if (isset($_POST['year_end'])) {
+                                                                                                                                                                                                echo $_POST['year_end'];
+                                                                                                                                                                                              } ?>">
+              <?php
+              if (isset($_POST['year_end']) && !validate_field($_POST['year_end'])) {
+              ?>
+                Please enter End Year
+              <?php
+              }
+              ?> 
               </div>
             </div>
           </div>
           <button type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" class="btn brand-bg-color">Add</button>
+          <button type="submit" class="btn brand-bg-color" id="add_curr-year" name="add_curr-year">Add</button>
         </form>
       </div>
 

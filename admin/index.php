@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
         <div class="curriculum row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
           <?php 
-          require_once '../classes/curr_year.php';
+          require_once '../classes/curr_year.class.php';
           $curr_year = new Curr_year();
           $curr_yearArray = $curr_year->show();
           if ($curr_yearArray) {

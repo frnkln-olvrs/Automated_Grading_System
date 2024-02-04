@@ -6,6 +6,7 @@ class Curr_year {
   //attributes
 
   public $curr_year_id;
+  public $user_id;
   public $year_start;
   public $year_end;
   public $curriculum_year;
@@ -52,6 +53,21 @@ class Curr_year {
     } else {
       return false;  // Return false in case of an error
     }
+  }
+
+  function edit(){
+    $sql = "UPDATE curr_year SET year_start=:year_start, year_end=:year_end;";
+
+    $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':blog_image', $this->year_start);
+    $query->bindParam(':title', $this->year_end);
+    
+    if($query->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }	
   }
 
   function show() {
