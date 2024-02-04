@@ -5,6 +5,12 @@
   --dark-color: rgb(6, 6, 6);
 }
 
+.sticky-top {
+  top: 0 !important;
+  z-index: 100 !important;
+  position: sticky !important;
+}
+
 .color-black {
   color: var(--dark-color);
   transition: .1s linear;
