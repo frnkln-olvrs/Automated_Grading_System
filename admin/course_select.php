@@ -33,6 +33,9 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         <div class="d-flex align-items-center">
           <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
+          <?php 
+          require_once '../classes/curr_year.class.php';
+          ?>
             <span class="fs-2 fw-bold h1 m-0 brand-color">CURRICULUM 2023-2024</span>
           </div>
         </div>
@@ -47,29 +50,25 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         </div>
 
         <div class="curriculum row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          <?php 
+          require_once '../classes/course_select.class.php';
+          $course_curr = new Course_curr();
+          $course_currArray = $course_curr->show();
+          if ($course_currArray) {
+            foreach($course_currArray as $item) {
+          ?>
           <div class="col">    
-            <a href="./course_time_select.php">
+            <a href="./course_time_select.php?=<?= $item['college_course_id'] ?>">
               <div class="d-flex align-items-center justify-content-center brand-bg-color p-4 fs-4 h-100 rounded">
-                <span\>Computer Science</span>
+                <span\><?= $item['name'] ?></span>
               </div>
             </a>
           </div>
 
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center justify-content-center brand-bg-color p-4 fs-4 h-100 rounded">
-                <span>Information Technology</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center justify-content-center brand-bg-color p-4 fs-4 h-100 rounded">
-                <span>Information Computer Technology</span>
-              </div>
-            </a>
-          </div>
+          <?php 
+            }
+          }
+          ?>
 
         </div>
       </div>
