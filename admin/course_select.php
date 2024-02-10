@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 	$title = 'Grade Posted';
   $curriculum_page = 'active';
 	include '../includes/admin_head.php';
@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
     <div class="side">
       <?php
         require_once('../includes/admin_sidepanel.php')
-      ?> 
+      ?>
     </div>
     <main>
       <div class="header" >
@@ -28,15 +28,26 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         require_once('../includes/admin_header.php')
       ?>
       </div>
-      
+
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
         <div class="d-flex align-items-center">
           <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
           <?php 
           require_once '../classes/curr_year.class.php';
+          
+          $curr_year = new Curr_year();
+          $curr_year_id = $_GET['curr_year_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
+          
+          $yearRange = $curr_year->getYearRangeById($curr_year_id);
+          
+          if ($yearRange) {
+            echo "<span class='fs-2 fw-bold h1 m-0 brand-color'>CURRICULUM {$yearRange['year_start']}-{$yearRange['year_end']}</span>";
+          } else {
+            echo "<span class='fs-2 fw-bold h1 m-0 brand-color'>Invalid Curriculum Year</span>";
+          }
           ?>
-            <span class="fs-2 fw-bold h1 m-0 brand-color">CURRICULUM 2023-2024</span>
+            <!-- <span class="fs-2 fw-bold h1 m-0 brand-color">CURRICULUM 2023-2024</span> -->
           </div>
         </div>
       </div>
@@ -50,22 +61,22 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         </div>
 
         <div class="curriculum row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-          <?php 
+          <?php
           require_once '../classes/course_select.class.php';
           $course_curr = new Course_curr();
           $course_currArray = $course_curr->show();
           if ($course_currArray) {
             foreach($course_currArray as $item) {
           ?>
-          <div class="col">    
+          <div class="col">
             <a href="./course_time_select.php?=<?= $item['college_course_id'] ?>">
               <div class="d-flex align-items-center justify-content-center brand-bg-color p-4 fs-4 h-100 rounded">
-                <span\><?= $item['name'] ?></span>
+                <span><?= $item['name'] ?></span>
               </div>
             </a>
           </div>
 
-          <?php 
+          <?php
             }
           }
           ?>
@@ -77,6 +88,6 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   </div>
 
   <script src="./js/main.js"></script>
-  
+
 </body>
 </html>

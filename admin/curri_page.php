@@ -74,29 +74,14 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           </div>
           
           <?php
-            $student_array = array(
-              array(
-                'sub_code' => 'CS137 - Software Engineering 1',
-                'sub_prequisite' => 'CS121, CS104',
-                'lec' => '2',
-                'lab' => '3',
-                'total' => '5',
-              ),
-              array(
-                'sub_code' => 'CS140 - CS Elective 2',
-                'sub_prequisite' => 'CS128',
-                'lec' => '3',
-                'lab' => '4',
-                'total' => '7',
-              ),
-              array(
-                'sub_code' => 'CS137 - Software Engineering 1',
-                'sub_prequisite' => 'CS121, CS104',
-                'lec' => '1',
-                'lab' => '2',
-                'total' => '8',
-              ),
-            );
+              require_once '../classes/curri_page.class.php';
+              require_once '../tools/functions.php';
+
+              $curr_table = new Curr_table();
+
+              // Fetch staff data (you should modify this to retrieve data from your database)
+              $curr_tableArray = $curr_table->show();
+              $counter = 1;     
           ?>
           <table id="curriculum" class="table table-striped table-sm" style="width:100%">
             <thead>
@@ -115,8 +100,8 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             </thead>
             <tbody>
               <?php
-                $counter = 1;
-                foreach ($student_array as $item){
+                if ($curr_tableArray) {
+                  foreach ($curr_tableArray as $item) {
               ?>
                 <tr>
                   <td><?= $counter ?></td>
@@ -131,7 +116,8 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   </td>
                 </tr>
               <?php
-                $counter++;
+                  $counter++;
+                  }
                 }
               ?>
             </tbody>

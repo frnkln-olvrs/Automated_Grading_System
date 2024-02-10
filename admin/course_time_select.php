@@ -40,27 +40,27 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
       <div class="m-4">
         <div class="curriculum row row-cols-1 row-cols-md-2 g-3">
+          <?php
+          require_once '../classes/course_time_select.class.php';
+          $curr_time = new Curr_time();
+          $curr_timeArray = $curr_time->show();
+          if ($curr_timeArray) {
+            foreach($curr_timeArray as $item) {
+          ?>
           <div class="col">    
-            <a href="./curri_page.php">
+            <a href="./curri_page.php?=<?= $item['time_id'] ?>">
               <div class="d-flex align-items-center brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bx-clipboard me-3' ></i>
                 <div class="d-flex flex-column justify-content-start">
-                  <span>Present</span>
+                  <span><?= $item['time_name'] ?></span>
                 </div>
               </div>
             </a>
           </div>
-
-          <div class="col">    
-            <a href="#">
-              <div class="d-flex align-items-center brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bx-clipboard me-3' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>Former</span>
-                </div>
-              </div>
-            </a>
-          </div>
+          <?php 
+            }
+          }  
+          ?>
 
         </div>
       </div>

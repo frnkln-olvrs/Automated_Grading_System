@@ -106,6 +106,22 @@ class Curr_year {
     }
     return false;
   }
+
+  function getYearRangeById($curr_year_id) {
+    $sql = "SELECT year_start, year_end FROM curr_year WHERE curr_year_id = :curr_year_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_year_id', $curr_year_id);
+    $yearRange = null;
+
+    if ($query->execute()) {
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $yearRange['year_start'] = $result['year_start'];
+            $yearRange['year_end'] = $result['year_end'];
+        }
+    }
+    return $yearRange;
+  }
 }
 
 ?>
