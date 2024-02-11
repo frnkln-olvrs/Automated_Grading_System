@@ -24,7 +24,7 @@ if (isset($_POST['add_curr-year'])) {
   $curr_year->year_end = htmlentities($_POST['year_end']);
 
   if (        
-    validate_field($curr_year->year_start) && !$curr_year->is_year_exist() &&
+    validate_field($curr_year->year_start) && !$curr_year->is_year_exist($year_start) &&
     validate_field($curr_year->year_end)
   ) {
     if ($curr_year->add()) {
@@ -106,9 +106,9 @@ $currentYear = date('Y');
                </div>
               <div class="mb-3">
                 <label for="year_end" class="form-label">Curriculum Year End</label>
-                <input type="number" class="form-control" placeholder="YYYY" id="year_end" aria-describedby="year_end" name="year_end" value="<?php if (isset($_POST['year_end'])) {
-                                                                                                                                                                                                echo $_POST['year_end'];
-                                                                                                                                                                                              } ?>">
+                <input type="number" class="form-control" placeholder="YYYY" id="year_end" aria-describedby="year_end" name="year_end" disabled value="<?php if (isset($_POST['year_end'])) {
+                                                                                                                                                      echo $_POST['year_end'];
+                                                                                                                                                    } ?>">
                 <?php
                 if (isset($_POST['year_end']) && !validate_field($_POST['year_end'])) {
                 ?>

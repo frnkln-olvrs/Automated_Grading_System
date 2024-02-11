@@ -95,7 +95,7 @@ class Curr_year {
     }
   }
 
-  function is_year_exist() {
+  function is_year_exist($year_start) {
     $sql = "SELECT * FROM curr_year WHERE year_start = :year_start;";
     $query = $this->db->connect()->prepare($sql);
     $query->bindParam(':year_start', $this->year_start);
@@ -114,11 +114,11 @@ class Curr_year {
     $yearRange = null;
 
     if ($query->execute()) {
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            $yearRange['year_start'] = $result['year_start'];
-            $yearRange['year_end'] = $result['year_end'];
-        }
+      $result = $query->fetch(PDO::FETCH_ASSOC);
+      if ($result) {
+        $yearRange['year_start'] = $result['year_start'];
+        $yearRange['year_end'] = $result['year_end'];
+      }
     }
     return $yearRange;
   }

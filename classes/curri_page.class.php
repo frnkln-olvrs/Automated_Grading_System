@@ -5,9 +5,11 @@ require_once 'database.php';
 Class Curr_table{
 
   //attributes
+  public $user_id;
   public $curr_id;
   public $sub_code;
-  public $sub_prequisite;
+  public $sub_name;
+  public $sub_prerequisite;
   public $lec;
   public $lab;
 
@@ -20,23 +22,35 @@ Class Curr_table{
 
   //Methods
 
-  // function add(){
-  //   $sql = "INSERT INTO products (productname, category, price, availability) VALUES 
-  //   (:productname, :category, :price, :availability);";
+  function add(){
+    $sql = "INSERT INTO curr_table (sub_code, sub_name, sub_prerequisite, lec, lab) VALUES 
+    (:sub_code, :sub_name, :sub_prerequisite, :lec, :lab);";
 
-  //   $query=$this->db->connect()->prepare($sql);
-  //   $query->bindParam(':productname', $this->productname);
-  //   $query->bindParam(':category', $this->category);
-  //   $query->bindParam(':price', $this->price);
-  //   $query->bindParam(':availability', $this->availability);
+    $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_id', $this->curr_id);
+    $query->bindParam(':sub_code', $this->sub_code);
+    $query->bindParam(':sub_name', $this->sub_name);
+    $query->bindParam(':sub_prerequisite', $this->sub_prerequisite);
+    $query->bindParam(':lec', $this->lec);
+    $query->bindParam(':lab', $this->lab);
     
-  //   if($query->execute()){
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }	
-  // }
+    if($query->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }	
+  }
+
+  function fetch($record_curr_id){
+    $sql = "SELECT * FROM curr_table WHERE curr_id = :curr_id;";
+    $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_id', $record_curr_id);
+    if($query->execute()){
+      $data = $query->fetch();
+    }
+    return $data;
+  }
 
   // function edit(){
   //   $sql = "UPDATE products SET productname=:productname, category=:category, price=:price, availability=:availability WHERE id = :id;";
@@ -56,16 +70,6 @@ Class Curr_table{
   //   }	
   // }
 
-  // function fetch($record_id){
-  //   $sql = "SELECT * FROM products WHERE id = :id;";
-  //   $query=$this->db->connect()->prepare($sql);
-  //   $query->bindParam(':id', $record_id);
-  //   if($query->execute()){
-  //     $data = $query->fetch();
-  //   }
-  //   return $data;
-  // }
-
   function show(){
     $sql = "SELECT * FROM curr_table ORDER BY sub_code ASC;";
     $query=$this->db->connect()->prepare($sql);
@@ -74,6 +78,18 @@ Class Curr_table{
       $data = $query->fetchAll();
     }
     return $data;
+  }
+
+  function is_subcode_exist($sub_code) {
+    $sql = "SELECT * FROM curr_table WHERE sub_code = :sub_code;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':sub_code', $this->sub_code);
+    if ($query->execute()) {
+      if ($query->rowCount() > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

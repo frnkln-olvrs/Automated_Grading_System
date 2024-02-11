@@ -1,9 +1,46 @@
 <?php 
+require_once '../tools/functions.php';
+require_once '../classes/curri_page.class.php';
+require_once '../classes/user.class.php';
 
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
   header('location: ../login.php');
+}
+
+
+if (isset($_POST['add_curr_sub'])) {
+
+  $user = new User();
+
+  $record = $user->fetch($_SESSION['user_id']);
+  $user->user_id = $_SESSION['user_id'];
+
+  $curr_table = new Curr_table();
+  //sanitize
+  $curr_table->user_id = $_SESSION['user_id'];
+  $curr_table->sub_code = htmlentities($_POST['sub_code']);
+  $curr_table->sub_name = htmlentities($_POST['sub_name']);
+  $curr_table->sub_prerequisite = htmlentities($_POST['sub_prerequisite']);
+  $curr_table->lec = htmlentities($_POST['lec']);
+  $curr_table->lab = htmlentities($_POST['lab']);
+
+  if (        
+    validate_field($curr_table->sub_code) && !$curr_table->is_subcode_exist($sub_code) &&
+    validate_field($curr_table->sub_name) &&
+    validate_field($curr_table->sub_prerequisite) &&
+    validate_field($curr_table->lec) &&
+    validate_field($curr_table->lab)
+  ) {
+    if ($curr_year->add()) {
+      header('location: ./curri_page');
+      $message = 'Curriculum Year is successfuly added.';
+    } else {
+      $message = 'Something went wrong adding Curriculum Year.';
+    }
+  }
+
 }
 
 ?>
@@ -39,62 +76,100 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
       </div>
 
       <div class="m-4">
-        <form action="./curri_page.php">
-          <div class="row row-cols-1 row-cols-md-2 align-items-end">
+        <form action="#" method="post">
+          <?php
+          if (isset($_POST['add_curr_sub']) && isset($message)) {
+            echo "<script> alert('" . $message . "'); window.location.href='./curri_add_sub'; </script>";
+          }
+          ?>
+          <div class="row row-cols-1 row-cols-md-2 align-items-start">
             <div class="col">
               <div class="mb-3">
                 <label for="sub_code" class="form-label">Code</label>
-                <input type="text" class="form-control" id="sub_code" aria-describedby="sub_code" >
+                <input type="text" class="form-control" id="sub_code" aria-describedby="sub_code" name="sub_code" value="<?php if (isset($_POST['sub_code'])) {
+                                                                                                                                    echo $_POST['sub_code'];
+                                                                                                                                  } ?>">
+                <?php
+                if (isset($_POST['sub_code']) && !validate_field($_POST['sub_code'])) {
+                ?>
+                  <p class="text-danger my-1">Please enter Subject Code</p>
+                <?php
+                }
+                ?>
+                <?php
+                if (isset($_POST['sub_code']) && $curr_table->is_subcode_exist($_POST['sub_code'])) {
+                ?>
+                  <p>Year already exists</p>
+                <?php
+                }
+                ?> 
               </div>
+
               <div class="mb-3">
-                <label for="sub_desc" class="form-label">Description</label>
-                <input type="text" class="form-control" id="sub_desc" aria-describedby="sub_desc">
+                <label for="sub_name" class="form-label">Description</label>
+                <input type="text" class="form-control" id="sub_name" aria-describedby="sub_name" name="sub_name" value="<?php if (isset($_POST['sub_name'])) {
+                                                                                                                                    echo $_POST['sub_name'];
+                                                                                                                                  } ?>">
+                <?php
+                if (isset($_POST['sub_name']) && !validate_field($_POST['sub_name'])) {
+                ?>
+                  <p class="text-danger my-1">Please enter Subject Name</p>
+                <?php
+                }
+                ?>  
               </div>
+
               <div class="mb-3">
-                <label for="prerequisite" class="form-label">Prerequisite</label>
-                <input type="text" class="form-control" id="prerequisite" aria-describedby="prerequisite">
-              </div>
+                <label for="sub_prerequisite" class="form-label">Prerequisite</label>
+                <input type="text" class="form-control" id="sub_prerequisite" aria-describedby="sub_prerequisite" name="sub_prerequisite" value="<?php if (isset($_POST['sub_prerequisite'])) {
+                                                                                                                                                        echo $_POST['sub_prerequisite'];
+                                                                                                                                                        } ?>">
+              </div>      
             </div>
 
             <div class="col">
               <div class="mb-3">
-                <div class="row row-cols-1 row-cols-md-2 align-items-center">
-                <div class="col">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="lecture" checked>
-                      <label class="form-check-label" for="lecture">Lecture</label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="laboratory">
-                      <label class="form-check-label" for="laboratory">Laboratory</label>
-                    </div>
-                  </div>
-                </div>
+                <label for="lec" class="form-label">Lecture</label>
+                <input type="number" class="form-control" id="lec" aria-describedby="lec" name="lec" value="<?php if (isset($_POST['lec'])) {
+                                                                                                                    echo $_POST['lec'];
+                                                                                                                  } ?>">
+                <?php
+                if (isset($_POST['lec']) && !validate_field($_POST['lec'])) {
+                ?>
+                  <p class="text-danger my-1">Cannot be empty</p>
+                <?php
+                }
+                ?>  
+              </div>
+              <div class="mb-3">
+                <label for="lab" class="form-label">Laboratory</label>
+                <input type="number" class="form-control" id="lab" aria-describedby="lab" name="lab" value="<?php if (isset($_POST['lab'])) {
+                                                                                                                    echo $_POST['lab'];
+                                                                                                                  } ?>">
+                <?php
+                if (isset($_POST['lab']) && !validate_field($_POST['lab'])) {
+                ?>
+                  <p class="text-danger my-1">Cannot be empty</p>
+                <?php
+                }
+                ?>  
               </div>
               <div class="mb-3">
                 <label for="total_unit" class="form-label">Total Unit</label>
-                <input type="number" class="form-control" id="total_unit" aria-describedby="total_unit">
+                <input type="number" class="form-control" id="total_unit" aria-describedby="total_unit" disabled value="5">
               </div>
-              <div class="mb-3">
-                <label for="studentemail" class="form-label">???</label>
-                <input type="text" class="form-control" id="fname" aria-describedby="fname">
-              </div>
+              
             </div>
           </div>
           <button type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" class="btn brand-bg-color">Submit</button>
+          <button type="submit" id="add_curr_sub" name="add_curr_sub" class="btn brand-bg-color">Submit</button>
         </form>
       </div>
 
     </main>
   </div>
   
-  <script src="../vendor/pdfmake-0.2.7/pdfmake.min.js"></script>
-  <script src="../vendor/pdfmake-0.2.7/vfs_fonts.js"></script>
   <script src="./js/main.js"></script>
-  <script src="./js/curriculum-table.js"></script>
   
 </body>
 </html>

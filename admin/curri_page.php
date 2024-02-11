@@ -70,7 +70,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
               <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="./curri_add_sub.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./curri_add_sub" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php
@@ -95,7 +95,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
               <tr>
                 <th width="10%">lec</th>
                 <th width="10%">lab</th>
-                <th width="15%">total</th>
+                <th width="10%">total</th>
               </tr>
             </thead>
             <tbody>
@@ -105,12 +105,12 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
               ?>
                 <tr>
                   <td><?= $counter ?></td>
-                  <td><?= $item['sub_code'] ?></td>
-                  <td><?= $item['sub_prequisite'] ?></td>
+                  <td><?= $item['sub_code'] ?> - <?= $item['sub_name']?></td>
+                  <td><?= $item['sub_prerequisite'] ?></td>
                   <td><?= $item['lec'] ?></td>
                   <td><?= $item['lab'] ?></td>
-                  <td><?= $item['total'] ?></td>
-                  <td class="text-center">
+                  <td><?= $item['lec'] + $item['lab'] ?></td>
+                  <td class="text-center">  
                     <a href="# "><i class='bx bx-edit text-success' ></i></a>
                     <i class='bx bx-trash-alt text-danger' ></i>
                   </td>
