@@ -34,6 +34,15 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           <button onclick="history.back()" class="bg-none d-flex align-items-center" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
             <span class="fs-2 fw-bold h1 m-0 brand-color">Computer Science Curriculum</span>
+            <?php
+if (isset($_GET['id'])) {
+    $time_id = $_GET['id'];
+    // Now you can use $id in your script
+    echo "The ID from the previous page is: $time_id";
+} else {
+    echo "No ID provided in the URL";
+}
+?>
           </div>
         </div>
       </div>

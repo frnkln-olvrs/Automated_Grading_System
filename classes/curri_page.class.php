@@ -27,7 +27,6 @@ Class Curr_table{
     (:sub_code, :sub_name, :sub_prerequisite, :lec, :lab);";
 
     $query=$this->db->connect()->prepare($sql);
-    $query->bindParam(':curr_id', $this->curr_id);
     $query->bindParam(':sub_code', $this->sub_code);
     $query->bindParam(':sub_name', $this->sub_name);
     $query->bindParam(':sub_prerequisite', $this->sub_prerequisite);

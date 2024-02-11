@@ -2,6 +2,7 @@
 require_once '../tools/functions.php';
 require_once '../classes/curri_page.class.php';
 require_once '../classes/user.class.php';
+require_once '../classes/curr_year.class.php'; // Include the class file
 
 session_start();
 
@@ -9,11 +10,8 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
-
 if (isset($_POST['add_curr_sub'])) {
-
   $user = new User();
-
   $record = $user->fetch($_SESSION['user_id']);
   $user->user_id = $_SESSION['user_id'];
 
@@ -26,24 +24,25 @@ if (isset($_POST['add_curr_sub'])) {
   $curr_table->lec = htmlentities($_POST['lec']);
   $curr_table->lab = htmlentities($_POST['lab']);
 
+  $curr_year = new Curr_year(); // Instantiate the Curr_year class
+
   if (        
-    validate_field($curr_table->sub_code) && !$curr_table->is_subcode_exist($sub_code) &&
+    validate_field($curr_table->sub_code) && !$curr_table->is_subcode_exist($curr_table->sub_code) &&
     validate_field($curr_table->sub_name) &&
     validate_field($curr_table->sub_prerequisite) &&
     validate_field($curr_table->lec) &&
     validate_field($curr_table->lab)
   ) {
-    if ($curr_year->add()) {
+    if ($curr_table->add()) { // Use $curr_table instead of $curr_year
       header('location: ./curri_page');
-      $message = 'Curriculum Year is successfuly added.';
+      $message = 'Curriculum Year is successfully added.';
     } else {
       $message = 'Something went wrong adding Curriculum Year.';
     }
   }
-
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +140,7 @@ if (isset($_POST['add_curr_sub'])) {
                 }
                 ?>  
               </div>
+
               <div class="mb-3">
                 <label for="lab" class="form-label">Laboratory</label>
                 <input type="number" class="form-control" id="lab" aria-describedby="lab" name="lab" value="<?php if (isset($_POST['lab'])) {
@@ -154,11 +154,13 @@ if (isset($_POST['add_curr_sub'])) {
                 }
                 ?>  
               </div>
+
               <div class="mb-3">
                 <label for="total_unit" class="form-label">Total Unit</label>
-                <input type="number" class="form-control" id="total_unit" aria-describedby="total_unit" disabled value="5">
+                <input type="number" class="form-control" id="total_unit" aria-describedby="total_unit" disabled  value="<?php if (isset($_POST['total_unit'])) {
+                                                                                                                          echo $_POST['total_unit'];
+                                                                                                                        } ?>">
               </div>
-              
             </div>
           </div>
           <button type="button" class="btn btn-secondary">Cancel</button>
@@ -170,6 +172,17 @@ if (isset($_POST['add_curr_sub'])) {
   </div>
   
   <script src="./js/main.js"></script>
+
+  <script>
+  $(document).ready(function () {
+    $('#lec, #lab').on('input', function () {
+      var lec = parseInt($('#lec').val()) || 0;
+      var lab = parseInt($('#lab').val()) || 0;
+      var totalUnit = lec + lab;
+      $('#total_unit').val(totalUnit);
+    });
+  });
+</script>
   
 </body>
 </html>

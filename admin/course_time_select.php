@@ -5,7 +5,6 @@ session_start();
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
   header('location: ../login.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             foreach($curr_timeArray as $item) {
           ?>
           <div class="col">    
-            <a href="./curri_page.php?=<?= $item['time_id'] ?>">
+            <a href="./curri_page?id=<?= $item['time_id'] ?>">
               <div class="d-flex align-items-center brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bx-clipboard me-3' ></i>
                 <div class="d-flex flex-column justify-content-start">
