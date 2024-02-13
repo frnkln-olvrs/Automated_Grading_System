@@ -7,6 +7,9 @@ Class Curr_table{
   //attributes
   public $user_id;
   public $curr_id;
+  public $curr_year_id;
+  public $college_course_id;
+  public $time_id;
   public $sub_code;
   public $sub_name;
   public $sub_prerequisite;
@@ -23,10 +26,13 @@ Class Curr_table{
   //Methods
 
   function add(){
-    $sql = "INSERT INTO curr_table (sub_code, sub_name, sub_prerequisite, lec, lab) VALUES 
-    (:sub_code, :sub_name, :sub_prerequisite, :lec, :lab);";
+    $sql = "INSERT INTO curr_table (curr_year_id, college_course_id, time_id, sub_code, sub_name, sub_prerequisite, lec, lab) VALUES 
+    (:curr_year_id, :college_course_id, :time_id, :sub_code, :sub_name, :sub_prerequisite, :lec, :lab);";
 
     $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_year_id', $this->curr_year_id);
+    $query->bindParam(':college_course_id', $this->college_course_id);
+    $query->bindParam(':time_id', $this->time_id);
     $query->bindParam(':sub_code', $this->sub_code);
     $query->bindParam(':sub_name', $this->sub_name);
     $query->bindParam(':sub_prerequisite', $this->sub_prerequisite);
