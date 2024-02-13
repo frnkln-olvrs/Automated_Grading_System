@@ -24,7 +24,7 @@
           </button>
         </div>
 
-        <div class="collapse" id="profiling_toggle" style="">
+        <div class="collapse <?= ($profiling_page || $comci_page || $it_page) ? 'show' : '' ?>" id="profiling_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="./profiling.php" class="link-dark nav-link <?= $profiling_page ?>">
               <i class='bx bx-git-commit'></i>
@@ -55,7 +55,7 @@
           </button>
         </div>
 
-        <div class="collapse" id="mnge_acc_toggle" style="">
+        <div class="collapse <?= ($acc_setup || $user_acc) ? 'show' : '' ?>" id="mnge_acc_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="./acc_setup.php" class="link-dark nav-link <?= $acc_setup ?>">
               <i class='bx bx-git-commit'></i>
@@ -82,7 +82,7 @@
           </button>
         </div>
 
-        <div class="collapse" id="faculty_toggle" style="">
+        <div class="collapse <?= ($comci_page || $it_page) ? 'show' : '' ?>" id="faculty_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="#" class="link-dark nav-link <?= $comci_page ?>">
               <i class='bx bx-git-commit'></i>
@@ -121,3 +121,12 @@
       </ul>
     </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('.btn-toggle').click(function(){
+      var collapseId = $(this).attr('data-bs-target');
+      $('.collapse').not(collapseId).collapse('hide');
+    });
+  });
+</script>
