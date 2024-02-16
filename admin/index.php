@@ -56,7 +56,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           ?>
 
           <div class="col">    
-            <a href="./course_select?=<?= $item['curr_year_id'] ?>">
+            <a href="./course_select?year_id=<?= $item['curr_year_id'] ?>">
               <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bxs-folder-open opacity-50' ></i>
                 <div class="d-flex flex-column justify-content-start">

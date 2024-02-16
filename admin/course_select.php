@@ -6,6 +6,8 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+if (isset($_SESSION))
+
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +71,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             foreach($course_currArray as $item) {
           ?>
           <div class="col">
-            <a href="./course_time_select.php?=<?= $item['college_course_id'] ?>">
+            <a href="./course_time_select.php?id=<?= $_GET['year_id'].'&course_id='.$item['college_course_id'] ?>">
               <div class="d-flex align-items-center justify-content-center brand-bg-color p-4 fs-4 h-100 rounded">
                 <span><?= $item['name'] ?></span>
               </div>
