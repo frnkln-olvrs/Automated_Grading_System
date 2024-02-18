@@ -2,9 +2,6 @@
   <button class="d-flex bg-transparent" type="button" id="collapse_btn">
     <i class='bx bx-menu me-0 px-3 color-white fs-3' style="color: whitesmoke;"></i>
   </button>
-  <button class="navbar-toggler d-md-none collapsed me-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   <nav class="navbar navbar-expand-md navbar-dark d-none d-md-block">
     <div class="container-fluid">
       <div class="navbar-collapse offcanvas-collapse">

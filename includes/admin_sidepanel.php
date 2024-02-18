@@ -1,4 +1,4 @@
-<div class="sidepanel d-flex flex-column flex-shrink-0 p-3 border-end border-dark position-fixed" style="max-width: 215px; height: 100%; background-color: white;">
+<div id="sidebarMenu" class="sidepanel d-flex flex-column flex-shrink-0 p-3 border-end border-dark position-fixed" style="max-width: 215px; height: 100%; background-color: white;">
   <a href="./index.php" class="d-flex align-items-center justify-content-center mb-md-0 link-dark text-decoration-none">
     <img src="../img/wmsu_logo.png" class="me-2" alt="" width="50px" height="50px">
     <span class="fs-2 h1 m-0 brand-color ">Admin</span>
@@ -14,8 +14,8 @@
 
     <li class="nav-item">
       <div class="btn-group d-flex flex-column">
-        <div class="link-grp d-flex justify-content-between">
-          <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 border-end border-3 border-white <?= $profiling_page ?>" type="button">
+        <div class="link-grp d-flex justify-content-between gap-1">
+          <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $profiling_page ?>" type="button">
             <i class='bx bxs-dashboard fs-4'></i>
             <span class="fs-6 ms-2">Profiling</span>
           </a>
@@ -24,14 +24,8 @@
           </button>
         </div>
 
-        <div class="collapse <?= ($profiling_page || $comci_page || $it_page) ? 'show' : '' ?>" id="profiling_toggle" style="">
+        <div class="collapse <?= ($comci_page || $it_page) ? 'show' : '' ?>" id="profiling_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li>
-              <a href="./profiling.php" class="link-dark nav-link <?= $profiling_page ?>">
-                <i class='bx bx-git-commit'></i>
-                <span class="fs-6 ms-2">Profiling</span>
-              </a>
-            </li>
             <li>
               <a href="#" class="link-dark nav-link <?= $comci_page ?>">
                 <i class='bx bx-git-commit'></i>
@@ -51,8 +45,8 @@
 
     <li class="nav-item">
       <div class="btn-group d-flex flex-column">
-        <div class="link-grp d-flex justify-content-between">
-          <a href="./manage_acc.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 border-end border-3 border-white <?= $manage_acc ?>" type="button">
+        <div class="link-grp d-flex justify-content-between gap-1">
+          <a href="./manage_acc.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $manage_acc ?>" type="button">
             <i class='bx bx-user fs-4'></i>
             <span class="fs-6 ms-2">Manage Account</span>
           </a>
@@ -82,8 +76,8 @@
 
     <li class="nav-item">
       <div class="btn-group d-flex flex-column">
-        <div class="link-grp d-flex justify-content-between">
-          <a href="./faculty.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 border-end border-3 border-white <?= $faculty_page ?>">
+        <div class="link-grp d-flex justify-content-between gap-1">
+          <a href="./faculty.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $faculty_page ?>">
             <i class='bx bxs-user-circle fs-4' ></i>
             <span class="fs-6 ms-2">Faculty</span>          
           </a>
@@ -135,9 +129,9 @@
       </ul>
     </div>
 </div>
-
 <script>
   $(document).ready(function(){
+    // Toggle collapse on button click
     $('.btn-toggle').click(function(){
       var collapseId = $(this).attr('data-bs-target');
       $('.collapse').not(collapseId).collapse('hide');

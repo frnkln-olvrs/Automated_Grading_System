@@ -85,11 +85,11 @@ body .home.collapse {
 }
 
 body .home.collapse main {
-  margin-left: 10%;
+  margin-left: 90px;
 }
 
 body .home.collapse .side .sidepanel {
-  width: 10% !important;
+  width: 90px !important;
 }
 
 body .home.collapse .side span {
@@ -123,12 +123,22 @@ body .home.collapse .side .link-grp .nav-link {
   border: none !important;
 }
 
+.home.collapse .gap-1 {
+  gap: 0 !important;
+}
+
+ #sidebarMenu.collapsed {
+        width: 50px !important;
+        /* Adjust other styles accordingly */
+    }
+
 .home .side .nav-item .nav-link.active {
   background-color: var(--primary-color);
 }
 
 .home.collapse .side .nav-item .nav-link.active {
   margin-bottom: .2rem !important;
+  gap: 0px !important;
 }
 
 header .dropdown-menu.text-small.shadow.show {
