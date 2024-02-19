@@ -122,6 +122,20 @@ class Curr_year {
     }
     return $yearRange;
   }
+
+  function searchByYearStart($keyword) {
+    $sql = "SELECT * FROM curr_year WHERE year_start LIKE :keyword;";
+    $query = $this->db->connect()->prepare($sql);
+    $keyword = "%$keyword%";
+    $query->bindParam(':keyword', $keyword);
+
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll();
+    }
+    return $data;
+  }
+
 }
 
 ?>

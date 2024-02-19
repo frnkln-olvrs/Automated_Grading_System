@@ -6,6 +6,14 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+require_once '../classes/curr_year.class.php';
+
+$currYear = new Curr_year();
+if (isset($_GET['keyword'])) {
+  $keyword = $_GET['keyword'];
+  $results = $currYear->searchByYearStart($keyword);
+  echo json_encode($results); // Sending back JSON response, you can handle it in JavaScript
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,10 +47,14 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
       <div class="m-4">
         <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-3">
-          <div class="input-group">
+          <form class="input-group">
             <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
-            <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
-          </div>
+            <button class="btn btn-outline-secondary brand-bg-color" type="button" onclick="searchYearStart()"><i class='bx bx-search' aria-hidden="true"></i></button>
+          </form>          
+          <?php 
+            require_once ('../tools/search.php');
+          ?>
+
           <a href="./add_curri" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
         </div>
 
@@ -79,6 +91,26 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   </div>
 
   <script src="./js/main.js"></script>
-  
+  <script>
+    function searchYearStart() {
+      var keyword = document.getElementById('keyword').value.trim();
+      if (keyword !== '') {
+        fetch('search.php?keyword=' + encodeURIComponent(keyword))
+          .then(response => {
+            if (response.ok) {
+                return response.text();
+            }
+            throw new Error('Network response was not ok.');
+          })
+          .then(data => {
+              document.getElementById('searchResult').textContent = data;
+          })
+          .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+          });
+      }
+    }
+  </script>
+
 </body>
 </html>
