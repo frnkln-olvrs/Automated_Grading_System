@@ -32,7 +32,24 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         <div class="d-flex align-items-center">
         <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 fw-bold h1 m-0 brand-color">Computer Science</span>
+            <?php 
+            require_once '../classes/course_select.class.php';
+
+            $course_curr = new Course_curr();
+            $course_id = $_GET['course_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
+
+            $courseName = $course_curr->getCourseNameById($course_id);
+            ?>
+            <span class='fs-2 fw-bold h1 m-0 brand-color'>
+              <?php
+              if ($courseName) {
+                echo "{$courseName['name']}";
+              } else {
+                echo "Invalid Curriculum Year";
+              }
+              ?>
+            </span>
+            <!-- <span class="fs-2 fw-bold h1 m-0 brand-color">Computer Science</span> -->
           </div>
         </div>
       </div>
@@ -47,7 +64,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             foreach($curr_timeArray as $item) {
           ?>
           <div class="col">    
-            <a href="./curri_page?id=<?= $item['time_id'] ?>">
+            <a href="./curri_page?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id']  ?>&time_id=<?= $item['time_id'] ?>">
               <div class="d-flex align-items-center brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bx-clipboard me-3' ></i>
                 <div class="d-flex flex-column justify-content-start">

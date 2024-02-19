@@ -1,6 +1,6 @@
 let navigation = document.querySelector('.home');
 
-
+// SIDEPANEL SATRT
 // Function to handle collapse toggle
 function toggleCollapse() {
   let navigation = document.querySelector('.home');
@@ -25,6 +25,7 @@ document.querySelector('#collapse_btn').addEventListener('click', function(event
   event.stopPropagation();
   toggleCollapse();
 });
+// SIDEPANEL END
 
 document.querySelector("input[type=number]").oninput = e => console.log(
   new Date(e.target.valueAsNumber, 0, 1)

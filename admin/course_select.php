@@ -35,20 +35,23 @@ if (isset($_SESSION))
         <div class="d-flex align-items-center">
           <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-          <?php 
-          require_once '../classes/curr_year.class.php';
-          
-          $curr_year = new Curr_year();
-          $curr_year_id = $_GET['curr_year_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
-          
-          $yearRange = $curr_year->getYearRangeById($curr_year_id);
-          
-          if ($yearRange) {
-            echo "<span class='fs-2 fw-bold h1 m-0 brand-color'>CURRICULUM {$yearRange['year_start']}-{$yearRange['year_end']}</span>";
-          } else {
-            echo "<span class='fs-2 fw-bold h1 m-0 brand-color'>Invalid Curriculum Year</span>";
-          }
-          ?>
+            <?php 
+            require_once '../classes/curr_year.class.php';
+
+            $curr_year = new Curr_year();
+            $year_id = $_GET['year_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
+
+            $yearRange = $curr_year->getYearRangeById($year_id);
+            ?>
+            <span class='fs-2 fw-bold h1 m-0 brand-color'>
+              <?php
+              if ($yearRange) {
+                echo "CURRICULUM {$yearRange['year_start']}-{$yearRange['year_end']}";
+              } else {
+                echo "Invalid Curriculum Year";
+              }
+              ?>
+            </span>
             <!-- <span class="fs-2 fw-bold h1 m-0 brand-color">CURRICULUM 2023-2024</span> -->
           </div>
         </div>
@@ -71,7 +74,7 @@ if (isset($_SESSION))
             foreach($course_currArray as $item) {
           ?>
           <div class="col">
-            <a href="./course_time_select.php?id=<?= $_GET['year_id'].'&course_id='.$item['college_course_id'] ?>">
+            <a href="./course_time_select?year_id=<?= $_GET['year_id'].'&course_id='.$item['college_course_id'] ?>">
               <div class="d-flex align-items-center justify-content-center brand-bg-color p-4 fs-4 h-100 rounded">
                 <span><?= $item['name'] ?></span>
               </div>

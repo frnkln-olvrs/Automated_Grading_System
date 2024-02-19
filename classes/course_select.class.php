@@ -25,6 +25,21 @@ class Course_curr {
     return $data;
   }
 
+  function getCourseNameById($college_course_id) {
+    $sql = "SELECT name FROM course_curr WHERE college_course_id = :college_course_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':college_course_id', $college_course_id);
+    $courseName = null;
+
+    if ($query->execute()) {
+      $result = $query->fetch(PDO::FETCH_ASSOC);
+      if ($result) {
+        $courseName['name'] = $result['name'];
+      }
+    }
+    return $courseName;
+  }
+
   // function add() {
   //   $sql = "INSERT INTO curr_year (curr_year_id, year_start, year_end) VALUES
   //   (:curr_year_id, :year_start, :year_end);";

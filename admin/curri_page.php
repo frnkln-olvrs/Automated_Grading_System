@@ -34,15 +34,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           <button onclick="history.back()" class="bg-none d-flex align-items-center" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
             <span class="fs-2 fw-bold h1 m-0 brand-color">Computer Science Curriculum</span>
-            <?php
-if (isset($_GET['id'])) {
-    $time_id = $_GET['id'];
-    // Now you can use $id in your script
-    echo "The ID from the previous page is: $time_id";
-} else {
-    echo "No ID provided in the URL";
-}
-?>
+            
           </div>
         </div>
       </div>
@@ -79,7 +71,7 @@ if (isset($_GET['id'])) {
               <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="./curri_add_sub" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./curri_add_sub?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id']  ?>&time_id=<?= $_GET['time_id'] ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php

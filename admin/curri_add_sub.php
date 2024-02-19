@@ -18,6 +18,9 @@ if (isset($_POST['add_curr_sub'])) {
   $curr_table = new Curr_table();
   //sanitize
   $curr_table->user_id = $_SESSION['user_id'];
+  $curr_table->curr_year_id = htmlentities($_POST['curr_year_id']);
+  $curr_table->college_course_id = htmlentities($_POST['college_course_id']);
+  $curr_table->time_id = htmlentities($_POST['time_id']);
   $curr_table->sub_code = htmlentities($_POST['sub_code']);
   $curr_table->sub_name = htmlentities($_POST['sub_name']);
   $curr_table->sub_prerequisite = htmlentities($_POST['sub_prerequisite']);
@@ -160,6 +163,33 @@ if (isset($_POST['add_curr_sub'])) {
                 <input type="number" class="form-control" id="total_unit" aria-describedby="total_unit" disabled  value="<?php if (isset($_POST['total_unit'])) {
                                                                                                                           echo $_POST['total_unit'];
                                                                                                                         } ?>">
+              </div>
+              <div class="mb-3">
+                <label for="curr_year_id" class="form-label">year-id</label>
+                <input type="number" class="form-control" id="curr_year_id" name="curr_year_id" aria-describedby="curr_year_id" value="<?php if (isset($_GET['year_id'])) {
+                                                                                                                                                $curr_year_id = $_GET['year_id'];
+                                                                                                                                                // Now you can use $id in your script
+                                                                                                                                                echo "$curr_year_id";
+                                                                                                                                              }
+                                                                                                                                              ?>">
+              </div>
+              <div class="mb-3">
+                <label for="college_course_id" class="form-label">course-id</label>
+                <input type="number" class="form-control" id="college_course_id" name="college_course_id" aria-describedby="college_course_id" value="<?php if (isset($_GET['course_id'])) {
+                                                                                                                                                $college_course_id = $_GET['course_id'];
+                                                                                                                                                // Now you can use $id in your script
+                                                                                                                                                echo "$college_course_id";
+                                                                                                                                              }
+                                                                                                                                              ?>">
+              </div>
+              <div class="mb-3">
+                <label for="time_id" class="form-label">time_id</label>
+                <input type="number" class="form-control" id="time_id" name="time_id" aria-describedby="time_id" value="<?php if (isset($_GET['time_id'])) {
+                                                                                                                                                $time_id = $_GET['time_id'];
+                                                                                                                                                // Now you can use $id in your script
+                                                                                                                                                echo "$time_id";
+                                                                                                                                              }
+                                                                                                                                              ?>">
               </div>
             </div>
           </div>
