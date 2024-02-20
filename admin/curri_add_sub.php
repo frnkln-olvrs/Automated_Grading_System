@@ -164,7 +164,7 @@ if (isset($_POST['add_curr_sub'])) {
                                                                                                                           echo $_POST['total_unit'];
                                                                                                                         } ?>">
               </div>
-              <div class="mb-3">
+              <div class="mb-3 d-none">
                 <label for="curr_year_id" class="form-label">year-id</label>
                 <input type="number" class="form-control" id="curr_year_id" name="curr_year_id" aria-describedby="curr_year_id" value="<?php if (isset($_GET['year_id'])) {
                                                                                                                                                 $curr_year_id = $_GET['year_id'];
@@ -173,7 +173,7 @@ if (isset($_POST['add_curr_sub'])) {
                                                                                                                                               }
                                                                                                                                               ?>">
               </div>
-              <div class="mb-3">
+              <div class="mb-3 d-none">
                 <label for="college_course_id" class="form-label">course-id</label>
                 <input type="number" class="form-control" id="college_course_id" name="college_course_id" aria-describedby="college_course_id" value="<?php if (isset($_GET['course_id'])) {
                                                                                                                                                 $college_course_id = $_GET['course_id'];
@@ -182,7 +182,7 @@ if (isset($_POST['add_curr_sub'])) {
                                                                                                                                               }
                                                                                                                                               ?>">
               </div>
-              <div class="mb-3">
+              <div class="mb-3 d-none">
                 <label for="time_id" class="form-label">time_id</label>
                 <input type="number" class="form-control" id="time_id" name="time_id" aria-describedby="time_id" value="<?php if (isset($_GET['time_id'])) {
                                                                                                                                                 $time_id = $_GET['time_id'];

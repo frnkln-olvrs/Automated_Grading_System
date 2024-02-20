@@ -75,9 +75,12 @@ Class Curr_table{
   //   }	
   // }
 
-  function show(){
-    $sql = "SELECT * FROM curr_table ORDER BY sub_code ASC;";
-    $query=$this->db->connect()->prepare($sql);
+  function show($year_id, $course_id, $time_id){
+    $sql = "SELECT * FROM curr_table WHERE curr_year_id = :year_id AND college_course_id = :course_id AND time_id = :time_id ORDER BY sub_code ASC;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':year_id', $year_id);
+    $query->bindParam(':course_id', $course_id);
+    $query->bindParam(':time_id', $time_id);
     $data = null;
     if($query->execute()){
       $data = $query->fetchAll();

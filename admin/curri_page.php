@@ -6,6 +6,17 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+if (!isset($_GET['year_id']) || !isset($_GET['course_id']) || !isset($_GET['time_id'])) {
+  header('Location: ./index.php');
+  exit;
+
+} 
+
+if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id'])) {
+  header('Location: ./index.php');
+  exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +44,26 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         <div class="d-flex align-items-center">
           <button onclick="history.back()" class="bg-none d-flex align-items-center" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 fw-bold h1 m-0 brand-color">Computer Science Curriculum</span>
+            <span class="fs-2 fw-bold h1 m-0 brand-color">
+              <?php 
+              require_once '../classes/course_select.class.php';
+
+              $course_curr = new Course_curr();
+              $course_id = $_GET['course_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
+
+              $courseName = $course_curr->getCourseNameById($course_id);
+              ?>
+              <span class='fs-2 fw-bold h1 m-0 brand-color'>
+                <?php
+                if ($courseName) {
+                  echo "{$courseName['name']}";
+                } else {
+                  echo "Invalid Curriculum Year";
+                }
+                ?>  
             
+              Curriculum
+            </span>
           </div>
         </div>
       </div>
@@ -61,7 +90,21 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
           <div class="d-flex flex-column align-items-center mb-2">
-            <h3>S.Y 2023 - 2024</h3>
+            <h3> 
+              <?php 
+              require_once '../classes/curr_year.class.php';
+
+              $curr_year = new Curr_year();
+              $year_id = $_GET['year_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
+
+              $yearRange = $curr_year->getYearRangeById($year_id);
+              if ($yearRange) {
+                echo "S.Y {$yearRange['year_start']}-{$yearRange['year_end']}";
+              } else {
+                echo "Invalid Curriculum Year";
+              }
+              ?>
+            </h3>
             <h4>First Semester</h4>
           </div>  
 
@@ -75,15 +118,19 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           </div>
           
           <?php
-              require_once '../classes/curri_page.class.php';
-              require_once '../tools/functions.php';
+            require_once '../classes/curri_page.class.php';
+            require_once '../tools/functions.php';
 
-              $curr_table = new Curr_table();
+            $curr_table = new Curr_table();
 
-              // Fetch staff data (you should modify this to retrieve data from your database)
-              $curr_tableArray = $curr_table->show();
-              $counter = 1;     
+            // Fetch and display table data
+            $year_id = $_GET['year_id'] ?? '';
+            $course_id = $_GET['course_id'] ?? '';
+            $time_id = $_GET['time_id'] ?? '';
+            $curr_tableArray = $curr_table->show($year_id, $course_id, $time_id);
+            $counter = 1;   
           ?>
+          
           <table id="curriculum" class="table table-striped table-sm" style="width:100%">
             <thead>
               <tr>
@@ -91,7 +138,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                 <th rowspan="2" class="align-middle">Subject</th> <!--Code & description-->
                 <th rowspan="2" class="align-middle">Prequisite</th>
                 <th colspan="3" class="text-center">Unit</th>
-                <th rowspan="2" class="align-middle" width="5%">Action</th>
+                <th rowspan="2" class="align-middle text-center" width="8%">Action</th>
               </tr>
               <tr>
                 <th width="10%">lec</th>
