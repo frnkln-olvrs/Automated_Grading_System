@@ -106,7 +106,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="./main-subject_setting.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $grade_page ?>">
+      <a href="./grade.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $grade_page ?>">
         <i class='bx bx-library fs-4'></i>
         <span class="fs-6 ms-2">Grade</span>          
       </a>

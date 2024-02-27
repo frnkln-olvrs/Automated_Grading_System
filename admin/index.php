@@ -73,7 +73,7 @@ if (isset($_GET['keyword'])) {
                 <i class='bx bxs-folder-open opacity-50' ></i>
                 <div class="d-flex flex-column justify-content-start">
                   <span>curriculum</span>
-                  <span><?= $item['year_start'] ?>-<?= $item['year_end'] ?></span>
+                  <span><?= $item['year_start'] ?> - <?= $item['year_end'] ?></span>
                 </div>
               </div>
             </a>
@@ -98,7 +98,7 @@ if (isset($_GET['keyword'])) {
         fetch('search.php?keyword=' + encodeURIComponent(keyword))
           .then(response => {
             if (response.ok) {
-                return response.text();
+              return response.text();
             }
             throw new Error('Network response was not ok.');
           })

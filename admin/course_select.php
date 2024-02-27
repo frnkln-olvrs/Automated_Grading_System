@@ -6,8 +6,6 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
-if (isset($_SESSION))
-
 ?>
 
 <!DOCTYPE html>

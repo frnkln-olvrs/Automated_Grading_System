@@ -86,7 +86,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   ),
                 );
               ?>
-              <table id="main_faculty_regular" class="table table-striped table-sm" style="width:125%">
+              <table id="main_faculty_regular" class="table table-striped table-sm" style="width:100%">
                 <thead>
                   <tr>
                     <th>#</th>

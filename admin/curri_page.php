@@ -7,13 +7,12 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 }
 
 if (!isset($_GET['year_id']) || !isset($_GET['course_id']) || !isset($_GET['time_id'])) {
-  header('Location: ./index.php');
+  header('Location: ./index');
   exit;
-
 } 
 
 if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id'])) {
-  header('Location: ./index.php');
+  header('Location: ./index');
   exit;
 }
 
