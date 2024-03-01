@@ -12,7 +12,9 @@ $currYear = new Curr_year();
 if (isset($_GET['keyword'])) {
   $keyword = $_GET['keyword'];
   $results = $currYear->searchByYearStart($keyword);
-  echo json_encode($results); // Sending back JSON response, you can handle it in JavaScript
+} else {
+  // If no keyword is set, display all curriculum items
+  $curr_yearArray = $currYear->show();
 }
 ?>
 
@@ -49,25 +51,33 @@ if (isset($_GET['keyword'])) {
         <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-3">
           <form class="input-group">
             <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
-            <button class="btn btn-outline-secondary brand-bg-color" type="button" onclick="searchYearStart()"><i class='bx bx-search' aria-hidden="true"></i></button>
+            <button class="btn btn-outline-secondary brand-bg-color" type="button" name="keyword" onclick="searchYearStart()"><i class='bx bx-search' aria-hidden="true"></i></button>
           </form>          
-          <?php 
-            require_once ('../tools/search.php');
-          ?>
 
           <a href="./add_curri" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
         </div>
 
         <div class="curriculum row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
           <?php 
-          require_once '../classes/curr_year.class.php';
-          $curr_year = new Curr_year();
-          $curr_yearArray = $curr_year->show();
-          if ($curr_yearArray) {
-            foreach($curr_yearArray as $item) {
+            require_once '../classes/curr_year.class.php';
+            $curr_year = new Curr_year();
+            $curr_yearArray = $curr_year->show();
+
+            if ($curr_yearArray) {
+              foreach($curr_yearArray as $item) {
+                // Check if keyword is set and if the item matches the keyword
+                $displayItem = true;
+                if (isset($_GET['keyword'])) {
+                  $keyword = strtolower($_GET['keyword']);
+                  if (strtolower($item['year_start']) != $keyword) {
+                    $displayItem = false;
+                  }
+                }
+
+                if ($displayItem) {
           ?>
 
-          <div class="col">    
+          <div class="col">
             <a href="./course_select?year_id=<?= $item['curr_year_id'] ?>">
               <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bxs-folder-open opacity-50' ></i>
@@ -80,12 +90,14 @@ if (isset($_GET['keyword'])) {
           </div>
 
           <?php 
+                }
+              }
             }
-          }
           ?>
 
         </div>
       </div>
+
 
     </main>
   </div>
@@ -103,10 +115,10 @@ if (isset($_GET['keyword'])) {
             throw new Error('Network response was not ok.');
           })
           .then(data => {
-              document.getElementById('searchResult').textContent = data;
+            document.getElementById('searchResult').textContent = data;
           })
           .catch(error => {
-              console.error('There was a problem with the fetch operation:', error);
+            console.error('There was a problem with the fetch operation:', error);
           });
       }
     }
