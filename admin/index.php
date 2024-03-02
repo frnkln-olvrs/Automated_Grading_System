@@ -9,11 +9,15 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 require_once '../classes/curr_year.class.php';
 
 $currYear = new Curr_year();
-if (isset($_GET['keyword'])) {
+if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
   $keyword = $_GET['keyword'];
   $results = $currYear->searchByYearStart($keyword);
+  if (empty($results)) {
+    echo 'No Curriculum found';
+    exit;
+  }
 } else {
-  // If no keyword is set, display all curriculum items
+  // If no keyword is set or keyword is empty, display all curriculum items
   $curr_yearArray = $currYear->show();
 }
 ?>
@@ -21,9 +25,9 @@ if (isset($_GET['keyword'])) {
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'ADMIN';
+  $title = 'ADMIN';
   $curriculum_page = 'active';
-	include '../includes/admin_head.php';
+  include '../includes/admin_head.php';
 ?>
 <body>
   <div class="home">
@@ -67,7 +71,7 @@ if (isset($_GET['keyword'])) {
               foreach($curr_yearArray as $item) {
                 // Check if keyword is set and if the item matches the keyword
                 $displayItem = true;
-                if (isset($_GET['keyword'])) {
+                if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
                   $keyword = strtolower($_GET['keyword']);
                   if (strtolower($item['year_start']) != $keyword) {
                     $displayItem = false;
@@ -115,7 +119,11 @@ if (isset($_GET['keyword'])) {
             throw new Error('Network response was not ok.');
           })
           .then(data => {
-            document.getElementById('searchResult').textContent = data;
+            if (data === 'none') {
+              document.getElementById('searchResult').textContent = 'No matching items found.';
+            } else {
+              document.getElementById('searchResult').textContent = data;
+            }
           })
           .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
