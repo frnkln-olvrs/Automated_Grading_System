@@ -40,6 +40,19 @@ class Course_curr {
     return $courseName;
   }
 
+  function searchByCourseName($keyword) {
+    $sql = "SELECT * FROM course_curr WHERE name LIKE :keyword;";
+    $query = $this->db->connect()->prepare($sql);
+    $keyword = "%$keyword%";
+    $query->bindParam(':keyword', $keyword);
+
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll();
+    }
+    return $data;
+  }
+
   // function add() {
   //   $sql = "INSERT INTO curr_year (curr_year_id, year_start, year_end) VALUES
   //   (:curr_year_id, :year_start, :year_end);";

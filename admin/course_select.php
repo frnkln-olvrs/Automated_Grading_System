@@ -6,6 +6,21 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+require_once '../classes/course_select.class.php';
+
+$coursecurr = new Course_curr();
+if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+  $keyword = $_GET['keyword'];
+  $results = $coursecurr->searchByCourseName($keyword);
+  if (empty($results)) {
+    echo 'No Couse found';
+    exit;
+  }
+} else {
+  // If no keyword i  s set or keyword is empty, display all curriculum items
+  $course_currArray = $coursecurr->show();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +74,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-3">
           <div class="input-group">
             <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
-            <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+            <button class="btn btn-outline-secondary brand-bg-color" type="button" name="keyword" onclick="searchYearStart()"><i class='bx bx-search' aria-hidden="true"></i></button>
           </div>
         </div>
 
@@ -70,6 +85,16 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           $course_currArray = $course_curr->show();
           if ($course_currArray) {
             foreach($course_currArray as $item) {
+
+              $displayItem = true;
+              if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+                $keyword = strtolower($_GET['keyword']);
+                if (strtolower($item['name']) != $keyword) {
+                  $displayItem = false;
+                }
+              }
+
+              if ($displayItem) {
           ?>
           <div class="col">
             <a href="./course_time_select?year_id=<?= $_GET['year_id'].'&course_id='.$item['college_course_id'] ?>">
@@ -80,6 +105,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           </div>
 
           <?php
+              }
             }
           }
           ?>
@@ -91,6 +117,29 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   </div>
 
   <script src="./js/main.js"></script>
-
+  <script>
+    function searchByCourseName() {
+      var keyword = document.getElementById('keyword').value.trim();
+      if (keyword !== '') {
+        fetch('search.php?keyword=' + encodeURIComponent(keyword))
+          .then(response => {
+            if (response.ok) {
+              return response.text();
+            }
+            throw new Error('Network response was not ok.');
+          })
+          .then(data => {
+            if (data === 'none') {
+              document.getElementById('searchResult').textContent = 'No matching items found.';
+            } else {
+              document.getElementById('searchResult').textContent = data;
+            }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+      }
+    }
+  </script>
 </body>
 </html>
