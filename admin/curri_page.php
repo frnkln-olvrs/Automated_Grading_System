@@ -71,11 +71,20 @@ if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id
         
         <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-between">
           <div class="col">
+            <?php 
+              require_once '../classes/year_lvl.class.php';
+
+              $year_lvl = new Year_lvl;
+              $yearlvlarray = $year_lvl->show();
+            ?>
             <select type="button" class="btn border dropdown-toggle form-select border-danger mb-4" data-bs-toggle="dropdown">
-              <option>1st year</option>
-              <option>2nd year</option>
-              <option>3rd year</option>
-              <option>4th year</option>
+              <?php
+                foreach ($yearlvlarray as $item){
+              ?>
+              <option><?= $item['year_level'] ?></option>
+              <?php
+                }
+              ?>
             </select>
           </div>
           <div class="col">
