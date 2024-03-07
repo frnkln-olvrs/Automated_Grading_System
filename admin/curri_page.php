@@ -71,28 +71,70 @@ if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id
         
         <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-between">
           <div class="col">
-            <?php 
-              require_once '../classes/year_lvl.class.php';
+            <div class="dropdown">
+              <?php 
+                require_once '../classes/year_lvl.class.php';
 
-              $year_lvl = new Year_lvl;
-              $yearlvlarray = $year_lvl->show();
-            ?>
-            <select type="button" class="btn border dropdown-toggle form-select border-danger mb-4" data-bs-toggle="dropdown">
-              <?php
-                foreach ($yearlvlarray as $item){
+                $year_lvl = new Year_lvl;
+                $yearlvlarray = $year_lvl->show();
               ?>
-              <option><?= $item['year_level'] ?></option>
-              <?php
-                }
-              ?>
-            </select>
+              <button class="btn border dropdown-toggle form-select border-danger mb-4" type="button" id="year_lvl" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php 
+
+                  $year_level_id = $_GET['year_level_id'] ?? '';
+
+                  $yearLvl = $year_lvl->getYearLvlById($year_level_id);
+
+                  if ($yearLvl) {
+                    echo "{$yearLvl['year_level']}";
+                  } else {
+                    echo "Select Year Level";
+                  }
+                ?>  
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="year_lvl">
+                <?php
+                  foreach ($yearlvlarray as $item){
+                ?>
+                <li><a class="dropdown-item" href="#"><?= $item['year_level'] ?></a></li>
+                <?php
+                  }
+                ?>
+              </ul>
+            </div>
           </div>
+
           <div class="col">
-            <select type="button" class="btn border dropdown-toggle form-select border-danger mb-4" data-bs-toggle="dropdown">
-              <option>1st Semester</option>
-              <option>2nd Semester</option>
-              <option>Summer</option>
-            </select>
+            <div class="dropdown">
+              <?php 
+                require_once '../classes/semester.class.php';
+
+                $semester = new semester;
+                $semesterarray = $semester->show();
+              ?>
+              <button class="btn border dropdown-toggle form-select border-danger mb-4" type="button" id="semester" data-bs-toggle="dropdown" aria-expanded="false">
+              <?php 
+                $semester_id = $_GET['semester_id'] ?? '';
+                                
+                $sem = $semester->getSemesterById($semester_id);
+                                
+                if ($sem) {
+                  echo "{$sem['semester']}";
+                } else {
+                  echo "Select Semester";
+                }
+              ?>  
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="semester">
+                <?php
+                  foreach ($semesterarray as $item){
+                ?>
+                <li><a class="dropdown-item" href="#"><?= $item['semester'] ?></a></li>
+                <?php
+                  }
+                ?>
+              </ul>
+            </div>
           </div>
         </div>
 

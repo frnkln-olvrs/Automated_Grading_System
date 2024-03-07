@@ -2,11 +2,11 @@
 
 require_once 'database.php';
 
-class Year_lvl {
+class Semester {
   //attributes
 
-  public $year_level_id;
-  public $year_level;
+  public $semester_id;
+  public $semester;
 
   protected $db;
 
@@ -16,7 +16,7 @@ class Year_lvl {
 
   
   function show() {
-    $sql = "SELECT * FROM year_lvl ORDER BY year_level ASC;";
+    $sql = "SELECT * FROM semester ORDER BY semester_id ASC;";
     $query = $this->db->connect()->prepare($sql);
     $data = null;
     if ($query->execute()) {
@@ -25,19 +25,19 @@ class Year_lvl {
     return $data;
   }
 
-  function getYearLvlById($year_level_id) {
-    $sql = "SELECT year_level FROM year_lvl WHERE year_level_id = :year_level_id;";
+  function getSemesterById($semester_id) {
+    $sql = "SELECT semester FROM semester WHERE semester_id = :semester_id;";
     $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':year_level_id', $year_level_id);
-    $yearLvl = null;
+    $query->bindParam(':semester_id', $semester_id);
+    $sem = null;
 
     if ($query->execute()) {
       $result = $query->fetch(PDO::FETCH_ASSOC);
       if ($result) {
-        $yearLvl['year_level'] = $result['year_level'];
+        $sem['semester'] = $result['semester'];
       }
     }
-    return $yearLvl;
+    return $sem;
   }
 }
 
