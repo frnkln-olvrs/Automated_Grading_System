@@ -65,7 +65,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
             foreach($curr_timeArray as $item) {
           ?>
           <div class="col">    
-            <a href="./curri_page?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id']  ?>&time_id=<?= $item['time_id'] ?>">
+          <a href="./curri_page?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $item['time_id'] ?>&year_level_id=1&semester_id=1">
               <div class="d-flex align-items-center brand-bg-color p-4 fs-4 rounded">
                 <i class='bx bx-clipboard me-3' ></i>
                 <div class="d-flex flex-column justify-content-start">

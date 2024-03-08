@@ -6,15 +6,33 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
-if (!isset($_GET['year_id']) || !isset($_GET['course_id']) || !isset($_GET['time_id'])) {
+require_once '../classes/year_lvl.class.php';
+require_once '../classes/semester.class.php';
+
+$year_lvl = new Year_lvl();
+$semester = new Semester();
+
+$year_level_id = $_GET['year_level_id'];
+$semester_id = $_GET['semester_id'];
+
+if (!isset($_GET['year_id']) || 
+    !isset($_GET['course_id']) || 
+    !isset($_GET['time_id']) || 
+    !isset($_GET['year_level_id']) || 
+    !isset($_GET['semester_id']) ||
+
+    empty($_GET['year_id']) || 
+    empty($_GET['course_id']) || 
+    empty($_GET['time_id']) || 
+    empty($_GET['year_level_id']) || 
+    empty($_GET['semester_id']) ||
+
+    !$year_lvl->exists($year_level_id) || 
+    !$semester->exists($semester_id)) {
+
   header('Location: ./index');
   exit;
 } 
-
-if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id'])) {
-  header('Location: ./index');
-  exit;
-}
 
 ?>
 
@@ -93,12 +111,14 @@ if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id
                 ?>  
               </button>
               <ul class="dropdown-menu" aria-labelledby="year_lvl">
-                <?php
-                  foreach ($yearlvlarray as $item){
+                <?php 
+                  foreach ($yearlvlarray as $item): 
                 ?>
-                <li><a class="dropdown-item" href="#"><?= $item['year_level'] ?></a></li>
-                <?php
-                  }
+                <li><a class="dropdown-item" href="./curri_page?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $_GET['time_id'] ?>&year_level_id=<?= $item['year_level_id'] ?><?php echo isset($_GET['semester_id']) ? '&semester_id=' . $_GET['semester_id'] : '' ?>">
+                  <?= $item['year_level'] ?>
+                </a></li>
+                <?php 
+                  endforeach; 
                 ?>
               </ul>
             </div>
@@ -126,12 +146,14 @@ if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id
               ?>  
               </button>
               <ul class="dropdown-menu" aria-labelledby="semester">
-                <?php
-                  foreach ($semesterarray as $item){
+                <?php 
+                  foreach ($semesterarray as $item): 
                 ?>
-                <li><a class="dropdown-item" href="#"><?= $item['semester'] ?></a></li>
-                <?php
-                  }
+                <li><a class="dropdown-item" href="./curri_page?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $_GET['time_id'] ?><?php echo isset($_GET['year_level_id']) ? '&year_level_id=' . $_GET['year_level_id'] : '' ?>&semester_id=<?= $item['semester_id'] ?>">
+                  <?= $item['semester'] ?>
+                </a></li>
+                <?php 
+                  endforeach; 
                 ?>
               </ul>
             </div>
@@ -142,20 +164,35 @@ if (empty($_GET['year_id']) || empty($_GET['course_id']) || empty($_GET['time_id
           <div class="d-flex flex-column align-items-center mb-2">
             <h3> 
               <?php 
-              require_once '../classes/curr_year.class.php';
+                require_once '../classes/curr_year.class.php';
 
-              $curr_year = new Curr_year();
-              $year_id = $_GET['year_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
+                $curr_year = new Curr_year();
+                $year_id = $_GET['year_id'] ?? ''; // Assuming you're passing curr_year_id in the URL
 
-              $yearRange = $curr_year->getYearRangeById($year_id);
-              if ($yearRange) {
-                echo "S.Y {$yearRange['year_start']}-{$yearRange['year_end']}";
-              } else {
-                echo "Invalid Curriculum Year";
-              }
+                $yearRange = $curr_year->getYearRangeById($year_id);
+                if ($yearRange) {
+                  echo "S.Y {$yearRange['year_start']}-{$yearRange['year_end']}";
+                } else {
+                  echo "Invalid Curriculum Year";
+                }
               ?>
             </h3>
-            <h4>First Semester</h4>
+            <h4>
+              <?php 
+                require_once '../classes/semester.class.php';
+                
+                $semester = new semester;
+                $semester_id = $_GET['semester_id'] ?? '';
+                                  
+                $sem = $semester->getSemesterById($semester_id);
+                                
+                if ($sem) {
+                  echo "{$sem['semester']}";
+                } else {
+                  echo "Select Semester";
+                }
+              ?>
+            </h4>
           </div>  
 
           <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
