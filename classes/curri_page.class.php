@@ -10,6 +10,8 @@ Class Curr_table{
   public $curr_year_id;
   public $college_course_id;
   public $time_id;
+  public $year_level_id;
+  public $semester_id;
   public $sub_code;
   public $sub_name;
   public $sub_prerequisite;
@@ -26,12 +28,14 @@ Class Curr_table{
   //Methods
 
   function add(){
-    $sql = "INSERT INTO curr_table (curr_year_id, college_course_id, time_id, sub_code, sub_name, sub_prerequisite, lec, lab) VALUES 
-    (:curr_year_id, :college_course_id, :time_id, :sub_code, :sub_name, :sub_prerequisite, :lec, :lab);";
+    $sql = "INSERT INTO curr_table (curr_year_id, college_course_id, year_level_id, semester_id, time_id, sub_code, sub_name, sub_prerequisite, lec, lab) VALUES 
+    (:curr_year_id, :college_course_id, :year_level_id, :semester_id, :time_id, :sub_code, :sub_name, :sub_prerequisite, :lec, :lab);";
 
     $query=$this->db->connect()->prepare($sql);
     $query->bindParam(':curr_year_id', $this->curr_year_id);
     $query->bindParam(':college_course_id', $this->college_course_id);
+    $query->bindParam(':year_level_id', $this->year_level_id);
+    $query->bindParam(':semester_id', $this->semester_id);
     $query->bindParam(':time_id', $this->time_id);
     $query->bindParam(':sub_code', $this->sub_code);
     $query->bindParam(':sub_name', $this->sub_name);
@@ -44,7 +48,7 @@ Class Curr_table{
     }
     else{
       return false;
-    }	
+    }  
   }
 
   function fetch($record_curr_id){
@@ -75,12 +79,20 @@ Class Curr_table{
   //   }	
   // }
 
-  function show($year_id, $course_id, $time_id){
-    $sql = "SELECT * FROM curr_table WHERE curr_year_id = :year_id AND college_course_id = :course_id AND time_id = :time_id ORDER BY sub_code ASC;";
+  function show($year_id, $course_id, $time_id, $year_level_id, $semester_id){
+    $sql = "SELECT * FROM curr_table WHERE 
+            curr_year_id = :year_id AND 
+            college_course_id = :course_id AND 
+            time_id = :time_id AND
+            year_level_id = :year_level_id AND
+            semester_id = :semester_id
+            ORDER BY sub_code ASC;";
     $query = $this->db->connect()->prepare($sql);
     $query->bindParam(':year_id', $year_id);
     $query->bindParam(':course_id', $course_id);
     $query->bindParam(':time_id', $time_id);
+    $query->bindParam(':year_level_id', $year_level_id);
+    $query->bindParam(':semester_id', $semester_id);
     $data = null;
     if($query->execute()){
       $data = $query->fetchAll();

@@ -21,6 +21,8 @@ if (isset($_POST['add_curr_sub'])) {
   $curr_table->curr_year_id = htmlentities($_POST['curr_year_id']);
   $curr_table->college_course_id = htmlentities($_POST['college_course_id']);
   $curr_table->time_id = htmlentities($_POST['time_id']);
+  $curr_table->year_level_id = htmlentities($_POST['year_level_id']);
+  $curr_table->semester_id = htmlentities($_POST['semester_id']);
   $curr_table->sub_code = htmlentities($_POST['sub_code']);
   $curr_table->sub_name = htmlentities($_POST['sub_name']);
   $curr_table->sub_prerequisite = htmlentities($_POST['sub_prerequisite']);
@@ -29,7 +31,7 @@ if (isset($_POST['add_curr_sub'])) {
 
   $curr_year = new Curr_year(); // Instantiate the Curr_year class
 
-  if (        
+  if (
     validate_field($curr_table->sub_code) && !$curr_table->is_subcode_exist($curr_table->sub_code) &&
     validate_field($curr_table->sub_name) &&
     validate_field($curr_table->sub_prerequisite) &&
@@ -101,7 +103,7 @@ if (isset($_POST['add_curr_sub'])) {
                 <?php
                 if (isset($_POST['sub_code']) && $curr_table->is_subcode_exist($_POST['sub_code'])) {
                 ?>
-                  <p>Year already exists</p>
+                  <p>Subject code already exists</p>
                 <?php
                 }
                 ?> 
@@ -189,6 +191,24 @@ if (isset($_POST['add_curr_sub'])) {
                                                                                                                                                 $time_id = $_GET['time_id'];
                                                                                                                                                 // Now you can use $id in your script
                                                                                                                                                 echo "$time_id";
+                                                                                                                                              }
+                                                                                                                                              ?>">
+              </div>
+              <div class="mb-3 d-none">
+                <label for="year_level_id" class="form-label">year_level_id</label>
+                <input type="number" class="form-control" id="year_level_id" name="year_level_id" aria-describedby="year_level_id" value="<?php if (isset($_GET['year_level_id'])) {
+                                                                                                                                                $year_level_id = $_GET['year_level_id'];
+                                                                                                                                                // Now you can use $id in your script
+                                                                                                                                                echo "$year_level_id";
+                                                                                                                                              }
+                                                                                                                                              ?>">
+              </div>
+              <div class="mb-3 d-none">
+                <label for="semester_id" class="form-label">semester_id</label>
+                <input type="number" class="form-control" id="semester_id" name="semester_id" aria-describedby="semester_id" value="<?php if (isset($_GET['semester_id'])) {
+                                                                                                                                                $semester_id = $_GET['semester_id'];
+                                                                                                                                                // Now you can use $id in your script
+                                                                                                                                                echo "$semester_id";
                                                                                                                                               }
                                                                                                                                               ?>">
               </div>

@@ -201,7 +201,7 @@ if (!isset($_GET['year_id']) ||
               <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="./curri_add_sub?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id']  ?>&time_id=<?= $_GET['time_id'] ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./curri_add_sub?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $_GET['time_id'] ?>&year_level_id=<?= $_GET['year_level_id'] ?>&semester_id=<?= $_GET['semester_id'] ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php
@@ -214,11 +214,13 @@ if (!isset($_GET['year_id']) ||
             $year_id = $_GET['year_id'] ?? '';
             $course_id = $_GET['course_id'] ?? '';
             $time_id = $_GET['time_id'] ?? '';
-            $curr_tableArray = $curr_table->show($year_id, $course_id, $time_id);
+            $year_level_id = $_GET['year_level_id'] ?? '';
+            $semester_id = $_GET['semester_id'] ?? '';
+            $curr_tableArray = $curr_table->show($year_id, $course_id, $time_id, $year_level_id, $semester_id);
             $counter = 1;   
           ?>
           
-          <table id="curriculum" class="table table-striped table-sm" style="width:100%">
+          <table id="curriculum" class="cell-border" style="width:100%">
             <thead>
               <tr>
                 <th rowspan="2" class="align-middle">#</th>
