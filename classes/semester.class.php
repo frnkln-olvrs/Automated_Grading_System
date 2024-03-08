@@ -39,6 +39,19 @@ class Semester {
     }
     return $sem;
   }
+
+  function exists($semester_id) {
+    $sql = "SELECT COUNT(*) as count FROM semester WHERE semester_id = :semester_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':semester_id', $semester_id);
+    
+    if ($query->execute()) {
+      $result = $query->fetch(PDO::FETCH_ASSOC);
+      return $result['count'] > 0;
+    }
+    
+    return false;
+  }
 }
 
 ?>
