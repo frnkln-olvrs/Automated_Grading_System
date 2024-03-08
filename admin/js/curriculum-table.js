@@ -1,7 +1,6 @@
 $(document).ready(function(){
   dataTable = $("#curriculum").DataTable({
     dom: 'Brtp',
-    responsive: true,
     fixedHeader: true,
     pageLength: 5,
     buttons: [
