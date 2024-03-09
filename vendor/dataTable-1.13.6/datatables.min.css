@@ -35,22 +35,22 @@ table.dataTable.cell-border > tbody > tr > * {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
   border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
-table.dataTable.cell-border > tbody > tr > *:first-child {
+table.dataTable.cell-border > tbody > tr > * {
   border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
-table.dataTable.cell-border > tbody > tr:first-child > * {
+table.dataTable.cell-border > tbody > tr > * {
   border-top: 1px solid rgba(0, 0, 0, 0.3);
   padding: 5px 10px;
-  text-align: center;
+  text-align: start;
 }
 
 table.dataTable.cell-border > tbody > tr > * {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
   border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
-table.dataTable.cell-border > tbody > tr > *:first-child {
+table.dataTable.cell-border > tbody > tr > * {
   border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
-table.dataTable.cell-border > tbody > tr:first-child > * {
+table.dataTable.cell-border > tbody > tr > * {
   border-top: 1px solid rgba(0, 0, 0, 0.3);
 }

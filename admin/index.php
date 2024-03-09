@@ -13,7 +13,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
   $keyword = $_GET['keyword'];
   $results = $currYear->searchByYearStart($keyword);
   if (empty($results)) {
-    echo 'No Curriculum found';
+    echo '<script>alert("No Curriculum found")</script>';
     exit;
   }
 } else {

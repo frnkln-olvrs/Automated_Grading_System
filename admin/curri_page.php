@@ -226,7 +226,7 @@ if (!isset($_GET['year_id']) ||
                 <th rowspan="2" class="align-middle">#</th>
                 <th rowspan="2" class="align-middle">Subject</th> <!--Code & description-->
                 <th rowspan="2" class="align-middle">Prequisite</th>
-                <th colspan="3" class="text-center">Unit</th>
+                <th colspan="3" class="text-center border-bottom-0">Unit</th>
                 <th rowspan="2" class="align-middle text-center" width="8%">Action</th>
               </tr>
               <tr>

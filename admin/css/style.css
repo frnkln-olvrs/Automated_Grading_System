@@ -128,9 +128,8 @@ body .home.collapse .side .link-grp .nav-link {
 }
 
  #sidebarMenu.collapsed {
-        width: 50px !important;
-        /* Adjust other styles accordingly */
-    }
+    width: 50px !important;
+  }
 
 .home .side .nav-item .nav-link.active {
   background-color: var(--primary-color);
