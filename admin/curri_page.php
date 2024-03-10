@@ -247,9 +247,9 @@ if (!isset($_GET['year_id']) ||
                   <td><?= $item['lec'] ?></td>
                   <td><?= $item['lab'] ?></td>
                   <td><?= $item['lec'] + $item['lab'] ?></td>
-                  <td class="text-center">  
-                    <a href="./curri_edit_sub?curr_id=<?= $item['curr_id'] ?>"><i class='bx bx-edit text-success' ></i></a>
-                    <i class='bx bx-trash-alt text-danger' ></i>
+                  <td class="text-center">
+                    <a href="./curri_edit_sub?curr_id=<?= $item['curr_id'] ?>&year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $_GET['time_id'] ?>&year_level_id=<?= $_GET['year_level_id'] ?>&semester_id=<?= $_GET['semester_id'] ?>"><i class='bx bx-edit text-success'></i></a>
+                    <button class="delete-btn bg-none" data-subject-id="<?= $item['curr_id'] ?>"><i class='bx bx-trash-alt text-danger'></i></button>
                   </td>
                 </tr>
               <?php
@@ -266,8 +266,28 @@ if (!isset($_GET['year_id']) ||
     </main>
   </div>
 
+  <!-- confirm delete modal markup -->
+  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this subject?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="./js/main.js"></script>
   <script src="./js/curriculum-table.js"></script>
+  <script src="./js/modal_delete_confirm.js"></script>
   
 </body>
 </html>

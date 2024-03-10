@@ -139,7 +139,18 @@ Class Curr_table{
       }
     }
     return false;
-}
+  }
+
+  function delete($curr_id) {
+    $sql = "DELETE FROM curr_table WHERE curr_id = :curr_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_id', $curr_id);
+    if ($query->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
 }
