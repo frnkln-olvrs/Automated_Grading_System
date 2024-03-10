@@ -62,14 +62,30 @@ Class Curr_table{
   }
 
   // function edit(){
-  //   $sql = "UPDATE products SET productname=:productname, category=:category, price=:price, availability=:availability WHERE id = :id;";
+  //   $sql = "UPDATE curr_table SET curr_year_id=:curr_year_id, 
+  //                                 college_course_id=:college_course_id, 
+  //                                 year_level_id=:year_level_id, 
+  //                                 semester_id=:semester_id,
+  //                                 time_id=:time_id,
+  //                                 sub_code=:sub_code,
+  //                                 sub_name=:sub_name,
+  //                                 sub_prerequisite=:sub_prerequisite,
+  //                                 lec=:lec,
+  //                                 lab=:lab,
+  //           WHERE curr_id = :curr_id;";
 
   //   $query=$this->db->connect()->prepare($sql);
-  //   $query->bindParam(':productname', $this->productname);
-  //   $query->bindParam(':category', $this->category);
-  //   $query->bindParam(':price', $this->price);
-  //   $query->bindParam(':availability', $this->availability);
-  //   $query->bindParam(':id', $this->id);
+  //   $query->bindParam(':curr_year_id', $this->curr_year_id);
+  //   $query->bindParam(':college_course_id', $this->college_course_id);
+  //   $query->bindParam(':year_level_id', $this->year_level_id);
+  //   $query->bindParam(':semester_id', $this->semester_id);
+  //   $query->bindParam(':time_id', $this->time_id);
+  //   $query->bindParam(':sub_code', $this->sub_code);
+  //   $query->bindParam(':sub_code', $this->sub_code);
+  //   $query->bindParam(':sub_prerequisite', $this->sub_prerequisite);
+  //   $query->bindParam(':lec', $this->lec);
+  //   $query->bindParam(':lab', $this->lab);
+  //   $query->bindParam(':curr_id', $this->curr_id);
     
   //   if($query->execute()){
   //     return true;
@@ -80,13 +96,13 @@ Class Curr_table{
   // }
 
   function show($year_id, $course_id, $time_id, $year_level_id, $semester_id){
-    $sql = "SELECT * FROM curr_table WHERE 
-            curr_year_id = :year_id AND 
-            college_course_id = :course_id AND 
-            time_id = :time_id AND
-            year_level_id = :year_level_id AND
-            semester_id = :semester_id
+    $sql = "SELECT * FROM curr_table WHERE curr_year_id = :year_id AND 
+                                           college_course_id = :course_id AND 
+                                           time_id = :time_id AND
+                                           year_level_id = :year_level_id AND
+                                           semester_id = :semester_id
             ORDER BY sub_code ASC;";
+            
     $query = $this->db->connect()->prepare($sql);
     $query->bindParam(':year_id', $year_id);
     $query->bindParam(':course_id', $course_id);
@@ -101,16 +117,29 @@ Class Curr_table{
   }
 
   function is_subcode_exist($sub_code) {
-    $sql = "SELECT * FROM curr_table WHERE sub_code = :sub_code;";
+    $sql = "SELECT * FROM curr_table WHERE sub_code = :sub_code 
+            AND curr_year_id = :curr_year_id 
+            AND college_course_id = :college_course_id 
+            AND year_level_id = :year_level_id 
+            AND semester_id = :semester_id 
+            AND time_id = :time_id";
+
     $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':sub_code', $this->sub_code);
+    $query->bindParam(':sub_code', $sub_code);
+    $query->bindParam(':curr_year_id', $this->curr_year_id);
+    $query->bindParam(':college_course_id', $this->college_course_id);
+    $query->bindParam(':year_level_id', $this->year_level_id);
+    $query->bindParam(':semester_id', $this->semester_id);
+    $query->bindParam(':time_id', $this->time_id);
+    
     if ($query->execute()) {
       if ($query->rowCount() > 0) {
         return true;
       }
     }
     return false;
-  }
+}
+
 
 }
 
