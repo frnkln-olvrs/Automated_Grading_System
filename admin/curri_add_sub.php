@@ -39,7 +39,8 @@ if (isset($_POST['add_curr_sub'])) {
     validate_field($curr_table->lab)
   ) {
     if ($curr_table->add()) { // Use $curr_table instead of $curr_year
-      header('location: ./curri_page');
+      $redirect_url = './curri_page?year_id=' . $_GET['year_id'] . '&course_id=' . $_GET['course_id'] . '&time_id=' . $_GET['time_id'] . '&year_level_id=' . $_GET['year_level_id'] . '&semester_id=' . $_GET['semester_id'];
+      header('location: ' . $redirect_url);
       $message = 'Curriculum Year is successfully added.';
     } else {
       $message = 'Something went wrong adding Curriculum Year.';
@@ -49,10 +50,11 @@ if (isset($_POST['add_curr_sub'])) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Grade Posted';
+	$title = 'Add Subject';
   $curriculum_page = 'active';
 	include '../includes/admin_head.php';
 ?>

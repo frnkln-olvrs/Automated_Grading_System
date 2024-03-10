@@ -248,7 +248,7 @@ if (!isset($_GET['year_id']) ||
                   <td><?= $item['lab'] ?></td>
                   <td><?= $item['lec'] + $item['lab'] ?></td>
                   <td class="text-center">  
-                    <a href="./curri_edit_sub?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $_GET['time_id'] ?>&year_level_id=<?= $_GET['year_level_id'] ?>&semester_id=<?= $_GET['semester_id'] ?>"><i class='bx bx-edit text-success' ></i></a>
+                    <a href="./curri_edit_sub?curr_id=<?= $item['curr_id'] ?>"><i class='bx bx-edit text-success' ></i></a>
                     <i class='bx bx-trash-alt text-danger' ></i>
                   </td>
                 </tr>

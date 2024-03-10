@@ -2,7 +2,7 @@
 require_once '../tools/functions.php';
 require_once '../classes/curri_page.class.php';
 require_once '../classes/user.class.php';
-require_once '../classes/curr_year.class.php'; // Include the class file
+require_once '../classes/curr_year.class.php'; 
 
 session_start();
 
@@ -10,9 +10,9 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
-if(isset($_GET['id'])){
+if(isset($_GET['curr_id'])){
   $curr_table = new Curr_table();
-  $record = $curr_table->fetch($_GET['id']);
+  $record = $curr_table->fetch($_GET['curr_id']);
   $curr_table->curr_year_id = $record['curr_year_id'];
   $curr_table->college_course_id = $record['college_course_id'];
   $curr_table->time_id = $record['time_id'];
@@ -25,40 +25,59 @@ if(isset($_GET['id'])){
   $curr_table->lab = $record['lab'];
 }
 
-if (isset($_POST['add_curr_sub'])) {
-  $user = new User();
-  $record = $user->fetch($_SESSION['user_id']);
-  $user->user_id = $_SESSION['user_id'];
+if (isset($_POST['edit_curr_sub'])) {
+  try {
+    $user = new User();
+    $record = $user->fetch($_SESSION['user_id']);
+    $user->user_id = $_SESSION['user_id'];
 
-  $curr_table = new Curr_table();
-  //sanitize
-  $curr_table->user_id = $_SESSION['user_id'];
-  $curr_table->curr_year_id = htmlentities($_POST['curr_year_id']);
-  $curr_table->college_course_id = htmlentities($_POST['college_course_id']);
-  $curr_table->time_id = htmlentities($_POST['time_id']);
-  $curr_table->year_level_id = htmlentities($_POST['year_level_id']);
-  $curr_table->semester_id = htmlentities($_POST['semester_id']);
-  $curr_table->sub_code = htmlentities($_POST['sub_code']);
-  $curr_table->sub_name = htmlentities($_POST['sub_name']);
-  $curr_table->sub_prerequisite = htmlentities($_POST['sub_prerequisite']);
-  $curr_table->lec = htmlentities($_POST['lec']);
-  $curr_table->lab = htmlentities($_POST['lab']);
+    $curr_table = new Curr_table();
+    //sanitize
+    $curr_table->curr_id = $_GET['curr_id'];
+    $curr_table->curr_year_id = htmlentities($_POST['curr_year_id']);
+    $curr_table->college_course_id = htmlentities($_POST['college_course_id']);
+    $curr_table->time_id = htmlentities($_POST['time_id']);
+    $curr_table->year_level_id = htmlentities($_POST['year_level_id']);
+    $curr_table->semester_id = htmlentities($_POST['semester_id']);
+    $curr_table->sub_code = htmlentities($_POST['sub_code']);
+    $curr_table->sub_name = htmlentities($_POST['sub_name']);
+    $curr_table->sub_prerequisite = htmlentities($_POST['sub_prerequisite']);
+    $curr_table->lec = htmlentities($_POST['lec']);
+    $curr_table->lab = htmlentities($_POST['lab']);
 
-  $curr_year = new Curr_year(); // Instantiate the Curr_year class
+    $curr_year = new Curr_year();
 
-  if (
-    validate_field($curr_table->sub_code) && !$curr_table->is_subcode_exist($curr_table->sub_code) &&
-    validate_field($curr_table->sub_name) &&
-    validate_field($curr_table->sub_prerequisite) &&
-    validate_field($curr_table->lec) &&
-    validate_field($curr_table->lab)
-  ) {
-    if ($curr_table->add()) { // Use $curr_table instead of $curr_year
-      header('location: ./curri_page');
-      $message = 'Curriculum Year is successfully added.';
-    } else {
-      $message = 'Something went wrong adding Curriculum Year.';
+    // Validation
+    $errors = [];
+    if (!validate_field($curr_table->sub_code)) {
+      $errors[] = 'Please enter Subject Code';
     }
+    if (!validate_field($curr_table->sub_name)) {
+      $errors[] = 'Please enter Subject Name';
+    }
+    if (!validate_field($curr_table->sub_prerequisite)) {
+      $errors[] = 'Please enter Subject Prerequisite';
+    }
+    if (!validate_field($curr_table->lec)) {
+      $errors[] = 'Please enter Lecture';
+    }
+    if (!validate_field($curr_table->lab)) {
+      $errors[] = 'Please enter Laboratory';
+    }
+
+    if (empty($errors)) {
+      if ($curr_table->edit()) {
+        $redirect_url = './curri_page?year_id=' . $_GET['year_id'] . '&course_id=' . $_GET['course_id'] . '&time_id=' . $_GET['time_id'] . '&year_level_id=' . $_GET['year_level_id'] . '&semester_id=' . $_GET['semester_id'];
+        header('location: ' . $redirect_url);
+        exit;
+      } else {
+        $message = 'Something went wrong editing subject.';
+      }
+    } else {
+      throw new Exception(implode('<br>', $errors));
+    }
+  } catch (Exception $e) {
+    $error_message = $e->getMessage();
   }
 }
 ?>
@@ -67,22 +86,22 @@ if (isset($_POST['add_curr_sub'])) {
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Grade Posted';
-  $curriculum_page = 'active';
-	include '../includes/admin_head.php';
+$title = 'Edit Subject';
+$curriculum_page = 'active';
+include '../includes/admin_head.php';
 ?>
 <body>
   <div class="home">
     <div class="side">
       <?php
-        require_once('../includes/admin_sidepanel.php')
+      require_once('../includes/admin_sidepanel.php')
       ?> 
     </div>
     <main>
       <div class="header" >
-      <?php
+        <?php
         require_once('../includes/admin_header.php')
-      ?>
+        ?>
       </div>
       
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
@@ -97,8 +116,8 @@ if (isset($_POST['add_curr_sub'])) {
       <div class="m-4">
         <form action="#" method="post">
           <?php
-          if (isset($_POST['add_curr_sub']) && isset($message)) {
-            echo "<script> alert('" . $message . "'); window.location.href='./curri_add_sub'; </script>";
+          if (isset($error_message)) {
+            echo "<div class='alert alert-danger'>$error_message</div>";
           }
           ?>
           <div class="row row-cols-1 row-cols-md-2 align-items-start">
@@ -106,43 +125,28 @@ if (isset($_POST['add_curr_sub'])) {
               <div class="mb-3">
                 <label for="sub_code" class="form-label">Code</label>
                 <input type="text" class="form-control" id="sub_code" aria-describedby="sub_code" name="sub_code" value="<?php if (isset($_POST['sub_code'])) {
-                                                                                                                                    echo $_POST['sub_code'];
-                                                                                                                                  } ?>">
-                <?php
-                if (isset($_POST['sub_code']) && !validate_field($_POST['sub_code'])) {
-                ?>
-                  <p class="text-danger my-1">Please enter Subject Code</p>
-                <?php
-                }
-                ?>
-                <?php
-                if (isset($_POST['sub_code']) && $curr_table->is_subcode_exist($_POST['sub_code'])) {
-                ?>
-                  <p>Subject code already exists</p>
-                <?php
-                }
-                ?> 
+                                                                                                                                 echo $_POST['sub_code'];
+                                                                                                                               } else if (isset($curr_table->sub_code)) {
+                                                                                                                                 echo $curr_table->sub_code;
+                                                                                                                               } ?>">
               </div>
 
               <div class="mb-3">
                 <label for="sub_name" class="form-label">Description</label>
                 <input type="text" class="form-control" id="sub_name" aria-describedby="sub_name" name="sub_name" value="<?php if (isset($_POST['sub_name'])) {
-                                                                                                                                    echo $_POST['sub_name'];
-                                                                                                                                  } ?>">
-                <?php
-                if (isset($_POST['sub_name']) && !validate_field($_POST['sub_name'])) {
-                ?>
-                  <p class="text-danger my-1">Please enter Subject Name</p>
-                <?php
-                }
-                ?>  
+                                                                                                                                 echo $_POST['sub_name'];
+                                                                                                                               } else if (isset($curr_table->sub_name)) {
+                                                                                                                                 echo $curr_table->sub_name;
+                                                                                                                               } ?>">
               </div>
 
               <div class="mb-3">
                 <label for="sub_prerequisite" class="form-label">Prerequisite</label>
                 <input type="text" class="form-control" id="sub_prerequisite" aria-describedby="sub_prerequisite" name="sub_prerequisite" value="<?php if (isset($_POST['sub_prerequisite'])) {
-                                                                                                                                                        echo $_POST['sub_prerequisite'];
-                                                                                                                                                        } ?>">
+                                                                                                                                                         echo $_POST['sub_prerequisite'];
+                                                                                                                                                       } else if (isset($curr_table->sub_prerequisite)) {
+                                                                                                                                                         echo $curr_table->sub_prerequisite;
+                                                                                                                                                       } ?>">
               </div>      
             </div>
 
@@ -151,28 +155,18 @@ if (isset($_POST['add_curr_sub'])) {
                 <label for="lec" class="form-label">Lecture</label>
                 <input type="number" class="form-control" id="lec" aria-describedby="lec" name="lec" value="<?php if (isset($_POST['lec'])) {
                                                                                                                     echo $_POST['lec'];
+                                                                                                                  } else if (isset($curr_table->lec)) {
+                                                                                                                    echo $curr_table->lec;
                                                                                                                   } ?>">
-                <?php
-                if (isset($_POST['lec']) && !validate_field($_POST['lec'])) {
-                ?>
-                  <p class="text-danger my-1">Cannot be empty</p>
-                <?php
-                }
-                ?>  
               </div>
 
               <div class="mb-3">
                 <label for="lab" class="form-label">Laboratory</label>
                 <input type="number" class="form-control" id="lab" aria-describedby="lab" name="lab" value="<?php if (isset($_POST['lab'])) {
                                                                                                                     echo $_POST['lab'];
+                                                                                                                  } else if (isset($curr_table->lab)) {
+                                                                                                                    echo $curr_table->lab;
                                                                                                                   } ?>">
-                <?php
-                if (isset($_POST['lab']) && !validate_field($_POST['lab'])) {
-                ?>
-                  <p class="text-danger my-1">Cannot be empty</p>
-                <?php
-                }
-                ?>  
               </div>
 
               <div class="mb-3">
@@ -184,53 +178,48 @@ if (isset($_POST['add_curr_sub'])) {
               
               <div class="mb-3 d-none">
                 <label for="curr_year_id" class="form-label">year-id</label>
-                <input type="number" class="form-control" id="curr_year_id" name="curr_year_id" aria-describedby="curr_year_id" value="<?php if (isset($_GET['year_id'])) {
-                                                                                                                                                $curr_year_id = $_GET['year_id'];
-                                                                                                                                                // Now you can use $id in your script
-                                                                                                                                                echo "$curr_year_id";
-                                                                                                                                              }
-                                                                                                                                              ?>">
+                <input type="number" class="form-control" id="curr_year_id" name="curr_year_id" aria-describedby="curr_year_id" value="<?php if (isset($_POST['curr_year_id'])) {
+                                                                                                                                               echo $_POST['curr_year_id'];
+                                                                                                                                             } else if (isset($curr_table->curr_year_id)) {
+                                                                                                                                               echo $curr_table->curr_year_id;
+                                                                                                                                             } ?>">
               </div>
               <div class="mb-3 d-none">
                 <label for="college_course_id" class="form-label">course-id</label>
-                <input type="number" class="form-control" id="college_course_id" name="college_course_id" aria-describedby="college_course_id" value="<?php if (isset($_GET['course_id'])) {
-                                                                                                                                                $college_course_id = $_GET['course_id'];
-                                                                                                                                                // Now you can use $id in your script
-                                                                                                                                                echo "$college_course_id";
-                                                                                                                                              }
-                                                                                                                                              ?>">
+                <input type="number" class="form-control" id="college_course_id" name="college_course_id" aria-describedby="college_course_id" value="<?php if (isset($_POST['college_course_id'])) {
+                                                                                                                                                              echo $_POST['college_course_id'];
+                                                                                                                                                            } else if (isset($curr_table->college_course_id)) {
+                                                                                                                                                              echo $curr_table->college_course_id;
+                                                                                                                                                            } ?>">
               </div>
               <div class="mb-3 d-none">
                 <label for="time_id" class="form-label">time_id</label>
-                <input type="number" class="form-control" id="time_id" name="time_id" aria-describedby="time_id" value="<?php if (isset($_GET['time_id'])) {
-                                                                                                                                                $time_id = $_GET['time_id'];
-                                                                                                                                                // Now you can use $id in your script
-                                                                                                                                                echo "$time_id";
-                                                                                                                                              }
-                                                                                                                                              ?>">
+                <input type="number" class="form-control" id="time_id" name="time_id" aria-describedby="time_id" value="<?php if (isset($_POST['time_id'])) {
+                                                                                                                                echo $_POST['time_id'];
+                                                                                                                              } else if (isset($curr_table->time_id)) {
+                                                                                                                                echo $curr_table->time_id;
+                                                                                                                              } ?>">
               </div>
               <div class="mb-3 d-none">
                 <label for="year_level_id" class="form-label">year_level_id</label>
-                <input type="number" class="form-control" id="year_level_id" name="year_level_id" aria-describedby="year_level_id" value="<?php if (isset($_GET['year_level_id'])) {
-                                                                                                                                                $year_level_id = $_GET['year_level_id'];
-                                                                                                                                                // Now you can use $id in your script
-                                                                                                                                                echo "$year_level_id";
-                                                                                                                                              }
-                                                                                                                                              ?>">
+                <input type="number" class="form-control" id="year_level_id" name="year_level_id" aria-describedby="year_level_id" value="<?php if (isset($_POST['year_level_id'])) {
+                                                                                                                                                  echo $_POST['year_level_id'];
+                                                                                                                                                } else if (isset($curr_table->year_level_id)) {
+                                                                                                                                                  echo $curr_table->year_level_id;
+                                                                                                                                                } ?>">
               </div>
               <div class="mb-3 d-none">
                 <label for="semester_id" class="form-label">semester_id</label>
-                <input type="number" class="form-control" id="semester_id" name="semester_id" aria-describedby="semester_id" value="<?php if (isset($_GET['semester_id'])) {
-                                                                                                                                                $semester_id = $_GET['semester_id'];
-                                                                                                                                                // Now you can use $id in your script
-                                                                                                                                                echo "$semester_id";
-                                                                                                                                              }
-                                                                                                                                              ?>">
+                <input type="number" class="form-control" id="semester_id" name="semester_id" aria-describedby="semester_id" value="<?php if (isset($_POST['semester_id'])) {
+                                                                                                                                            echo $_POST['semester_id'];
+                                                                                                                                          } else if (isset($curr_table->semester_id)) {
+                                                                                                                                            echo $curr_table->semester_id;
+                                                                                                                                          } ?>">
               </div>
             </div>
           </div>
           <button type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" id="add_curr_sub" name="add_curr_sub" class="btn brand-bg-color">Submit</button>
+          <button type="submit" id="edit_curr_sub" name="edit_curr_sub" class="btn brand-bg-color">Save</button>
         </form>
       </div>
 
@@ -251,4 +240,4 @@ if (isset($_POST['add_curr_sub'])) {
 </script>
   
 </body>
-</html> b
+</html>

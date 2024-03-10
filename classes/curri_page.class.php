@@ -61,39 +61,40 @@ Class Curr_table{
     return $data;
   }
 
-  // function edit(){
-  //   $sql = "UPDATE curr_table SET curr_year_id=:curr_year_id, 
-  //                                 college_course_id=:college_course_id, 
-  //                                 year_level_id=:year_level_id, 
-  //                                 semester_id=:semester_id,
-  //                                 time_id=:time_id,
-  //                                 sub_code=:sub_code,
-  //                                 sub_name=:sub_name,
-  //                                 sub_prerequisite=:sub_prerequisite,
-  //                                 lec=:lec,
-  //                                 lab=:lab,
-  //           WHERE curr_id = :curr_id;";
+  function edit(){
+    $sql = "UPDATE curr_table SET curr_year_id=:curr_year_id, 
+                                  college_course_id=:college_course_id, 
+                                  year_level_id=:year_level_id, 
+                                  semester_id=:semester_id,
+                                  time_id=:time_id,
+                                  sub_code=:sub_code,
+                                  sub_name=:sub_name,
+                                  sub_prerequisite=:sub_prerequisite,
+                                  lec=:lec,
+                                  lab=:lab
+            WHERE curr_id = :curr_id;";
 
-  //   $query=$this->db->connect()->prepare($sql);
-  //   $query->bindParam(':curr_year_id', $this->curr_year_id);
-  //   $query->bindParam(':college_course_id', $this->college_course_id);
-  //   $query->bindParam(':year_level_id', $this->year_level_id);
-  //   $query->bindParam(':semester_id', $this->semester_id);
-  //   $query->bindParam(':time_id', $this->time_id);
-  //   $query->bindParam(':sub_code', $this->sub_code);
-  //   $query->bindParam(':sub_code', $this->sub_code);
-  //   $query->bindParam(':sub_prerequisite', $this->sub_prerequisite);
-  //   $query->bindParam(':lec', $this->lec);
-  //   $query->bindParam(':lab', $this->lab);
-  //   $query->bindParam(':curr_id', $this->curr_id);
+    $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_year_id', $this->curr_year_id);
+    $query->bindParam(':college_course_id', $this->college_course_id);
+    $query->bindParam(':year_level_id', $this->year_level_id);
+    $query->bindParam(':semester_id', $this->semester_id);
+    $query->bindParam(':time_id', $this->time_id);
+    $query->bindParam(':sub_code', $this->sub_code);
+    $query->bindParam(':sub_name', $this->sub_name);
+    $query->bindParam(':sub_prerequisite', $this->sub_prerequisite);
+    $query->bindParam(':lec', $this->lec);
+    $query->bindParam(':lab', $this->lab);
     
-  //   if($query->execute()){
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }	
-  // }
+    $query->bindParam(':curr_id', $this->curr_id);
+    
+    if($query->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }   
+}
 
   function show($year_id, $course_id, $time_id, $year_level_id, $semester_id){
     $sql = "SELECT * FROM curr_table WHERE curr_year_id = :year_id AND 
@@ -123,7 +124,7 @@ Class Curr_table{
             AND year_level_id = :year_level_id 
             AND semester_id = :semester_id 
             AND time_id = :time_id";
-
+            
     $query = $this->db->connect()->prepare($sql);
     $query->bindParam(':sub_code', $sub_code);
     $query->bindParam(':curr_year_id', $this->curr_year_id);
