@@ -216,8 +216,10 @@ if (isset($_POST['add_curr_sub'])) {
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" id="add_curr_sub" name="add_curr_sub" class="btn brand-bg-color">Submit</button>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="button" onclick="cancelAdd();" class="btn btn-secondary">Cancel</button>
+            <button type="submit" id="add_curr_sub" name="add_curr_sub" class="btn brand-bg-color">Submit</button>  
+          </div>
         </form>
       </div>
 
@@ -235,6 +237,20 @@ if (isset($_POST['add_curr_sub'])) {
       $('#total_unit').val(totalUnit);
     });
   });
+</script>
+
+<script>
+  function cancelAdd() {
+    var yearId = encodeURIComponent('<?php echo $_GET['year_id']; ?>');
+    var courseId = encodeURIComponent('<?php echo $_GET['course_id']; ?>');
+    var timeId = encodeURIComponent('<?php echo $_GET['time_id']; ?>');
+    var yearLevelId = encodeURIComponent('<?php echo $_GET['year_level_id']; ?>');
+    var semesterId = encodeURIComponent('<?php echo $_GET['semester_id']; ?>');
+
+    var redirectUrl = './curri_page.php?year_id=' + yearId + '&course_id=' + courseId + '&time_id=' + timeId + '&year_level_id=' + yearLevelId + '&semester_id=' + semesterId;
+
+    window.location.href = redirectUrl;
+  }
 </script>
   
 </body>

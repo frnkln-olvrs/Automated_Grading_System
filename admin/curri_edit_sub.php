@@ -218,8 +218,10 @@ include '../includes/admin_head.php';
               </div>
             </div>
           </div>
-          <button type="button" onclick="cancelEdit();" class="btn btn-secondary">Cancel</button>
-          <button type="submit" id="edit_curr_sub" name="edit_curr_sub" class="btn brand-bg-color">Save</button>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="button" onclick="cancelEdit();" class="btn btn-secondary">Cancel</button>
+            <button type="submit" id="edit_curr_sub" name="edit_curr_sub" class="btn brand-bg-color">Save</button>
+          </div>
         </form>
       </div>
 
@@ -240,7 +242,7 @@ include '../includes/admin_head.php';
 </script>
 
 <script>
-function cancelEdit() {
+  function cancelEdit() {
     var yearId = encodeURIComponent('<?php echo $_GET['year_id']; ?>');
     var courseId = encodeURIComponent('<?php echo $_GET['course_id']; ?>');
     var timeId = encodeURIComponent('<?php echo $_GET['time_id']; ?>');
@@ -250,7 +252,7 @@ function cancelEdit() {
     var redirectUrl = './curri_page.php?year_id=' + yearId + '&course_id=' + courseId + '&time_id=' + timeId + '&year_level_id=' + yearLevelId + '&semester_id=' + semesterId;
 
     window.location.href = redirectUrl;
-}
+  }
 </script>
 
   

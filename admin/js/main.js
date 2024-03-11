@@ -1,32 +1,27 @@
-let navigation = document.querySelector('.home');
-
-// SIDEPANEL SATRT
-// Function to handle collapse toggle
-function toggleCollapse() {
-  let navigation = document.querySelector('.home');
-  navigation.classList.toggle('collapse');
-  
-  // Store collapse state in localStorage
-  localStorage.setItem('sidebarCollapsed', navigation.classList.contains('collapse'));
-}
-
-// Check if sidebar should be collapsed or expanded on page load
 document.addEventListener('DOMContentLoaded', function() {
-  let isSidebarCollapsed = localStorage.getItem('sidebarCollapsed');
+  const homeNavigation = document.querySelector('.home');
+  const collapseButton = document.querySelector('#collapse_btn');
+  const sidebarState = localStorage.getItem('sidebarCollapsed');
 
-  if (isSidebarCollapsed === 'true') {
-    let navigation = document.querySelector('.home');
-    navigation.classList.add('collapse');
+  // Function to toggle sidebar collapse
+  function toggleCollapse() {
+    homeNavigation.classList.toggle('collapse');
+    localStorage.setItem('sidebarCollapsed', homeNavigation.classList.contains('collapse'));
   }
-});
 
-// Attach click event listener to collapse button
-document.querySelector('#collapse_btn').addEventListener('click', function(event) {
-  event.stopPropagation();
-  toggleCollapse();
-});
-// SIDEPANEL END
+  // Set initial sidebar state based on localStorage
+  if (sidebarState === 'true') {
+    homeNavigation.classList.add('collapse');
+  }
 
-document.querySelector("input[type=number]").oninput = e => console.log(
-  new Date(e.target.valueAsNumber, 0, 1)
-);
+  // Event listener for collapse button
+  collapseButton.addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevents triggering parent click events
+    toggleCollapse();
+  });
+
+  // Event listener for input[type=number]
+  document.querySelector("input[type=number]").addEventListener('input', function(e) {
+    console.log(new Date(e.target.valueAsNumber, 0, 1));
+  });
+});
