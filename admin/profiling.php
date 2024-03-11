@@ -71,7 +71,8 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
             $profiling = new Profiling();
 
-            $profiling_array = $profiling->show();
+            $department_id = $_GET['department_id'] ?? '';
+            $profiling_array = $profiling->show($department_id);
             $counter = 1;
           ?>
           <table id="main_profiling" class="table table-striped table-sm" style="width:110%">

@@ -14,7 +14,7 @@ Class Profiling {
   public $acad_type;
   public $faculty_type;
   public $designation;
-  public $department;
+  public $department_id;
 
   protected $db;
 
@@ -23,8 +23,8 @@ Class Profiling {
   }
 
   function add() {
-    $sql = "INSERT INTO profiling_table (profiling_id, f_name, l_name, m_name, email, start_service, end_service, acad_type, faculty_type, designation, department) VALUES 
-    (:profiling_id, :f_name, :l_name, :m_name, :email, :start_service, :end_service, :acad_type, :faculty_type, :designation, :department);";
+    $sql = "INSERT INTO profiling_table (profiling_id, f_name, l_name, m_name, email, start_service, end_service, acad_type, faculty_type, designation, department_id) VALUES 
+    (:profiling_id, :f_name, :l_name, :m_name, :email, :start_service, :end_service, :acad_type, :faculty_type, :designation, :department_id);";
 
     $query=$this->db->connect()->prepare($sql);
     $query->bindParam(':profiling_id', $this->profiling_id);
@@ -37,7 +37,7 @@ Class Profiling {
     $query->bindParam(':acad_type', $this->acad_type);
     $query->bindParam(':faculty_type', $this->faculty_type);
     $query->bindParam(':designation', $this->designation);
-    $query->bindParam(':department', $this->department);
+    $query->bindParam(':department_id', $this->department_id);
     
     if($query->execute()){
       return true;
@@ -57,15 +57,18 @@ Class Profiling {
     return $data;
   }
 
-  function show() {
-    $sql = "SELECT * FROM profiling_table WHERE  ORDER BY profiling_id ASC;";
+  function show($department_id) {
+    $sql = "SELECT * FROM profiling_table WHERE department_id = :department_id ORDER BY profiling_id ASC;";
+    
     $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':department_id', $department_id);
     $data = null;
     if($query->execute()){
       $data = $query->fetchAll();
     }
     return $data;
   }
+
 
 }
 
