@@ -66,78 +66,55 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           </div>
           
           <?php
-            $student_array = array(
-              array(
-                'full_name' => 'Oliveros, Franklin I franklin franklin',
-                'email' => 'olivefrank@email.com',
-                'academic_rank' => '2',
-                'designation' => '3',
-                'faculty_type' => '5',
-                'start_of_service' => '5',
-                'end_service' => '5',
-              ),
-              array(
-                'full_name' => 'Oliveros, Franklin I',
-                'email' => 'sssssssssssssss@email.com',
-                'academic_rank' => '2',
-                'designation' => '3',
-                'faculty_type' => '5',
-                'start_of_service' => '5',
-                'end_service' => '5',
-              ),
-              array(
-                'full_name' => 'Oliveros, Frenklin I',
-                'email' => 'olivefrank@email.com',
-                'academic_rank' => '?',
-                'designation' => '3',
-                'faculty_type' => '5',
-                'start_of_service' => '5',
-                'end_service' => '5',
-              ),
-            );
-          ?>
-          <div class="scroll">
-            <table id="main_profiling" class="table table-striped table-sm" style="width:125%">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Academic Rank</th>
-                  <th>Designation</th>
-                  <th>Faculty Type</th>
-                  <th>Start of Service</th>
-                  <th>End of Service</th>
-                  <th width="5%">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  $counter = 1;
-                  foreach ($student_array as $item){
-                ?>
-                  <tr>
-                    <td><?= $counter ?></td>
-                    <td><?= $item['full_name'] ?></td>
-                    <td><?= $item['email'] ?></td>
-                    <td><?= $item['academic_rank'] ?></td>
-                    <td><?= $item['designation'] ?></td>
-                    <td><?= $item['faculty_type'] ?></td>
-                    <td><?= $item['start_of_service'] ?></td>
-                    <td><?= $item['end_service'] ?></td>
-                    <td class="text-center">
-                      <a href="# "><i class='bx bx-edit text-success' ></i></a>
-                      <i class='bx bx-trash-alt text-danger' ></i>
-                    </td>
-                  </tr>
-                <?php
-                  $counter++;
-                  }
-                ?>
-              </tbody>
-            </table>
+            require_once '../classes/profiling.class.php';
+            require_once '../tools/functions.php';
 
-          </div>
+            $profiling = new Profiling();
+
+            $profiling_array = $profiling->show();
+            $counter = 1;
+          ?>
+          <table id="main_profiling" class="table table-striped table-sm" style="width:110%">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Academic Rank</th>
+                <th>Designation</th>
+                <th>Deapartment</th>
+                <th>Faculty Type</th>
+                <th>Start Service</th>
+                <th>End Service</th>
+                <th width="5%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                $counter = 1;
+                foreach ($profiling_array as $item){
+              ?>
+                <tr>
+                  <td><?= $counter ?></td>
+                  <td><?= $item['l_name'] ?>, <?= $item['f_name']?> <?= substr($item['m_name'], 0, 1) ?>.</td>
+                  <td><?= $item['email'] ?></td>
+                  <td><?= $item['acad_type'] ?></td>
+                  <td><?= $item['designation'] ?></td>
+                  <td><?= $item['department'] ?></td>
+                  <td><?= $item['faculty_type'] ?></td>
+                  <td><?= $item['start_service'] ?></td>
+                  <td><?= $item['end_service'] ?></td>
+                  <td class="text-center">
+                    <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                    <i class='bx bx-trash-alt text-danger' ></i>
+                  </td>
+                </tr>
+              <?php
+                $counter++;
+                }
+              ?>
+            </tbody>
+          </table>
 
         </div>
       </div>

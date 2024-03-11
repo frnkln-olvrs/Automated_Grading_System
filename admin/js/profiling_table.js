@@ -9,8 +9,8 @@ $(document).ready(function(){
       }
     ],
     'columnDefs': [ {
-        'targets': [1,2,6], /* column index */
-        'orderable': false, /* true or false */
+      'targets': [2,3,4,5,6,9], /* column index */
+      'orderable': false, /* true or false */
     }]
   });
 
@@ -32,9 +32,9 @@ $(document).ready(function(){
       var val = input.val().toLowerCase();
   
       for (var i = 0, ien = columns.length; i < ien; i++) {
-          if (searchData[columns[i]].toLowerCase().indexOf(val) !== -1) {
+        if (searchData[columns[i]].toLowerCase().indexOf(val) !== -1) {
           return true;
-          }
+        }
       }
   
       return false;
