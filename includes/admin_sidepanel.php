@@ -24,20 +24,49 @@
           </button>
         </div>
 
-        <div class="collapse <?= ($comci_page || $it_page) ? 'show' : '' ?>" id="profiling_toggle" style="">
+        
+        <?php
+          require_once '../classes/department.class.php';
+          require_once '../tools/functions.php';
+
+          $department = new Department();
+
+          $department_array = $department->show();
+
+          $show_collapse = false; 
+          if (isset($_GET['department_id'])) {
+            $show_collapse = true; 
+          }
+        
+          require_once '../classes/department.class.php';
+          require_once '../tools/functions.php';
+        
+          $department = new Department();
+        
+          $department_array = $department->show();
+        ?>
+
+        <div class="collapse<?= ($show_collapse ? ' show' : '') ?>" id="profiling_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <?php
+              if ($department_array) {
+                foreach ($department_array as $item) {
+                  $active = false;
+                  
+                  if (isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
+                    $active = true;
+                  }
+            ?>
             <li>
-              <a href="#" class="link-dark nav-link <?= $comci_page ?>">
+              <a href="./profiling.php?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link<?= ($active ? ' active' : '') ?>">
                 <i class='bx bx-git-commit'></i>
-                <span class="fs-6 ms-2">Department of Computer Science</span>
+                <span class="fs-6 ms-2"><?= $item['department_name'] ?></span>
               </a>
             </li>
-            <li>
-              <a href="#" class="link-dark nav-link <?= $it_page ?>">
-                <i class='bx bx-git-commit'></i>
-                <span class="fs-6 ms-2">Department of Information Technology</span>
-              </a>
-            </li>
+            <?php
+                }
+              }
+            ?>
           </ul>
         </div>
       </div>
@@ -136,5 +165,20 @@
       var collapseId = $(this).attr('data-bs-target');
       $('.collapse').not(collapseId).collapse('hide');
     });
+  
+    // Show collapse if its corresponding link is clicked
+    $('.btn-toggle-nav .nav-link').click(function(){
+      var collapseId = $(this).attr('href');
+      $(collapseId).toggleClass('show');
+    });
+  });
+
+  $(document).ready(function(){
+    // Toggle collapse on button click
+    $('.btn-toggle').click(function(){
+      var collapseId = $(this).attr('data-bs-target');
+      $('.collapse').not(collapseId).collapse('hide');
+    });
   });
 </script>
+

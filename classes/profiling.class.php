@@ -58,17 +58,29 @@ Class Profiling {
   }
 
   function show($department_id) {
-    $sql = "SELECT * FROM profiling_table WHERE department_id = :department_id ORDER BY profiling_id ASC;";
+    if (!empty($department_id)) {
+      $sql = "SELECT p.*, d.department_name FROM profiling_table p 
+              JOIN college_department_table d ON p.department_id = d.department_id
+              WHERE p.department_id = :department_id 
+              ORDER BY p.profiling_id ASC;";
+
+      $query = $this->db->connect()->prepare($sql);
+      $query->bindParam(':department_id', $department_id);
+    } 
+    else {
+      $sql = "SELECT p.*, d.department_name FROM profiling_table p 
+              JOIN college_department_table d ON p.department_id = d.department_id
+              ORDER BY p.profiling_id ASC;";
+
+      $query = $this->db->connect()->prepare($sql);
+    }
     
-    $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':department_id', $department_id);
     $data = null;
-    if($query->execute()){
+    if ($query->execute()) {
       $data = $query->fetchAll();
     }
     return $data;
   }
-
 
 }
 
