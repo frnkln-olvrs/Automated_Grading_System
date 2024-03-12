@@ -149,6 +149,16 @@ Class Profiling {
     return false;
   }
 
+  function delete($profiling_id) {
+    $sql = "DELETE FROM profiling_table WHERE profiling_id = :profiling_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':profiling_id', $profiling_id);
+    if ($query->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 ?>

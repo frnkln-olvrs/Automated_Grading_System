@@ -107,7 +107,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   <td><?= $item['end_service'] ?></td>
                   <td class="text-center">
                     <a href="./edit_faculty?profiling_id=<?= $item['profiling_id'] ?>"><i class='bx bx-edit text-success'></i></a>
-                    <i class='bx bx-trash-alt text-danger' ></i>
+                    <button class="delete-btn bg-none" data-subject-id="<?= $item['profiling_id'] ?>"><i class='bx bx-trash-alt text-danger'></i></button>
                   </td>
                 </tr>
               <?php
@@ -122,8 +122,29 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
     </main>
   </div>
+  
+<!-- confirm delete modal markup -->
+  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this subject?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="./js/main.js"></script>
   <script src="./js/profiling_table.js"></script>
+  <script src="./js/modal_delete_confirm.js"></script>
+
 </body>
 </html>
