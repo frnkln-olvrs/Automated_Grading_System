@@ -44,8 +44,6 @@ if (isset($_POST['add_faculty'])) {
     }
   }
 }
-
-// if (isset($_POST['add_faculty'])) {
 //   try {
 //     // Assuming User class exists and has a method fetch
 //     $user = new User();
@@ -246,7 +244,7 @@ if (isset($_POST['add_faculty'])) {
                 <div class="col">
                   <div class="mb-3">
                     <label for="start_service" class="form-label">Start Service</label>
-                    <input type="number" class="form-control" id="start_service" name="start_service" aria-describedby="start_service" value="<?php if (isset($_POST['start_service'])) {
+                    <input type="date" class="form-control" id="start_service" name="start_service" aria-describedby="start_service" value="<?php if (isset($_POST['start_service'])) {
                                                                                                                                  echo $_POST['start_service'];
                                                                                                                                } ?>">
                     <?php
@@ -262,16 +260,9 @@ if (isset($_POST['add_faculty'])) {
                 <div class="col">
                   <div class="mb-3">
                     <label for="end_service" class="form-label">End Service</label>
-                    <input type="number" class="form-control" id="end_service" name="end_service" aria-describedby="end_service" value="<?php if (isset($_POST['end_service'])) {
+                    <input type="date" class="form-control" id="end_service" name="end_service" aria-describedby="end_service" value="<?php if (isset($_POST['end_service'])) {
                                                                                                                              echo $_POST['end_service'];
                                                                                                                            } ?>">
-                    <?php
-                    if (isset($_POST['end_service']) && !validate_field($_POST['end_service'])) {
-                    ?>
-                      <p class="text-danger my-1">Please enter end</p>
-                    <?php
-                    }
-                    ?>
                   </div>
                 </div>
               </div>

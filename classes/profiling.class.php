@@ -59,6 +59,43 @@ Class Profiling {
     return $data;
   }
 
+  function edit(){
+    $sql = "UPDATE profiling_table SET emp_id=:emp_id, 
+                                       f_name=:f_name, 
+                                       l_name=:l_name, 
+                                       m_name=:m_name,
+                                       email=:email,
+                                       start_service=:start_service,
+                                       end_service=:end_service,
+                                       acad_type=:acad_type,
+                                       faculty_type=:faculty_type,
+                                       designation=:designation,
+                                       department_id=:department_id
+            WHERE profiling_id = :profiling_id;";
+
+    $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':emp_id', $this->emp_id);
+    $query->bindParam(':f_name', $this->f_name);
+    $query->bindParam(':l_name', $this->l_name);
+    $query->bindParam(':m_name', $this->m_name);
+    $query->bindParam(':email', $this->email);
+    $query->bindParam(':start_service', $this->start_service);
+    $query->bindParam(':end_service', $this->end_service);
+    $query->bindParam(':acad_type', $this->acad_type);
+    $query->bindParam(':faculty_type', $this->faculty_type);
+    $query->bindParam(':designation', $this->designation);
+    $query->bindParam(':department_id', $this->department_id);
+    
+    $query->bindParam(':profiling_id', $this->profiling_id);
+    
+    if($query->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }   
+  }
+
   function show($department_id) {
     if (!empty($department_id)) {
       $sql = "SELECT p.*, d.department_name FROM profiling_table p 

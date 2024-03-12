@@ -94,7 +94,7 @@ Class Curr_table{
     else{
       return false;
     }   
-}
+  }
 
   function show($year_id, $course_id, $time_id, $year_level_id, $semester_id){
     $sql = "SELECT * FROM curr_table WHERE curr_year_id = :year_id AND 

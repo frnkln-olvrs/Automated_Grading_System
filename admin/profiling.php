@@ -106,7 +106,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   <td><?= $item['start_service'] ?></td>
                   <td><?= $item['end_service'] ?></td>
                   <td class="text-center">
-                    <a href="# "><i class='bx bx-edit text-success' ></i></a>
+                    <a href="./edit_faculty?profiling_id=<?= $item['profiling_id'] ?>"><i class='bx bx-edit text-success'></i></a>
                     <i class='bx bx-trash-alt text-danger' ></i>
                   </td>
                 </tr>
