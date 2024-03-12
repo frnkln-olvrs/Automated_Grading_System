@@ -2,7 +2,6 @@
 require_once '../tools/functions.php';
 require_once '../classes/profiling.class.php';
 
-
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
@@ -18,7 +17,6 @@ if (isset($_POST['add_faculty'])) {
   $profiling->m_name = htmlentities($_POST['m_name']);
   $profiling->email = htmlentities($_POST['email']);
   $profiling->start_service = htmlentities($_POST['start_service']);
-  $profiling->end_service = htmlentities($_POST['end_service']);
   $profiling->acad_type = htmlentities($_POST['acad_type']);
   $profiling->faculty_type = htmlentities($_POST['faculty_type']);
   $profiling->designation = htmlentities($_POST['designation']);
@@ -30,12 +28,13 @@ if (isset($_POST['add_faculty'])) {
     validate_field($profiling->l_name) &&
     validate_field($profiling->email) && !$profiling->is_email_exist($profiling->email) &&
     validate_field($profiling->start_service) &&
-    validate_field($profiling->end_service) &&
     validate_field($profiling->acad_type) &&
     validate_field($profiling->faculty_type) &&
     validate_field($profiling->designation)
-
   ) {
+    // If "End of Service" is not set, set it to NULL
+    $profiling->end_service = isset($_POST['end_service']) ? htmlentities($_POST['end_service']) : null;
+
     if ($profiling->add()) {
       header('location: ./profiling.php');
       $message = 'Faculty successfully added.';
@@ -44,72 +43,6 @@ if (isset($_POST['add_faculty'])) {
     }
   }
 }
-//   try {
-//     // Assuming User class exists and has a method fetch
-//     $user = new User();
-//     $record = $user->fetch($_SESSION['user_id']);
-//     $user->user_id = $_SESSION['user_id'];
-
-//     $profiling = new Profiling();
-//     //sanitize
-//     $profiling->emp_id = htmlentities($_POST['emp_id']);
-//     $profiling->f_name = htmlentities($_POST['f_name']);
-//     $profiling->l_name = htmlentities($_POST['l_name']);
-//     $profiling->m_name = htmlentities($_POST['m_name']);
-//     $profiling->email = htmlentities($_POST['email']);
-//     $profiling->start_service = htmlentities($_POST['start_service']);
-//     $profiling->end_service = htmlentities($_POST['end_service']);
-//     $profiling->acad_type = htmlentities($_POST['acad_type']);
-//     $profiling->faculty_type = htmlentities($_POST['faculty_type']);
-//     $profiling->designation = htmlentities($_POST['designation']);
-//     $profiling->department_id = htmlentities($_POST['department_id']);
-
-//     // Validation
-//     $errors = [];
-//     if (!validate_field($profiling->emp_id)) {
-//       $errors[] = 'Please enter Employee ID';
-//     }
-//     if (!validate_field($profiling->f_name)) {
-//       $errors[] = 'Please enter First Name';
-//     }
-//     if (!validate_field($profiling->l_name)) {
-//       $errors[] = 'Please enter Last Name';
-//     }
-//     if (!validate_field($profiling->email)) {
-//       $errors[] = 'Please enter Email';
-//     }
-//     if (!validate_field($profiling->start_service)) {
-//       $errors[] = 'Please enter Start Of Service';
-//     }
-//     if (!validate_field($profiling->end_service)) {
-//       $errors[] = 'Please enter End Of Service';
-//     }
-//     if (!validate_field($profiling->acad_type)) {
-//       $errors[] = 'Please enter Academic Type';
-//     }
-//     if (!validate_field($profiling->faculty_type)) {
-//       $errors[] = 'Please enter Faculty Type';
-//     }
-//     if (!validate_field($profiling->designation)) {
-//       $errors[] = 'Please enter Designation';
-//     }
-
-//     if (empty($errors)) {
-//       if ($profiling->add()) {
-//         header('location: ./profiling.php');
-//         $message = 'Faculty successfully added.';
-//         exit;
-//       } else {
-//         $message = 'Something went wrong adding Faculty.';
-//       }
-//     } else {
-//       throw new Exception(implode('<br>', $errors));
-//     }
-//   } catch (Exception $e) {
-//     $error_message = $e->getMessage();
-//   }
-// }
-
 ?>
 
 <!DOCTYPE html>
@@ -300,6 +233,10 @@ if (isset($_POST['add_faculty'])) {
                 <label for="acad_type" class="form-label">Academic Rank</label>
                 <select type="button" class="dropdown-toggle form-select" data-bs-toggle="dropdown" id="acad_type" name="acad_type">
                   <!-- <option value="">Select Rank</option> -->
+                  <option value="Adjunct Faculty" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Adjunct Faculty') { echo 'selected'; } ?>>Adjunct Faculty</option>
+                  <option value="Instructor" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Instructor') { echo 'selected'; } ?>>Instructor</option>
+                  <option value="Instructor II" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Instructor II') { echo 'selected'; } ?>>Instructor II</option>
+                  <option value="Instructor III" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Instructor III') { echo 'selected'; } ?>>Instructor III</option>
                   <option value="Professor I" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor I') { echo 'selected'; } ?>>Professor I</option>
                   <option value="Professor II" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor II') { echo 'selected'; } ?>>Professor II</option>
                   <option value="Professor III" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor III') { echo 'selected'; } ?>>Professor III</option>
@@ -334,6 +271,7 @@ if (isset($_POST['add_faculty'])) {
                   <option value="Professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Professor') { echo 'selected'; } ?>>Professor</option>
                   <option value="Assistant professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Assistant professor') { echo 'selected'; } ?>>Assistant professor</option>
                   <option value="Academic staff" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Academic staff') { echo 'selected'; } ?>>Academic staff</option>
+                  <option value="Associate Professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Associate Professor') { echo 'selected'; } ?>>Associate Professor</option>
                 </select>
                 <?php
                 if(isset($_POST['designation']) && !validate_field($_POST['designation'])){

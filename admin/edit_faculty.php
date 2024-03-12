@@ -236,6 +236,10 @@ if (isset($_POST['edit_faculty'])) {
                 <label for="acad_type" class="form-label">Academic Rank</label>
                 <select type="button" class="dropdown-toggle form-select" data-bs-toggle="dropdown" id="acad_type" name="acad_type">
                   <!-- <option value="">Select Rank</option> -->
+                  <option value="Adjunct Faculty" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Adjunct Faculty') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Adjunct Faculty'){ echo 'selected'; } ?>>Adjunct Faculty</option>
+                  <option value="Instructor" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Instructor') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Instructor'){ echo 'selected'; } ?>>Instructor</option>
+                  <option value="Instructor II" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Instructor II') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Instructor II'){ echo 'selected'; } ?>>Instructor II</option>
+                  <option value="Instructor III" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Instructor III') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Instructor II'){ echo 'selected'; } ?>>Instructor III</option>
                   <option value="Professor I" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor I') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Professor I'){ echo 'selected'; } ?>>Professor I</option>
                   <option value="Professor II" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor II') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Professor II'){ echo 'selected'; } ?>>Professor II</option>
                   <option value="Professor III" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor III') { echo 'selected'; } else if(isset($profiling->acad_type) && $profiling->acad_type == 'Professor III'){ echo 'selected'; } ?>>Professor III</option>
@@ -270,6 +274,7 @@ if (isset($_POST['edit_faculty'])) {
                   <option value="Professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Professor') { echo 'selected'; } else if(isset($profiling->designation) && $profiling->designation == 'Professor'){ echo 'selected'; } ?>>Professor</option>
                   <option value="Assistant professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Assistant professor') { echo 'selected'; } else if(isset($profiling->designation) && $profiling->designation == 'Assistant professor'){ echo 'selected'; } ?>>Assistant professor</option>
                   <option value="Academic staff" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Academic staff') { echo 'selected'; } else if(isset($profiling->designation) && $profiling->designation == 'Academic staff'){ echo 'selected'; } ?>>Academic staff</option>
+                  <option value="Associate Professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Associate Professor') { echo 'selected'; } else if(isset($profiling->designation) && $profiling->designation == 'Associate Professor'){ echo 'selected'; } ?>>Associate Professor</option>
                 </select>
                 <?php
                 if(isset($_POST['designation']) && !validate_field($_POST['designation'])){

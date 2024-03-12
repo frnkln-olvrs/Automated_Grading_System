@@ -43,13 +43,13 @@ $(document).ready(function(){
     return input;
   }
 
-  $('select#faculty-academic_rank').on('change', function(e){
+  $('select#acad_type').on('change', function(e){
     var status = $(this).val();
     dataTable.columns([3]).search(status).draw();
   });
 
   $('select#faculty_type').on('change', function(e){
     var status = $(this).val();
-    dataTable.columns([5]).search(status).draw();
+    dataTable.columns([6]).search(status).draw();
   });
 })

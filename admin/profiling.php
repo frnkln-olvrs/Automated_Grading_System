@@ -44,17 +44,19 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-2">
             
             <div class="form-group col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0 ms-lg-auto">
-              <select name="faculty-academic_rank" id="faculty-academic_rank" class="form-select me-md-2">
+              <select name="acad_type" id="acad_type" class="form-select me-md-2">
                 <option value="">Academic Rank</option>
-                <option value="?">?</option>
-                <option value="2">2</option>
+                <option value="Adjunct Faculty">Adjunct Faculty</option>
+                <option value="Instructor">Instructor</option>
+                <option value="Professor">Professor</option>
               </select>
             </div>
 
             <div class="form-group mx-4 col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0">
               <select name="faculty_type" id="faculty_type" class="form-select me-md-2">
                 <option value="">Faculty Type</option>
-                <option value="">?</option>
+                <option value="Regular Lecturer">Regular Lecturer</option>
+                <option value="Visiting Lecturer">Visiting Lecturer</option>
               </select>
             </div>
 
@@ -132,7 +134,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete this subject?
+          Are you sure you want to delete this Faculty?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
