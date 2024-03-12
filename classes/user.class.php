@@ -83,13 +83,13 @@ class User {
   }
 
   function show() {
-        $sql = "SELECT * FROM user ORDER BY user_id ASC;";
-        $query = $this->db->connect()->prepare($sql);
-        $data = null;
-        if ($query->execute()) {
-            $data = $query->fetchAll();
-        }
-        return $data;
+    $sql = "SELECT * FROM user ORDER BY user_id ASC;";
+    $query = $this->db->connect()->prepare($sql);
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll();
+    }
+    return $data;
   }
 
   function fetch($record_user_id) {

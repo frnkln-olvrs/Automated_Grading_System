@@ -61,8 +61,8 @@ require_once '../tools/functions.php';
                 <th>#</th>
                 <th>Employee ID</th> <!--Code & description-->
                 <th>Last Name</th>
-                <th>First Name Rank</th>
-                <th>M.I</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
                 <th>Email</th>
                 <th>Designation</th>
                 <th>Academic Rank</th>

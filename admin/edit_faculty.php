@@ -79,7 +79,8 @@ if (isset($_POST['edit_faculty'])) {
 
     if (empty($errors)) {
       if ($profiling->edit()) {
-        header('location: ./profiling.php');
+        $redirect_url = isset($_GET['department_id']) ? "./profiling?department_id={$_GET['department_id']}" : "./profiling";
+        header("Location: $redirect_url");
         $message = 'Faculty successfully added.';
         exit;
       } else {

@@ -1,7 +1,6 @@
 $(document).ready(function(){
   dataTable = $("#manage_acc").DataTable({
     dom: 'Brtp',
-    responsive: true,
     pageLength: 10,
     buttons: [
       {

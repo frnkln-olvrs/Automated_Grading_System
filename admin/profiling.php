@@ -108,7 +108,14 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   <td><?= $item['start_service'] ?></td>
                   <td><?= $item['end_service'] ?></td>
                   <td class="text-center">
-                    <a href="./edit_faculty?profiling_id=<?= $item['profiling_id'] ?>"><i class='bx bx-edit text-success'></i></a>
+                    <?php
+                    if(isset($_GET['department_id'])) {
+                      $department_id = $_GET['department_id'];
+                      echo "<a href='./edit_faculty?department_id=$department_id&profiling_id=" . $item['profiling_id'] . "'><i class='bx bx-edit text-success'></i></a>";
+                    } else {
+                      echo "<a href='./edit_faculty?profiling_id=" . $item['profiling_id'] . "'><i class='bx bx-edit text-success'></i></a>";
+                    }
+                    ?>
                     <button class="delete-btn bg-none" data-subject-id="<?= $item['profiling_id'] ?>"><i class='bx bx-trash-alt text-danger'></i></button>
                   </td>
                 </tr>
