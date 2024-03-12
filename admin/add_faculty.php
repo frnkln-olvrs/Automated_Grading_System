@@ -177,8 +177,9 @@ if (isset($_POST['add_faculty'])) {
               <div class="mb-3">
                 <label for="f_name" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="f_name" name="f_name" aria-describedby="f_name" value="<?php if (isset($_POST['f_name'])) {
-                                                                                                             echo $_POST['f_name'];
-                                                                                                           } ?>">
+                                                                                                                           echo $_POST['f_name'];
+                                                                                                                         } ?>" 
+                oninput="capitalizeFirstLetter(this)">
                 <?php
                 if (isset($_POST['f_name']) && !validate_field($_POST['f_name'])) {
                 ?>
@@ -187,11 +188,13 @@ if (isset($_POST['add_faculty'])) {
                 }
                 ?>
               </div>
+
               <div class="mb-3">
                 <label for="l_name" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="l_name" name="l_name" aria-describedby="l_name" value="<?php if (isset($_POST['l_name'])) {
-                                                                                                             echo $_POST['l_name'];
-                                                                                                           } ?>">
+                                                                                                                           echo $_POST['l_name'];
+                                                                                                                         } ?>" 
+                oninput="capitalizeFirstLetter(this)">
                 <?php
                 if (isset($_POST['l_name']) && !validate_field($_POST['l_name'])) {
                 ?>
@@ -200,11 +203,13 @@ if (isset($_POST['add_faculty'])) {
                 }
                 ?>
               </div>
+
               <div class="mb-3">
                 <label for="m_name" class="form-label">Middle Name</label>
                 <input type="text" class="form-control" id="m_name" name="m_name" aria-describedby="m_name" value="<?php if (isset($_POST['m_name'])) {
-                                                                                                             echo $_POST['m_name'];
-                                                                                                           } ?>">
+                                                                                                                           echo $_POST['m_name'];
+                                                                                                                         } ?>" 
+                oninput="capitalizeFirstLetter(this)">
                 <?php
                 if (isset($_POST['m_name']) && !validate_field($_POST['m_name'])) {
                 ?>
@@ -271,7 +276,7 @@ if (isset($_POST['add_faculty'])) {
                 </div>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-3" <?= isset($_GET['department_id']) ? 'style="display: none;"' : '' ?>>
                 <?php
                   require_once '../classes/department.class.php';
                   require_once '../tools/functions.php';
@@ -287,12 +292,11 @@ if (isset($_POST['add_faculty'])) {
                 ?>
                 <label for="department_id" class="form-label">Department</label>
                 <select class="dropdown-toggle form-select" id="department_id" name="department_id">
-                  <!-- <option value="">Select Department</option> -->
                   <?php
                     if ($department_array) {
                       foreach ($department_array as $item) {
                   ?>
-                  <option value="<?= $item['department_id'] ?>" <?php if(isset($_POST['department_id']) && $_POST['department_id'] == $item['department_id']) { echo 'selected'; } ?>><?= $item['department_name'] ?></option>
+                  <option value="<?= $item['department_id'] ?>" <?php if(isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) { echo 'selected'; } ?>><?php echo $item['department_name'] ?></option>
                   <?php
                       }
                     }
@@ -305,9 +309,9 @@ if (isset($_POST['add_faculty'])) {
                 <label for="acad_type" class="form-label">Academic Rank</label>
                 <select type="button" class="dropdown-toggle form-select" data-bs-toggle="dropdown" id="acad_type" name="acad_type">
                   <!-- <option value="">Select Rank</option> -->
-                  <option value="professor_i" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'professor_i') { echo 'selected'; } ?>>Professor I</option>
-                  <option value="professor_ii" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'professor_ii') { echo 'selected'; } ?>>Professor II</option>
-                  <option value="professor_iii" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'professor_iii') { echo 'selected'; } ?>>Professor III</option>
+                  <option value="Professor I" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor I') { echo 'selected'; } ?>>Professor I</option>
+                  <option value="Professor II" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor II') { echo 'selected'; } ?>>Professor II</option>
+                  <option value="Professor III" <?php if(isset($_POST['acad_type']) && $_POST['acad_type'] == 'Professor III') { echo 'selected'; } ?>>Professor III</option>
                 </select>
                 <?php
                 if(isset($_POST['acad_type']) && !validate_field($_POST['acad_type'])){
@@ -321,8 +325,8 @@ if (isset($_POST['add_faculty'])) {
                 <label for="faculty_type" class="form-label">Faculty Type</label>
                 <select type="button" class="dropdown-toggle form-select" data-bs-toggle="dropdown" id="faculty_type" name="faculty_type">
                   <!-- <option value="">Select Type</option> -->
-                  <option value="regular_lecturer" <?php if(isset($_POST['faculty_type']) && $_POST['faculty_type'] == 'regular_lecturer') { echo 'selected'; } ?>>Regular Lecturer</option>
-                  <option value="visiting_lecturer" <?php if(isset($_POST['faculty_type']) && $_POST['faculty_type'] == 'visiting_lecturer') { echo 'selected'; } ?>>Visiting Lecturer</option>
+                  <option value="Regular Lecturer" <?php if(isset($_POST['faculty_type']) && $_POST['faculty_type'] == 'Regular Lecturer') { echo 'selected'; } ?>>Regular Lecturer</option>
+                  <option value="Visiting Lecturer" <?php if(isset($_POST['faculty_type']) && $_POST['faculty_type'] == 'Visiting Lecturer') { echo 'selected'; } ?>>Visiting Lecturer</option>
                 </select>
                 <?php
                 if(isset($_POST['faculty_type']) && !validate_field($_POST['faculty_type'])){
@@ -336,9 +340,9 @@ if (isset($_POST['add_faculty'])) {
                 <label for="designation" class="form-label">Designation</label>
                 <select type="button" class="dropdown-toggle form-select" data-bs-toggle="dropdown" id="designation" name="designation">
                   <!-- <option value="">Select Designation</option> -->
-                  <option value="professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'professor') { echo 'selected'; } ?>>Professor</option>
-                  <option value="assistant_professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'assistant_professor') { echo 'selected'; } ?>>Assistant professor</option>
-                  <option value="academic_staff" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'academic_staff') { echo 'selected'; } ?>>Academic staff</option>
+                  <option value="Professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Professor') { echo 'selected'; } ?>>Professor</option>
+                  <option value="Assistant professor" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Assistant professor') { echo 'selected'; } ?>>Assistant professor</option>
+                  <option value="Academic staff" <?php if(isset($_POST['designation']) && $_POST['designation'] == 'Academic staff') { echo 'selected'; } ?>>Academic staff</option>
                 </select>
                 <?php
                 if(isset($_POST['designation']) && !validate_field($_POST['designation'])){
@@ -362,6 +366,11 @@ if (isset($_POST['add_faculty'])) {
   
   <script src="./js/main.js"></script>
   <script src="./js/curriculum-table.js"></script>
+  <script>
+    function capitalizeFirstLetter(input) {
+      input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+    }
+  </script>
   
 </body>
 </html>
