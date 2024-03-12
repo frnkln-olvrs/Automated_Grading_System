@@ -52,6 +52,9 @@ if (isset($_POST['edit_curr_sub'])) {
     if (!validate_field($curr_table->sub_code)) {
       $errors[] = 'Please enter Subject Code';
     }
+    if ($curr_table->is_subcode_exist($curr_table->sub_code)) {
+      $errors[] = 'Subject Code already exists';
+    }
     if (!validate_field($curr_table->sub_name)) {
       $errors[] = 'Please enter Subject Name';
     }

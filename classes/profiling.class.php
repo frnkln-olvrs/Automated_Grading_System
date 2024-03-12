@@ -5,6 +5,7 @@ require_once 'database.php';
 Class Profiling {
 
   public $profiling_id;
+  public $emp_id;
   public $f_name;
   public $l_name;
   public $m_name;
@@ -23,11 +24,12 @@ Class Profiling {
   }
 
   function add() {
-    $sql = "INSERT INTO profiling_table (profiling_id, f_name, l_name, m_name, email, start_service, end_service, acad_type, faculty_type, designation, department_id) VALUES 
-    (:profiling_id, :f_name, :l_name, :m_name, :email, :start_service, :end_service, :acad_type, :faculty_type, :designation, :department_id);";
+    $sql = "INSERT INTO profiling_table (profiling_id, emp_id, f_name, l_name, m_name, email, start_service, end_service, acad_type, faculty_type, designation, department_id) VALUES 
+    (:profiling_id, :emp_id, :f_name, :l_name, :m_name, :email, :start_service, :end_service, :acad_type, :faculty_type, :designation, :department_id);";
 
     $query=$this->db->connect()->prepare($sql);
     $query->bindParam(':profiling_id', $this->profiling_id);
+    $query->bindParam(':emp_id', $this->emp_id);
     $query->bindParam(':f_name', $this->f_name);
     $query->bindParam(':l_name', $this->l_name);
     $query->bindParam(':m_name', $this->m_name);
@@ -80,6 +82,34 @@ Class Profiling {
       $data = $query->fetchAll();
     }
     return $data;
+  }
+
+  function is_empId_exist($emp_id) {
+    $sql = "SELECT * FROM profiling_table WHERE emp_id = :emp_id";
+            
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':emp_id', $emp_id);
+    
+    if ($query->execute()) {
+      if ($query->rowCount() > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function is_email_exist($email) {
+    $sql = "SELECT * FROM profiling_table WHERE email = :email";
+            
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':email', $email);
+    
+    if ($query->execute()) {
+      if ($query->rowCount() > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }
