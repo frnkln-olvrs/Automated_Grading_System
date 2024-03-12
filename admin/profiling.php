@@ -62,7 +62,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
               <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
               <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
             </div>
-            <a href="./add_faculty.php?department_id=<?= isset($_GET['department_id']) ? htmlspecialchars($_GET['department_id']) : '' ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+            <a href="./add_faculty.php<?= isset($_GET['department_id']) ? '?department_id=' . htmlspecialchars($_GET['department_id']) : '' ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php
