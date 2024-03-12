@@ -31,6 +31,7 @@ if (isset($_POST['edit_faculty'])) {
   try {
     $profiling = new Profiling();
     //sanitize
+    $profiling->profiling_id = $_GET['profiling_id'];
     $profiling->emp_id = htmlentities($_POST['emp_id']);
     $profiling->f_name = htmlentities($_POST['f_name']);
     $profiling->l_name = htmlentities($_POST['l_name']);

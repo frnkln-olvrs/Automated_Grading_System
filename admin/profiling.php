@@ -103,7 +103,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   <td><?= $item['email'] ?></td>
                   <td><?= $item['acad_type'] ?></td>
                   <td><?= $item['designation'] ?></td>
-                  <th <?= isset($_GET['department_id']) ? 'style="display: none;"' : '' ?>><?= $item['department_name'] ?></th>
+                  <td <?= isset($_GET['department_id']) ? 'style="display: none;"' : '' ?>><?= $item['department_name'] ?></td>
                   <td><?= $item['faculty_type'] ?></td>
                   <td><?= $item['start_service'] ?></td>
                   <td><?= $item['end_service'] ?></td>

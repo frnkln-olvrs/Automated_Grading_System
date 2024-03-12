@@ -15,7 +15,7 @@ $(document).ready(function(){
   });
 
   var table = dataTable;
-  var filter = createFilter(table, [1,2]);
+  var filter = createFilter(table, [1,2,7]);
 
   function createFilter(table, columns) {
     var input = $('input#keyword').on("keyup", function() {
