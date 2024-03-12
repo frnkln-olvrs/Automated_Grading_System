@@ -33,7 +33,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
         <div class="d-flex align-items-center">
           <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 h1 m-0 text-uppercase">finalterm</span>
+            <span class="fs-2 h1 m-0 text-uppercase">midterm</span>
           </div>
         </div>
       </div>
