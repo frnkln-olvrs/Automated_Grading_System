@@ -1,32 +1,65 @@
 <?php 
-
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 1)) {
   header('location: ./login.php');
+  exit(); // Add an exit statement after redirection
 }
 
+// Include database connection
+include_once("./classes/database.php");
+
+// Create an instance of the Database class
+$database = new Database();
+// Establish the database connection
+$connection = $database->connect();
+
+// Initialize an empty array to store student data
+$student_array = array();
+
+// Check if the connection is successful
+if ($connection) {
+    try {
+        // Fetch student data from the database
+        $stmt = $connection->query("SELECT * FROM student");
+
+        // Check if data is fetched successfully
+        if ($stmt) {
+            // Fetch all rows as an associative array
+            $student_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // Handle query execution error
+            throw new Exception("Error fetching student data.");
+        }
+    } catch (Exception $e) {
+        // Handle exception
+        echo "<p>Error: " . $e->getMessage() . "</p>";
+    }
+} else {
+    // Handle connection error
+    echo "<p>Failed to connect to the database.</p>";
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Student list';
-  $student_page = 'active';
-	include './includes/head.php';
+$title = 'Student list';
+$student_page = 'active';
+include './includes/head.php';
 ?>
 <body>
   <div class="home">
     <div class="side">
       <?php
-        require_once('./includes/sidepanel.php')
+      require_once('./includes/sidepanel.php');
       ?> 
     </div>
     <main>
       <div class="header" >
-      <?php
-        require_once('./includes/header.php')
-      ?>
+        <?php
+        require_once('./includes/header.php');
+        ?>
       </div>
       
       <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
@@ -109,33 +142,13 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
             <div class="search-keyword col-12 flex-lg-grow-0 d-flex">
               <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
-              <div class="input-group">
+              <div class="input-group justify-content-end"> 
                 <input type="text" name="keyword" id="keyword" placeholder="Search Student" class="form-control">
                 <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
               </div>
               <a href="./add_student.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
-            </div>
+           </div>
           </div>
-          <?php
-            $student_array = array(
-              array(
-                'Last Name' => 'Burnt',
-                'First Name' => 'Pizza',
-                'Middle Name' => 'Here',
-                'Extension' => 'Extensd',
-                'Student ID' => '2021-00123',
-                'Email' => 'example@email.com',
-              ),
-              array(
-                'Last Name' => 'Olive',
-                'First Name' => 'Frank',
-                'Middle Name' => 'Itur',
-                'Extension' => 'Extensd',
-                'Student ID' => '2021-03214',
-                'Email' => 'sample@email.com',
-              ),
-            );
-          ?>
           <table id="students" class="table table-striped table-sm" style="width:100%">
             <thead>
               <tr>
@@ -150,39 +163,58 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
               </tr>
             </thead>
             <tbody>
-              <?php
-                $counter = 1;
-                foreach ($student_array as $item){
-              ?>
-                <tr>
-                  <td><?= $counter ?></td>
-                  <td><?= $item['Last Name'] ?></td>
-                  <td><?= $item['First Name'] ?></td>
-                  <td><?= $item['Middle Name'] ?></td>
-                  <td><?= $item['Extension'] ?></td>
-                  <td><?= $item['Student ID'] ?></td>
-                  <td><?= $item['Email'] ?></td>
-                  <td class="text-center">
-                    <a href="# "><i class='bx bx-edit text-success' ></i></a>
-                    <i class='bx bx-trash-alt text-danger' ></i>
-                  </td>
-                </tr>
-              <?php
-                $counter++;
-                }
-              ?>
+            <?php
+            $counter = 1;
+            foreach ($student_array as $item) {
+            ?>
+            <tr>
+              <td><?= $counter ?></td>
+              <td><?= $item['lname'] ?></td>
+              <td><?= $item['fname'] ?></td>
+              <td><?= $item['mname'] ?></td>
+              <td><?= $item['extension'] ?></td>
+              <td><?= $item['studentid'] ?></td>
+              <td><?= $item['studentemail'] ?></td>
+              <td class="text-center">
+                  <a href="edit_student.php?studentid=<?= $item['studentid'] ?>"><i class='bx bx-edit text-success'></i></a>
+                  <!-- Delete Button with Modal -->
+                  <a href="delete_student.php?studentid=<?= $item['studentid'] ?>" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $item['studentid'] ?>"><i class='bx bx-trash-alt text-danger'></i></a>
+
+                  <!-- Delete Confirmation Modal -->
+                  <div class="modal fade" id="deleteModal<?= $item['studentid'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $item['studentid'] ?>" aria-hidden="true">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="deleteModalLabel<?= $item['studentid'] ?>">Confirm Deletion</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  Are you sure you want to delete this student?
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                  <a href="../delete_student.php?studentid=<?= $item['studentid'] ?>" class="btn btn-danger">Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </td>
+
+            </tr>
+            <?php
+            $counter++;
+            }
+            ?>
             </tbody>
           </table>
         </div>
       </div>
-
     </main>
   </div>
-
+ 
   <?php
-    require_once('./includes/js.php');
+  require_once('./includes/js.php');
   ?>
   <script src="./js/student_table.js"></script>
-  
 </body>
 </html>
