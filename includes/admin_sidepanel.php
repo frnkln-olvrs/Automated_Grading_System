@@ -8,7 +8,7 @@
     <li class="nav-item">
       <a href="./index" class="nav-link link-dark d-flex align-items-center mb-2 <?= $curriculum_page ?>" aria-current="page">
         <i class='bx bxs-graduation fs-4'></i>
-        <span class="fs-6 ms-2">Curriculum</span>
+        <span class="fs-6 ms-2">School Year</span>
       </a>
     </li>
 
@@ -86,12 +86,12 @@
 
         <div class="collapse <?= ($acc_setup || $user_acc) ? 'show' : '' ?>" id="mnge_acc_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li>
+            <!-- <li>
               <a href="./acc_setup.php" class="link-dark nav-link <?= $acc_setup ?>">
                 <i class='bx bx-git-commit'></i>
                 <span class="fs-6 ms-2">Account Setup</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="./user_acc.php" class="link-dark nav-link <?= $user_acc ?>">
                 <i class='bx bx-git-commit'></i>
@@ -135,13 +135,13 @@
     </li>
 
     <li class="nav-item">
-      <a href="./grade.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $grade_page ?>">
+      <a href="./grade" class="nav-link link-dark d-flex align-items-center mb-2  <?= $grade_page ?>">
         <i class='bx bx-library fs-4'></i>
         <span class="fs-6 ms-2">Grade</span>          
       </a>
     </li>
     <li class="nav-item">
-      <a href="./admin_settings.php" class="nav-link link-dark d-flex align-items-center mb-2  <?= $setting_page ?>">
+      <a href="./admin_settings" class="nav-link link-dark d-flex align-items-center mb-2  <?= $setting_page ?>">
         <i class='bx bx-cog fs-4'></i>
         <span class="fs-6 ms-2">Setting</span>          
       </a>
@@ -158,6 +158,7 @@
       </ul>
     </div>
 </div>
+
 <script>
   $(document).ready(function(){
     // Toggle collapse on button click

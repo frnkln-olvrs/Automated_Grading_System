@@ -38,12 +38,43 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
       </div>
 
       <div class="m-4">
-      <form action="./curri_page.php">
-          <div class="row row-cols-1">
-            <div class="container-fluid d-flex justify-content-start">
-              <span class="fs-2 fw-bold h1 m-0 brand-color mb-3">Change Password</span>
+        <form action="./curri_page.php">
+          <div class="container-fluid d-flex justify-content-start">
+            <span class="fs-2 fw-bold h1 m-0 brand-color mb-3">Change Password</span>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col-md-4">
+              <div class="border shadow p-3 mb-5 bg-body rounded">
+
+                <div class="user">
+                  <form action="" method="post" enctype="multipart/form-data">
+                    <div class="profile-pic">
+                      <label class="label brand-border-color d-flex flex-column" for="file" style="border-width: 4px !important;">
+                        <i class='bx bxs-camera-plus'></i>
+                        <span>Change Image</span>
+                      </label>
+                      <!-- <img src="./img/dataimages/<?= $_SESSION['user_profile'] ?>" id="output" /> -->
+                      <img src="../img/profile-img/profile.png" id="output"/>
+                      <input id="file" type="file" name="profile" onchange="loadProfile(event)" accept="image/png, image/jpeg" />
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <button type="submit" name="saveimage" class="btn brand-bg-color">Save Image</button>
+                    </div>
+                    <br>
+                    <div class="name" style="display: flex; justify-content: center; align-items: center;">
+                      <p class="username"><?= ucwords($_SESSION['name']) ?></p>
+                    </div>
+                  </form>
+
+                </div>
+
+              </div>
             </div>
-            <div class="col">
+            <div class="col-md-8">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" aria-describedby="username">
+              </div>
               <div class="mb-3">
                 <label for="current_pw" class="form-label">Current Password</label>
                 <input type="text" class="form-control" id="current_pw" aria-describedby="current_pw">
@@ -70,5 +101,13 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
   <script src="./js/main.js"></script>
   <script src="./js/profiling_table.js"></script>
+
+  <script>
+    var loadProfile = function(event) {
+      var image = document.getElementById("output");
+      image.src = URL.createObjectURL(event.target.files[0]);
+    };
+  </script>
+  
 </body>
 </html>
