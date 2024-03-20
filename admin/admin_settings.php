@@ -55,17 +55,16 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                       </label>
                       <!-- <img src="./img/dataimages/<?= $_SESSION['user_profile'] ?>" id="output" /> -->
                       <img src="../img/profile-img/profile.png" id="output"/>
-                      <input id="file" type="file" name="profile" onchange="loadProfile(event)" accept="image/png, image/jpeg" />
+                      <input id="file" type="file" name="profile" accept="image/png, image/jpeg" onchange="validateFile(event)" />
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                       <button type="submit" name="saveimage" class="btn brand-bg-color">Save Image</button>
                     </div>
                     <br>
                     <div class="name" style="display: flex; justify-content: center; align-items: center;">
-                      <p class="username"><?= ucwords($_SESSION['name']) ?></p>
+                      <p class="username"> <?= ucwords($_SESSION['name']) ?> </p>
                     </div>
                   </form>
-
                 </div>
 
               </div>
@@ -103,7 +102,17 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   <script src="./js/profiling_table.js"></script>
 
   <script>
-    var loadProfile = function(event) {
+    var validateFile = function(event) {
+      var fileInput = event.target;
+      var filePath = fileInput.value;
+      var allowedExtensions = /(\.png|\.jpeg|\.jpg)$/i;
+    
+      if (!allowedExtensions.exec(filePath)) {
+        alert('Invalid file type. Only PNG and JPEG files are allowed.');
+        fileInput.value = '';
+        return false;
+      }
+    
       var image = document.getElementById("output");
       image.src = URL.createObjectURL(event.target.files[0]);
     };
