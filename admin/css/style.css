@@ -190,7 +190,7 @@ table.dataTable tbody td {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   z-index: 1000;
   transition: background-color .2s ease-in-out;
