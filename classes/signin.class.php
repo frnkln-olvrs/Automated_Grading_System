@@ -13,6 +13,7 @@ class Account {
   public $f_name;
   public $name;
   public $m_name;
+  public $profile_image;
   public $acad_rank;
 
 
@@ -40,6 +41,7 @@ class Account {
         $m_name_secondLetter = strlen($accountData['m_name']) > 1 ? '.' : '';
         $this->name = $accountData['l_name'] . ', ' . $accountData['f_name'] . ' ' . substr($accountData['m_name'], 0, 1) . $m_name_secondLetter;
         $this->m_name = $accountData['m_name'];
+        $this->profile_image = $accountData['profile_image'];
         $this->acad_rank = $accountData['acad_rank'];
         return true;
       }

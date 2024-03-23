@@ -6,6 +6,39 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
   header('location: ../login.php');
 }
 
+require_once '../tools/functions.php';
+require_once '../classes/user.class.php';
+
+if (isset($_POST['saveimage'])) {
+  $user = new User();
+
+  $uploaddir = '../img/profile-img/';
+  $fileName = basename($_FILES['profile']['name']);
+  $uploadfile = $uploaddir . $fileName;
+  if (move_uploaded_file($_FILES[htmlentities('profile')]['tmp_name'], $uploadfile)) {
+    if (isset($_POST['addimage']) && isset($message)) {
+      echo "<script> alert('File is valid, and was successfully uploaded.')</script>";
+    }
+  } else {
+    echo "<script> alert('Failed Upload')</script>";
+  }
+
+  $user->user_id = $_SESSION['user_id'];
+  $user->profile_image = $_FILES['profile']['name'];
+
+  if (
+    validate_field($user->profile_image)
+  ) {
+
+    if ($user->edit_profile()) {
+      $_SESSION['profile_image'] = $user->profile_image;
+      $message = 'image is successfuly added Image.';
+    } else {
+      $message = 'Something went wrong adding Image.';
+    }
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,15 +86,15 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                         <i class='bx bxs-camera-plus'></i>
                         <span>Change Image</span>
                       </label>
-                      <img src="../img/profile-img/profile.png" id="output"/>
+                      <img src="../img/profile-img/<?= $_SESSION['profile_image'] ?>" id="output"/>
                       <input id="file" type="file" name="profile" accept="image/png, image/jpeg" onchange="validateFile(event)" />
                     </div>
-                    <div class="name d-flex justify-content-center align-items-center">
-                      <p class="username fw-bold"> <?= ucwords($_SESSION['name']) ?> </p>
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                      <button type="submit" name="saveimage" class="btn brand-bg-color">Save Image</button>
                     </div>
-                    <!-- <div class="d-flex justify-content-center align-items-center">
-                      <button type="button" name="saveimage" class="btn brand-bg-color">Save Image</button>
-                    </div> -->
+                    <div class="name d-flex justify-content-center align-items-center">
+                      <p class="username fw-bold"><?= ucwords($_SESSION['name']) ?></p>
+                    </div>
                   </form>
                 </div>
 

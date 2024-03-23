@@ -26,6 +26,7 @@ if(isset($_POST['login'])) {
     $_SESSION['f_name'] = $user->f_name;
     $_SESSION['name'] = $user->name;    
     $_SESSION['m_name'] = $user->m_name;
+    $_SESSION['profile_image'] = $user->profile_image;
     $_SESSION['acad_rank'] = $user->acad_rank;
 
     if($_SESSION['user_role'] == 1) {
