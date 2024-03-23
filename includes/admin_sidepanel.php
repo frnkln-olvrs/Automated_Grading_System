@@ -150,7 +150,7 @@
   <hr>
     <div class="account dropdown">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="../img/profile-img/profile.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <img src="../img/profile-img/<?= $_SESSION['profile_image'] ?>" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong><?= ucwords($_SESSION['name']) ?></strong>
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">

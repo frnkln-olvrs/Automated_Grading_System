@@ -53,9 +53,9 @@ class User {
     $query->bindParam(':user_id', $this->user_id);
 
     if ($query->execute()) {
-    return true;
+      return true;
     } else {
-    return false;
+      return false;
     }
   }
 

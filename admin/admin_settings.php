@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
@@ -15,7 +14,8 @@ if (isset($_POST['saveimage'])) {
   $uploaddir = '../img/profile-img/';
   $fileName = basename($_FILES['profile']['name']);
   $uploadfile = $uploaddir . $fileName;
-  if (move_uploaded_file($_FILES[htmlentities('profile')]['tmp_name'], $uploadfile)) {
+
+  if (move_uploaded_file($_FILES['profile']['tmp_name'], $uploadfile)) {
     if (isset($_POST['addimage']) && isset($message)) {
       echo "<script> alert('File is valid, and was successfully uploaded.')</script>";
     }
@@ -32,7 +32,7 @@ if (isset($_POST['saveimage'])) {
 
     if ($user->edit_profile()) {
       $_SESSION['profile_image'] = $user->profile_image;
-      $message = 'image is successfuly added Image.';
+      $message = 'image is successfully added Image.';
     } else {
       $message = 'Something went wrong adding Image.';
     }
@@ -71,7 +71,7 @@ if (isset($_POST['saveimage'])) {
       </div>
 
       <div class="m-4">
-        <form action="">
+        <form action="" method="POST" enctype="multipart/form-data">
           <div class="container-fluid d-flex justify-content-start">
             <span class="fs-2 fw-bold h1 m-0 brand-color mb-3">Change Password</span>
           </div>
@@ -80,7 +80,7 @@ if (isset($_POST['saveimage'])) {
               <div class="border shadow p-3 mb-5 bg-body rounded">
 
                 <div class="user">
-                  <form action="" method="post" enctype="multipart/form-data">
+                  <form id="profileForm" enctype="multipart/form-data">
                     <div class="profile-pic">
                       <label class="label brand-border-color d-flex flex-column" for="file" style="border-width: 4px !important;">
                         <i class='bx bxs-camera-plus'></i>
@@ -157,6 +157,30 @@ if (isset($_POST['saveimage'])) {
       var image = document.getElementById("output");
       image.src = URL.createObjectURL(event.target.files[0]);
     };
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('#saveImage').click(function() {
+        var formData = new FormData($('#profileForm')[0]);
+        
+        $.ajax({
+          url: '../includes/upload_profile.php',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            alert(response); // Display the response from the server
+            // You can perform additional actions here if needed
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText); // Log any errors to the console
+            alert('Error occurred while uploading image: ' + error); // Display the specific error message
+          }
+        });
+      });
+    });
   </script>
   
 </body>
