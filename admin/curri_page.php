@@ -199,11 +199,11 @@ if (!isset($_GET['year_id']) ||
             <div id="MyButtons" class="d-flex me-4 mb-md-2 mb-lg-0 col-12 col-md-auto"></div>
             <div class="input_width d-flex" style="width: 40% !important;">
               <div class="input-group">
-                <input type="text" name="keyword" id="keyword" placeholder="Search Product" class="form-control">
+                <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
                 <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
               </div>
               <a href="./curri_add_sub?year_id=<?= $_GET['year_id'] ?>&course_id=<?= $_GET['course_id'] ?>&time_id=<?= $_GET['time_id'] ?>&year_level_id=<?= $_GET['year_level_id'] ?>&semester_id=<?= $_GET['semester_id'] ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
-          </div>
+            </div>
           </div>
           
           <?php

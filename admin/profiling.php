@@ -41,30 +41,32 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 
         <div class="content container-fluid mw-100 border rounded shadow p-3">
 
-          <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-2">
-            
-            <div class="form-group col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0 ms-lg-auto">
-              <select name="acad_type" id="acad_type" class="form-select me-md-2">
-                <option value="">Academic Rank</option>
-                <option value="Adjunct Faculty">Adjunct Faculty</option>
-                <option value="Instructor">Instructor</option>
-                <option value="Professor">Professor</option>
-              </select>
-            </div>
+          <div class="search-keyword col-12 flex-lg-grow-0 d-flex justify-content-between">
+            <div class="input_width d-flex">
+              <div class="form-group col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0 ms-lg-auto">
+                <select name="acad_type" id="acad_type" class="form-select me-md-2">
+                  <option value="">Academic Rank</option>
+                  <option value="Adjunct Faculty">Adjunct Faculty</option>
+                  <option value="Instructor">Instructor</option>
+                  <option value="Professor">Professor</option>
+                </select>
+              </div>
 
-            <div class="form-group mx-4 col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0">
-              <select name="faculty_type" id="faculty_type" class="form-select me-md-2">
-                <option value="">Faculty Type</option>
-                <option value="Regular Lecturer">Regular Lecturer</option>
-                <option value="Visiting Lecturer">Visiting Lecturer</option>
-              </select>
+              <div class="form-group mx-4 col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0">
+                <select name="faculty_type" id="faculty_type" class="form-select me-md-2">
+                  <option value="">Faculty Type</option>
+                  <option value="Regular Lecturer">Regular Lecturer</option>
+                  <option value="Visiting Lecturer">Visiting Lecturer</option>
+                </select>
+              </div>
             </div>
-
-            <div class="input-group">
-              <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
-              <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+            <div class="input_width d-flex" style="width: 40% !important;">
+              <div class="input-group">
+                <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
+                <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+              </div>
+              <a href="./add_faculty.php<?= isset($_GET['department_id']) ? '?department_id=' . htmlspecialchars($_GET['department_id']) : '' ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
             </div>
-            <a href="./add_faculty.php<?= isset($_GET['department_id']) ? '?department_id=' . htmlspecialchars($_GET['department_id']) : '' ?>" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
           </div>
           
           <?php
@@ -99,7 +101,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
               ?>
                 <tr>
                   <td><?= $counter ?></td>
-                  <td><?= $item['l_name'] ?>, <?= $item['f_name']?> <?= substr($item['m_name'], 0, 1) ?>.</td>
+                  <td><?= $item['l_name'] ?>, <?= $item['f_name']?> <?= !empty($item['m_name']) ? substr($item['m_name'], 0, 1) . '.' : '' ?></td>
                   <td><?= $item['email'] ?></td>
                   <td><?= $item['acad_type'] ?></td>
                   <td><?= $item['designation'] ?></td>
