@@ -8,9 +8,53 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 require_once '../tools/functions.php';
 require_once '../classes/user.class.php';
 
-if (isset($_POST['saveimage'])) {
-  $user = new User();
+// Automatically identify the user ID from session
+$user_id = $_SESSION['user_id'];
 
+$user = new User();
+$record = $user->fetch($user_id);
+$user->f_name = $record['f_name'];
+$user->l_name = $record['l_name'];
+$user->m_name = $record['m_name'];
+$user->user_id = $user_id;
+
+if (isset($_POST['save_settings'])) {
+  try {
+    $user->f_name = htmlentities($_POST['save_settings']['f_name']);
+    $user->l_name = htmlentities($_POST['save_settings']['l_name']);
+    $user->m_name = htmlentities($_POST['save_settings']['m_name']);
+
+    // Validation
+    $errors = [];
+    if (!validate_field($user->f_name)) {
+      $errors[] = 'Please enter First Name';
+    }
+    if (!validate_field($user->l_name)) {
+      $errors[] = 'Please enter Last Name';
+    }
+
+    if (empty($errors)) {
+      if ($user->edit()) {
+        // Update session with new values
+        $_SESSION['f_name'] = $user->f_name;
+        $_SESSION['l_name'] = $user->l_name;
+        $_SESSION['m_name'] = $user->m_name;
+
+        // Redirect to same page after updating
+        header("Location: ".$_SERVER['PHP_SELF']);
+        exit;
+      } else {
+        $message = 'Something went wrong updating user details.';
+      }
+    } else {
+      throw new Exception(implode('<br>', $errors));
+    }
+  } catch (Exception $e) {
+    $error_message = $e->getMessage();
+  }
+}
+
+if (isset($_POST['saveimage'])) {
   $uploaddir = '../img/profile-img/';
   $fileName = basename($_FILES['profile']['name']);
   $uploadfile = $uploaddir . $fileName;
@@ -23,14 +67,10 @@ if (isset($_POST['saveimage'])) {
     echo "<script> alert('Failed Upload')</script>";
   }
 
-  $user->user_id = $_SESSION['user_id'];
   $user->profile_image = $_FILES['profile']['name'];
 
-  if (
-    validate_field($user->profile_image)
-  ) {
-
-    if ($user->edit_profile()) {
+  if (validate_field($user->profile_image)) {
+    if ($user->edit_profile($user_id)) {
       $_SESSION['profile_image'] = $user->profile_image;
       $message = 'image is successfully added Image.';
     } else {
@@ -44,7 +84,7 @@ if (isset($_POST['saveimage'])) {
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Profiling';
+  $title = 'Settings';
   $setting_page = 'active';
 	include '../includes/admin_head.php';
 ?>
@@ -73,7 +113,7 @@ if (isset($_POST['saveimage'])) {
       <div class="m-4">
         <form action="" method="POST" enctype="multipart/form-data">
           <div class="container-fluid d-flex justify-content-start">
-            <span class="fs-2 fw-bold h1 m-0 brand-color mb-3">Change Password</span>
+            <span class="fs-2 fw-bold h1 m-0 brand-color mb-3">User Settings</span>
           </div>
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col-md-4">
@@ -101,9 +141,40 @@ if (isset($_POST['saveimage'])) {
               </div>
             </div>
             <div class="col-md-8">
-              <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="username">
+              <div class="row row-cols-1 row-cols-md-2">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="f_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="f_name" name="f_name" aria-describedby="f_name" value="<?php if (isset($_POST['f_name'])) {
+                                                                                                                               echo $_POST['f_name'];
+                                                                                                                             } else if (isset($user->f_name)) {
+                                                                                                                               echo $user->f_name;
+                                                                                                                             } ?>"
+                    oninput="capitalizeFirstLetter(this)">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="l_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="l_name" name="l_name" aria-describedby="l_name" value="<?php if (isset($_POST['l_name'])) {
+                                                                                                                               echo $_POST['l_name'];
+                                                                                                                             } else if (isset($user->l_name)) {
+                                                                                                                               echo $user->l_name;
+                                                                                                                             } ?>"
+                    oninput="capitalizeFirstLetter(this)">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="m_name" class="form-label">Middle Name*</label>
+                    <input type="text" class="form-control" id="m_name" name="m_name" aria-describedby="m_name" value="<?php if (isset($_POST['m_name'])) {
+                                                                                                                               echo $_POST['m_name'];
+                                                                                                                             } else if (isset($user->m_name)) {
+                                                                                                                               echo $user->m_name;
+                                                                                                                             } ?>"
+                    oninput="capitalizeFirstLetter(this)">
+                  </div>
+                </div>
               </div>
               <div class="mb-2">
                 <button type="button" class="btn btn-toggle link-dark d-flex align-items-center nav-link p-0" data-bs-toggle="collapse" data-bs-target="#pw_input_toggle" aria-expanded="false">
@@ -131,7 +202,7 @@ if (isset($_POST['saveimage'])) {
             </div>
           </div>
           <div class="d-flex justify-content-end gap-2">
-            <button type="submit" class="btn brand-bg-color">Change</button>
+            <button type="submit" name="save_settings" class="btn brand-bg-color">Change</button>
           </div>
         </form>
         
@@ -157,6 +228,12 @@ if (isset($_POST['saveimage'])) {
       var image = document.getElementById("output");
       image.src = URL.createObjectURL(event.target.files[0]);
     };
+  </script>
+
+  <script>
+    function capitalizeFirstLetter(input) {
+      input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+    }
   </script>
 
   <script>

@@ -24,12 +24,13 @@ class User {
   //Methods
 
   function add() {
-    $sql = "INSERT INTO user (emp_id, email, f_name, l_name, m_name, profile_image, acad_rank, user_role, password) VALUES
-    (:emp_id, :email, :f_name, :l_name, :m_name, :profile_image, :acad_rank, :user_role, :password);";
+    $sql = "INSERT INTO user (user_id, emp_id, email, f_name, l_name, m_name, profile_image, acad_rank, user_role, password) VALUES
+    (:user_id, :emp_id, :email, :f_name, :l_name, :m_name, :profile_image, :acad_rank, :user_role, :password);";
     
     $query = $this->db->connect()->prepare($sql);
     $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
     $query->bindParam(':password', $hashedPassword);
+    $query->bindParam(':user_id', $this->user_id);
     $query->bindParam(':emp_id', $this->emp_id);
     $query->bindParam(':email', $this->email);
     $query->bindParam(':f_name', $this->f_name);
@@ -45,7 +46,7 @@ class User {
     }
   }
 
-  function edit_profile() {
+  function edit_profile($user_id) {
     $sql = "UPDATE user SET profile_image=:profile_image WHERE user_id = :user_id;";
 
     $query = $this->db->connect()->prepare($sql);
@@ -59,19 +60,29 @@ class User {
     }
   }
 
-  // function edit_sale() {
-  //   $sql = "UPDATE user SET no_sale=:no_sale  WHERE user_id = :user_id;";
+  function edit(){
+    $sql = "UPDATE user SET emp_id=:emp_id, 
+                            email=:email,
+                            f_name=:f_name, 
+                            l_name=:l_name, 
+                            m_name=:m_name,
+            WHERE user_id = :user_id;";
 
-  //   $query = $this->db->connect()->prepare($sql);
-  //   $query->bindParam(':no_sale', $this->no_sale);
-  //   $query->bindParam(':user_id', $this->user_id);
-
-  //   if ($query->execute()) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+    $query=$this->db->connect()->prepare($sql);
+    $query->bindParam(':emp_id', $this->emp_id);
+    $query->bindParam(':f_name', $this->f_name);
+    $query->bindParam(':l_name', $this->l_name);
+    $query->bindParam(':m_name', $this->m_name);
+    
+    $query->bindParam(':user_id', $this->user_id);
+    
+    if($query->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }   
+  }
 
   function is_email_exist() {
     $sql = "SELECT * FROM user WHERE email = :email;";
