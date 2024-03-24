@@ -61,15 +61,12 @@ class User {
   }
 
   function edit(){
-    $sql = "UPDATE user SET emp_id=:emp_id, 
-                            email=:email,
-                            f_name=:f_name, 
+    $sql = "UPDATE user SET f_name=:f_name, 
                             l_name=:l_name, 
-                            m_name=:m_name,
+                            m_name=:m_name
             WHERE user_id = :user_id;";
 
     $query=$this->db->connect()->prepare($sql);
-    $query->bindParam(':emp_id', $this->emp_id);
     $query->bindParam(':f_name', $this->f_name);
     $query->bindParam(':l_name', $this->l_name);
     $query->bindParam(':m_name', $this->m_name);

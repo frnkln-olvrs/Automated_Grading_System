@@ -20,9 +20,9 @@ $user->user_id = $user_id;
 
 if (isset($_POST['save_settings'])) {
   try {
-    $user->f_name = htmlentities($_POST['save_settings']['f_name']);
-    $user->l_name = htmlentities($_POST['save_settings']['l_name']);
-    $user->m_name = htmlentities($_POST['save_settings']['m_name']);
+    $user->f_name = htmlentities($_POST['f_name']);
+    $user->l_name = htmlentities($_POST['l_name']);
+    $user->m_name = htmlentities($_POST['m_name']);
 
     // Validation
     $errors = [];
@@ -118,26 +118,22 @@ if (isset($_POST['saveimage'])) {
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col-md-4">
               <div class="border shadow p-3 mb-5 bg-body rounded">
-
                 <div class="user">
-                  <form id="profileForm" enctype="multipart/form-data">
-                    <div class="profile-pic">
-                      <label class="label brand-border-color d-flex flex-column" for="file" style="border-width: 4px !important;">
-                        <i class="bx bxs-camera-plus"></i>
-                        <span>Change Image</span>
-                      </label>
-                      <img src="../img/profile-img/<?= $_SESSION['profile_image'] ?>" id="output" class="img-fluid"> <!-- img-fluid class makes the image responsive -->
-                      <input id="file" type="file" name="profile" accept="image/png, image/jpeg" onchange="validateFile(event)">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center mb-2">
-                      <button type="submit" name="saveimage" class="btn brand-bg-color">Save Image</button>
-                    </div>
-                    <div class="name d-flex justify-content-center align-items-center">
-                      <p class="username fw-bold"><?= ucwords($_SESSION['name']) ?></p>
-                    </div>
-                  </form>
+                  <div class="profile-pic">
+                    <label class="label brand-border-color d-flex flex-column" for="file" style="border-width: 4px !important;">
+                      <i class="bx bxs-camera-plus"></i>
+                      <span>Change Image</span>
+                    </label>
+                    <img src="../img/profile-img/<?= $_SESSION['profile_image'] ?>" id="output" class="img-fluid">
+                    <input id="file" type="file" name="profile" accept="image/png, image/jpeg" onchange="validateFile(event)">
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center mb-2">
+                    <button type="submit" name="saveimage" class="btn brand-bg-color">Save Image</button>
+                  </div>
+                  <div class="name d-flex justify-content-center align-items-center">
+                    <p class="username fw-bold"><?= ucwords($_SESSION['name']) ?></p>
+                  </div>
                 </div>
-
               </div>
             </div>
             <div class="col-md-8">
@@ -253,6 +249,28 @@ if (isset($_POST['saveimage'])) {
           error: function(xhr, status, error) {
             console.error(xhr.responseText);
             alert('Error occurred while uploading image: ' + error);
+          }
+        });
+      });
+    });
+
+    $(document).ready(function() {
+      $('#save_settings').click(function(e) {
+        e.preventDefault();
+      
+        var formData = $('#settings_form').serialize();
+      
+        $.ajax({
+          url: 'update_settings',
+          type: 'POST',
+          data: formData,
+          success: function(response) {
+            alert('Settings updated successfully!');
+            location.reload();
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            alert('Error occurred while updating settings: ' + error);
           }
         });
       });
