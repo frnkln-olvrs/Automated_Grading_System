@@ -83,11 +83,11 @@ if (isset($_POST['saveimage'])) {
                   <form id="profileForm" enctype="multipart/form-data">
                     <div class="profile-pic">
                       <label class="label brand-border-color d-flex flex-column" for="file" style="border-width: 4px !important;">
-                        <i class='bx bxs-camera-plus'></i>
+                        <i class="bx bxs-camera-plus"></i>
                         <span>Change Image</span>
                       </label>
-                      <img src="../img/profile-img/<?= $_SESSION['profile_image'] ?>" id="output"/>
-                      <input id="file" type="file" name="profile" accept="image/png, image/jpeg" onchange="validateFile(event)" />
+                      <img src="../img/profile-img/<?= $_SESSION['profile_image'] ?>" id="output" class="img-fluid"> <!-- img-fluid class makes the image responsive -->
+                      <input id="file" type="file" name="profile" accept="image/png, image/jpeg" onchange="validateFile(event)">
                     </div>
                     <div class="d-flex justify-content-center align-items-center mb-2">
                       <button type="submit" name="saveimage" class="btn brand-bg-color">Save Image</button>
@@ -171,12 +171,11 @@ if (isset($_POST['saveimage'])) {
           contentType: false,
           processData: false,
           success: function(response) {
-            alert(response); // Display the response from the server
-            // You can perform additional actions here if needed
+            alert(response);
           },
           error: function(xhr, status, error) {
-            console.error(xhr.responseText); // Log any errors to the console
-            alert('Error occurred while uploading image: ' + error); // Display the specific error message
+            console.error(xhr.responseText);
+            alert('Error occurred while uploading image: ' + error);
           }
         });
       });
