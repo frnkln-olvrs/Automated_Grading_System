@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
-  header('location: ../login.php');
+  header('location: ../login');
 }
 
 require_once '../classes/course_select.class.php';

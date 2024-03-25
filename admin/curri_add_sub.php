@@ -7,7 +7,7 @@ require_once '../classes/curr_year.class.php'; // Include the class file
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
-  header('location: ../login.php');
+  header('location: ../login');
 }
 
 if (isset($_POST['add_curr_sub'])) {

@@ -5,7 +5,7 @@ require_once '../classes/profiling.class.php';
 session_start();
 
 if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 2)) {
-  header('location: ../login.php');
+  header('location: ../login');
 }
 
 if (isset($_POST['add_faculty'])) {
