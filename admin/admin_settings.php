@@ -189,7 +189,7 @@ if (isset($_POST['saveimage'])) {
                   <input type="text" class="form-control" id="new_pw" aria-describedby="new_pw">
                 </div>
                 <div class="mb-3">
-                  <label for="confirm_pw" class="form-label">Confirm Password</label>
+                  <label for="confirm_pw" class="form-label">Confirm New Password</label>
                   <input type="text" class="form-control" id="confirm_pw" aria-describedby="confirm_pw">
                 </div>
               </div>

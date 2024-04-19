@@ -45,10 +45,14 @@ require_once '../tools/functions.php';
 
           <div class="search-keyword col-12 flex-lg-grow-0 d-flex mb-2">
 
-            <div class="input-group">
-              <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
-              <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+            <div class="search-keyword col-12 flex-lg-grow-0 d-flex my-2 px-2 justify-content-end">
+              <div class="input-group w-50">
+                <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
+                <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
+              </div>
+              <a href="./add_user" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
             </div>
+            
           </div>
           
           <?php

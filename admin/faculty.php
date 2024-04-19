@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
           </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-regular" role="tabpanel" aria-labelledby="nav-regular-tab">
-              <div class="search-keyword col-12 flex-lg-grow-0 d-flex my-2">
+              <div class="search-keyword col-12 flex-lg-grow-0 d-flex my-2 px-2">
     
                 <div class="form-group col-12 col-sm-auto flex-sm-grow-1 flex-lg-grow-0 ms-lg-auto">
                   <select name="school_year" id="school_year" class="form-select me-md-2">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
                   <input type="text" name="keyword" id="keyword" placeholder="Search" class="form-control">
                   <button class="btn btn-outline-secondary brand-bg-color" type="button"><i class='bx bx-search' aria-hidden="true" ></i></button>
                 </div>
-                <a href="./add_faculty.php" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
+                <a href="./add_faculty" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color" type="button"><i class='bx bx-plus-circle'></i></a>
               </div>
 
               <?php
