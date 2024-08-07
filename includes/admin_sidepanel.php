@@ -13,15 +13,15 @@
     </li>
 
     <li class="nav-item">
-    <div class="btn-group d-flex flex-column">
+      <div class="btn-group d-flex flex-column">
         <div class="link-grp d-flex justify-content-between gap-1">
-            <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $profiling_page ?>" type="button">
-                <i class='bx bxs-user-detail fs-4'></i>
-                <span class="fs-6 ms-2">Profiling</span>
-            </a>
-            <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $profiling_page ?>" data-bs-toggle="collapse" data-bs-target="#profiling_toggle" aria-expanded="false">
-                <i class='bx bx-chevron-down'></i>
-            </button>
+          <a href="./profiling.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $profiling_page ?>" type="button">
+            <i class='bx bxs-user-detail fs-4'></i>
+            <span class="fs-6 ms-2">Profiling</span>
+          </a>
+          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $profiling_page ?>" data-bs-toggle="collapse" data-bs-target="#profiling_toggle" aria-expanded="false">
+            <i class='bx bx-chevron-down'></i>
+          </button>
         </div>
 
         <?php
@@ -33,46 +33,45 @@
 
         $show_collapse = false;
         if (isset($_GET['department_id'])) {
-            $show_collapse = true;
+          $show_collapse = true;
         }
         ?>
 
         <div class="collapse<?= ($show_collapse ? ' show' : '') ?>" id="profiling_toggle" style="">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <?php
-                if ($department_array) {
-                    foreach ($department_array as $item) {
-                        $active = false;
-
-                        if (isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
-                            $active = true;
-                        }
-
-                        // Assign the correct icon based on the department name
-                        $icon = '';
-                        if ($item['department_name'] == 'Department of Computer Science') {
-                            $icon = 'bx bx-code-alt fs-4';
-                        } elseif ($item['department_name'] == 'Department of Information Technology') {
-                            $icon = 'bx bxs-network-chart fs-4';
-                        } else {
-                            $icon = 'bx bx-git-commit fs-4';
-                        }
-                        ?>
-                        <li>
-                            <a href="./profiling.php?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
-                                <i class='<?= $icon ?>'></i>
-                                <span class="fs-6 ms-2"><?= $item['department_name'] ?></span>
-                            </a>
-                        </li>
-                        <?php
-                    }
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <?php
+            if ($department_array) {
+              foreach ($department_array as $item) {
+                $active = false;
+            
+                if (isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
+                  $active = true;
+                }
+              
+                // Assign the correct icon based on the department name
+                $icon = '';
+                if ($item['department_name'] == 'Department of Computer Science') {
+                  $icon = 'bx bx-code-alt fs-4';
+                } elseif ($item['department_name'] == 'Department of Information Technology') {
+                  $icon = 'bx bxs-network-chart fs-4';
+                } else {
+                  $icon = 'bx bx-git-commit fs-4';
                 }
                 ?>
-            </ul>
+                <li>
+                  <a href="./profiling.php?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
+                    <i class='<?= $icon ?>'></i>
+                    <span class="fs-6 ms-2"><?= $item['department_name'] ?></span>
+                  </a>
+                </li>
+                <?php
+              }
+            }
+            ?>
+          </ul>
         </div>
-    </div>
-</li>
-
+      </div>
+    </li>
 
     <li class="nav-item">
       <div class="btn-group d-flex flex-column">
@@ -108,29 +107,59 @@
     <li class="nav-item">
       <div class="btn-group d-flex flex-column">
         <div class="link-grp d-flex justify-content-between gap-1">
-          <a href="./faculty.php" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $faculty_page ?>">
+          <a href="./faculty" class="nav-link link-dark d-flex align-items-center mb-2 w-100 <?= $faculty_page ?>">
             <i class='bx bxs-group fs-4'></i>
-            <span class="fs-6 ms-2">Faculty</span>          
+            <span class="fs-6 ms-2">Faculty</span>
           </a>
-          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $faculty_page ?> " data-bs-toggle="collapse" data-bs-target="#faculty_toggle" aria-expanded="false">
+          <button class="btn btn-toggle link-dark d-flex align-items-center mb-2 nav-link <?= $faculty_page ?>" data-bs-toggle="collapse" data-bs-target="#faculty_toggle" aria-expanded="false">
             <i class='bx bx-chevron-down'></i>
           </button>
         </div>
-
-        <div class="collapse <?= ($comci_page || $it_page) ? 'show' : '' ?>" id="faculty_toggle" style="">
+        
+        <?php
+        require_once '../classes/department.class.php';
+        require_once '../tools/functions.php';
+        
+        $department = new Department();
+        $department_array = $department->show();
+        
+        $show_collapse = false;
+        if (isset($_GET['department_id'])) {
+          $show_collapse = true;
+        }
+        ?>
+            
+        <div class="collapse<?= ($show_collapse ? ' show' : '') ?>" id="faculty_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li>
-              <a href="#" class="link-dark nav-link <?= $comci_page ?>">
-                <i class='bx bx-code-alt fs-4' ></i>
-                <span class="fs-6 ms-2">Department of Computer Science</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="link-dark nav-link <?= $it_page ?>">
-                <i class='bx bxs-network-chart fs-4'></i>
-                <span class="fs-6 ms-2">Department of Information Technology</span>
-              </a>
-            </li>
+            <?php
+            if ($department_array) {
+              foreach ($department_array as $item) {
+                $active = false;
+            
+                if (isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
+                  $active = true;
+                }
+              
+                // Assign the correct icon based on the department name
+                $icon = '';
+                if ($item['department_name'] == 'Department of Computer Science') {
+                  $icon = 'bx bx-code-alt fs-4';
+                } elseif ($item['department_name'] == 'Department of Information Technology') {
+                  $icon = 'bx bxs-network-chart fs-4';
+                } else {
+                  $icon = 'bx bx-git-commit fs-4';
+                }
+                ?>
+                <li>
+                  <a href="./faculty.php?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
+                    <i class='<?= $icon ?>'></i>
+                    <span class="fs-6 ms-2"><?= $item['department_name'] ?></span>
+                  </a>
+                </li>
+                <?php
+              }
+            }
+            ?>
           </ul>
         </div>
       </div>
