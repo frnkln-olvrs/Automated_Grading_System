@@ -37,14 +37,14 @@
         }
         ?>
 
-        <div class="collapse<?= ($show_collapse ? ' show' : '') ?>" id="profiling_toggle" style="">
+        <div class="collapse<?= ($show_collapse && strpos($_SERVER['REQUEST_URI'], 'profiling') !== false ? ' show' : '') ?>" id="profiling_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <?php
             if ($department_array) {
               foreach ($department_array as $item) {
                 $active = false;
-            
-                if (isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
+              
+                if (strpos($_SERVER['REQUEST_URI'], 'profiling') !== false && isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
                   $active = true;
                 }
               
@@ -59,7 +59,7 @@
                 }
                 ?>
                 <li>
-                  <a href="./profiling.php?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
+                  <a href="./profiling?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
                     <i class='<?= $icon ?>'></i>
                     <span class="fs-6 ms-2"><?= $item['department_name'] ?></span>
                   </a>
@@ -129,14 +129,14 @@
         }
         ?>
             
-        <div class="collapse<?= ($show_collapse ? ' show' : '') ?>" id="faculty_toggle" style="">
+        <div class="collapse<?= ($show_collapse && strpos($_SERVER['REQUEST_URI'], 'faculty') !== false ? ' show' : '') ?>" id="faculty_toggle" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <?php
             if ($department_array) {
               foreach ($department_array as $item) {
                 $active = false;
-            
-                if (isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
+              
+                if (strpos($_SERVER['REQUEST_URI'], 'faculty') !== false && isset($_GET['department_id']) && $_GET['department_id'] == $item['department_id']) {
                   $active = true;
                 }
               
@@ -151,7 +151,7 @@
                 }
                 ?>
                 <li>
-                  <a href="./faculty.php?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
+                  <a href="./faculty?department_id=<?= $item['department_id'] ?>" class="link-dark nav-link d-flex align-items-center <?= ($active ? ' active' : '') ?>">
                     <i class='<?= $icon ?>'></i>
                     <span class="fs-6 ms-2"><?= $item['department_name'] ?></span>
                   </a>
