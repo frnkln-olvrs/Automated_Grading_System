@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Faculty';
+	$title = 'Admin | Faculty';
   $faculty_page = 'active';
 	include '../includes/admin_head.php';
 ?>

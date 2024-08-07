@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	$title = 'Grades';
+	$title = 'Admin | Grades';
   $grade_page = 'active';
 	include '../includes/admin_head.php';
 ?>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSIO
       <div class="flex-md-nowrap p-1 title_page shadow sticky-top" style="background-color: whitesmoke;" >
         <div class="d-flex align-items-center">
           <div class="container-fluid d-flex justify-content-center">
-            <span class="fs-2 fw-bold h1 m-0 brand-color">CURRICULUM</span>
+            <span class="fs-2 fw-bold h1 m-0 brand-color">Department of Computer Science</span>
           </div>
         </div>
       </div>

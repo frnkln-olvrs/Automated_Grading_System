@@ -25,7 +25,7 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-  $title = 'ADMIN';
+  $title = 'Admin | Curriculum';
   $curriculum_page = 'active';
   include '../includes/admin_head.php';
 ?>
