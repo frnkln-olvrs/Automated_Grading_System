@@ -39,4 +39,17 @@ if (isset($_POST['delete_faculty'])) {
   exit;
 }
 
+if (isset($_POST['delete_year'])) {
+  $currYear = new Curr_year();
+  if ($currYear->delete($_POST['delete_year'])) {
+    $message = 'year is successfully deleted.';
+  } else {
+    $message = 'Something went wrong deleting the year.';
+  }
+  
+  $redirect_url = "../admin/index";
+  header("location: $redirect_url");
+  exit;
+}
+
 ?>

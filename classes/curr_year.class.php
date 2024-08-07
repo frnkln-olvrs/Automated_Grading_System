@@ -136,6 +136,17 @@ class Curr_year {
     return $data;
   }
 
+  function delete($curr_year_id) {
+    $sql = "DELETE FROM curr_year WHERE curr_year_id = :curr_year_id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':curr_year_id', $curr_year_id);
+    if ($query->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
 
 ?>
