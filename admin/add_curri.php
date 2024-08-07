@@ -46,7 +46,7 @@ $currentYear = date('Y');
 <!DOCTYPE html>
 <html lang="en">
 <?php
-	$title = 'Grade Posted';
+	$title = 'Admin | Add Curriculum';
   $curriculum_page = 'active';
 	include '../includes/admin_head.php';
 ?>
