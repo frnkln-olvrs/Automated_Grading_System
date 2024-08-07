@@ -82,15 +82,21 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
           ?>
 
           <div class="col">
-            <a href="./course_select?year_id=<?= $item['curr_year_id'] ?>">
-              <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded">
-                <i class='bx bxs-folder-open opacity-50' ></i>
-                <div class="d-flex flex-column justify-content-start">
-                  <span>curriculum</span>
-                  <span><?= $item['year_start'] ?> - <?= $item['year_end'] ?></span>
+            <div class="d-flex align-items-center justify-content-between brand-bg-color p-4 fs-4 rounded position-relative">
+              <a href="./course_select?year_id=<?= $item['curr_year_id'] ?>" class="stretched-link"></a>
+              <i class='bx bxs-folder-open text-white opacity-50'></i>
+              <div class="dropdown-container">
+                <i class='bx bx-dots-vertical-rounded fs-3 text-white position-absolute top-0' id="dropdownMenuButton"></i>
+                <div class="dropdown-menu">
+                  <a href="./profiling.php" class="dropdown-item">Edit</a>
+                  <a href="#" class="dropdown-item">Delete</a>
                 </div>
               </div>
-            </a>
+              <div class="d-flex flex-column justify-content-start me-3">
+                <span>curriculum</span>
+                <span><?= $item['year_start'] ?> - <?= $item['year_end'] ?></span>
+              </div>
+            </div>
           </div>
 
           <?php 
@@ -130,6 +136,18 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
           });
       }
     }
+  </script>
+  <script>
+    document.addEventListener('click', function(event) {
+      const dropdownMenu = document.querySelector('.curriculum .dropdown-menu');
+      const dropdownContainer = document.querySelector('.curriculum .dropdown-container');
+
+      if (dropdownContainer.contains(event.target)) {
+        dropdownMenu.style.display = 'block';
+      } else {
+        dropdownMenu.style.display = 'none';
+      }
+    });
   </script>
 
 </body>
