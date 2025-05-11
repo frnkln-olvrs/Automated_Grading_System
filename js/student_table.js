@@ -3,23 +3,21 @@ $(document).ready(function() {
         dom: 'Brtp',
         responsive: true,
         fixedHeader: true,
-        pageLength: 5,
+        pageLength: 15,
         buttons: [{
-            extend: 'excel',
-            split: ['pdf', 'csv'],
+            extend: 'pdf',
+            split: ['excel', 'csv'],
         }],
         'columnDefs': [{
-            'targets': [3, 4, 5, 6, 7],
-            /* column index */
+            'targets': [3],
             'orderable': false,
-            /* true or false */
         }]
     });
 
     dataTable.buttons().container().appendTo($('#MyButtons'));
 
     var table = dataTable;
-    var filter = createFilter(table, [1, 2, 3, 5, 6]);
+    var filter = createFilter(table, [1, 2]);
 
     function createFilter(table, columns) {
         var input = $('input#keyword').on("keyup", function() {

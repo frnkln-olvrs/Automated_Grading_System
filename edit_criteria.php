@@ -1,229 +1,77 @@
 <?php
 session_start();
 
-// Check if the user is logged in and has the appropriate role
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
-    header('location: ./login.php');
-    exit();
+if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 1)) {
+  header('location: ./login.php');
+  exit();
 }
 
-// Include database connection
-include_once("./classes/database.php");
+require_once './classes/period.class.php';
+require_once './classes/component.class.php';
 
-// Check if criteria_id is provided in the URL
-if (!isset($_GET['criteria_id'])) {
-    header('location: ./subject_setting.php'); // Redirect if criteria_id is not provided
-    exit();
+$period = new Periods();
+$components = new SubjectComponents();
+
+$error_message = '';
+$success = false;
+$totalWeight = 0;
+
+$criteria_id = isset($_GET['component_id']) ? $_GET['component_id'] : null;
+$active_period = isset($_GET['period']) ? $_GET['period'] : null;
+$selected_faculty_sub_id = isset($_GET['faculty_sub_id']) ? $_GET['faculty_sub_id'] : null;
+$criteria_data = $components->getComponentById($criteria_id);
+$gradingComponents = ($active_period === 'finalterm') ? $period->showFinalterm($selected_faculty_sub_id) : $period->showMidterm($selected_faculty_sub_id);
+
+foreach($gradingComponents as $item) {
+  $totalWeight += $item['weight'];
 }
 
-// Retrieve the criteria_id from the URL
-$criteria_id = $_GET['criteria_id'];
+$totalWeight -= $criteria_data['weight'];
 
-// Initialize variables
-$criteria_name = '';
-$criteria_weight = '';
+if (isset($_POST['edit_criteria'])) {
+  $component_type = ucwords($_POST['component_type']);
+  $weight = floatval(htmlentities($_POST['weight']));
 
-// Check if the form is submitted for updating criteria
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Validate and sanitize input data
-    $criteria_name = trim($_POST['criteria_name']);
-    $criteria_weight = trim($_POST['criteria_weight']);
+  $newTotalWeight = $totalWeight + $weight;
 
-    // Update the criteria in the database
-    $database = new Database();
-    $connection = $database->connect();
+  if ($newTotalWeight > 100) {
+    $error_message = 'Total weight exceeds 100%. Please adjust the criteria weight.';
+  } else {
+    $components->component_id = $criteria_id;
+    $components->component_type = $component_type;
+    $components->weight = $weight;
 
-    if ($connection) {
-        try {
-            // Prepare the SQL statement to update the criteria
-            $stmt = $connection->prepare("UPDATE subject_setting SET criteria_name = :criteria_name, criteria_weight = :criteria_weight WHERE criteria_id = :criteria_id");
-
-            // Bind parameters
-            $stmt->bindParam(':criteria_name', $criteria_name);
-            $stmt->bindParam(':criteria_weight', $criteria_weight);
-            $stmt->bindParam(':criteria_id', $criteria_id);
-
-            // Execute the statement
-            $stmt->execute();
-
-            // Redirect to subject_setting.php after successful update
-            header('location: ./subject_setting.php');
-            exit();
-        } catch (PDOException $e) {
-            // Handle database error
-            echo "<p>Error: " . $e->getMessage() . "</p>";
-        }
+    if ($components->edit()) {
+      $message = 'Criteria updated successfully!';
+      $success = true;
     } else {
-        echo "<p>Failed to connect to the database.</p>";
+      $error_message = 'Something went wrong while updating criteria.';
     }
-} else {
-    // Fetch the criteria details from the database
-    // Create an instance of the Database class
-    $database = new Database();
-    // Establish the database connection
-    $connection = $database->connect();
-
-    if ($connection) {
-        try {
-            // Prepare the SQL statement to fetch criteria details
-            $stmt = $connection->prepare("SELECT * FROM subject_setting WHERE criteria_id = :criteria_id");
-
-            // Bind parameter
-            $stmt->bindParam(':criteria_id', $criteria_id);
-
-            // Execute the statement
-            $stmt->execute();
-
-            // Fetch the criteria details
-            $criteria = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Check if criteria exists
-            if ($criteria) {
-                $criteria_name = $criteria['criteria_name'];
-                $criteria_weight = $criteria['criteria_weight'];
-            } else {
-                echo "<p>Criteria not found.</p>";
-                exit();
-            }
-        } catch (PDOException $e) {
-            // Handle database error
-            echo "<p>Error: " . $e->getMessage() . "</p>";
-        }
-    } else {
-        echo "<p>Failed to connect to the database.</p>";
-    }
-}
-?>
-
-<?php
-
-// Check if the user is logged in and has the appropriate role
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
-    header('location: ./login.php');
-    exit();
-}
-
-// Include database connection
-include_once("./classes/database.php");
-
-// Check if criteria_id is provided in the URL
-if (!isset($_GET['criteria_id'])) {
-    header('location: ./subject_setting.php'); // Redirect if criteria_id is not provided
-    exit();
-}
-
-// Retrieve the criteria_id from the URL
-$criteria_id = $_GET['criteria_id'];
-
-// Initialize variables
-$criteria_name = '';
-$criteria_weight = '';
-
-// Check if the form is submitted for updating criteria
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Validate and sanitize input data
-    $criteria_name = trim($_POST['criteria_name']);
-    $criteria_weight = trim($_POST['criteria_weight']);
-
-    // Update the criteria in the database
-    $database = new Database();
-    $connection = $database->connect();
-
-    if ($connection) {
-        try {
-            // Prepare the SQL statement to update the criteria
-            $stmt = $connection->prepare("UPDATE subject_setting SET criteria_name = :criteria_name, criteria_weight = :criteria_weight WHERE criteria_id = :criteria_id");
-
-            // Bind parameters
-            $stmt->bindParam(':criteria_name', $criteria_name);
-            $stmt->bindParam(':criteria_weight', $criteria_weight);
-            $stmt->bindParam(':criteria_id', $criteria_id);
-
-            // Execute the statement
-            $stmt->execute();
-
-            // Redirect to subject_setting.php after successful update
-            header('location: ./subject_setting.php');
-            exit();
-        } catch (PDOException $e) {
-            // Handle database error
-            echo "<p>Error: " . $e->getMessage() . "</p>";
-        }
-    } else {
-        echo "<p>Failed to connect to the database.</p>";
-    }
-} else {
-    // Fetch the criteria details from the database
-    // Create an instance of the Database class
-    $database = new Database();
-    // Establish the database connection
-    $connection = $database->connect();
-
-    if ($connection) {
-        try {
-            // Prepare the SQL statement to fetch criteria details
-            $stmt = $connection->prepare("SELECT * FROM subject_setting WHERE criteria_id = :criteria_id");
-
-            // Bind parameter
-            $stmt->bindParam(':criteria_id', $criteria_id);
-
-            // Execute the statement
-            $stmt->execute();
-
-            // Fetch the criteria details
-            $criteria = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Check if criteria exists
-            if ($criteria) {
-                $criteria_name = $criteria['criteria_name'];
-                $criteria_weight = $criteria['criteria_weight'];
-            } else {
-                echo "<p>Criteria not found.</p>";
-                exit();
-            }
-        } catch (PDOException $e) {
-            // Handle database error
-            echo "<p>Error: " . $e->getMessage() . "</p>";
-        }
-    } else {
-        echo "<p>Failed to connect to the database.</p>";
-    }
+  }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Subject Settings</title>
-</head>
-<body>
-<?php 
-
-if (!isset($_SESSION['user_role']) || (isset($_SESSION['user_role']) && $_SESSION['user_role'] != 1)) {
-    header('location: ./login.php');
-    exit(); // Make sure to exit after redirection
-}
-
+<?php
+$title = 'Edit Criteria';
+$sub_setting_page = 'active';
 include './includes/head.php';
 ?>
+
+<body>
   <div class="home">
     <div class="side">
-      <?php
-        require_once('./includes/sidepanel.php')
-      ?> 
+      <?php require_once('./includes/sidepanel.php'); ?>
     </div>
     <main>
-      <div class="header" >
-      <?php
-        require_once('./includes/header.php')
-      ?>
+      <div class="header">
+        <?php require_once('./includes/header.php'); ?>
       </div>
-      
-      <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;" >
+
+      <div class="flex-md-nowrap p-1 title_page shadow" style="background-color: whitesmoke;">
         <div class="d-flex align-items-center">
-          <button onclick="history.back()" class="bg-none" ><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
+          <button onclick="history.back()" class="bg-none"><i class='bx bx-chevron-left fs-2 brand-color'></i></button>
           <div class="container-fluid d-flex justify-content-center">
             <span class="fs-2 h1 m-0">Edit Criteria</span>
           </div>
@@ -231,28 +79,66 @@ include './includes/head.php';
       </div>
 
       <div class="m-5 py-3">
-        <form action="../tools/add_setting_standard_form.php"method="post" name="studentaddsubjectsettingform">
+        <form action="#" method="post">
+
+          <?php if (!empty($error_message)): ?>
+            <div class="alert alert-danger">
+              <?= htmlspecialchars($error_message) ?>
+            </div>
+          <?php endif; ?>
+
+          <?php if ($success): ?>
+            <div class="alert alert-success gap-2">
+              <i class='bx bx-check-circle'></i> <?= htmlspecialchars($message) ?>
+            </div>
+          <?php endif; ?>
+
           <div class="row row-cols-1 row-cols-md-2">
             <div class="col">
               <div class="mb-3">
-                <label for="criteria_name" class="form-label">Criteria Name</label>
-                <input type="text" class="form-control" id="criteria_name" name="criteria_name" aria-describedby="criteria_name" required> <!-- Added required attribute for validation -->
+                <label for="component_type" class="form-label">Criteria Name</label>
+                <input type="text" class="form-control" name="component_type" id="component_type"
+                  placeholder="eg. Activities"
+                  value="<?= htmlspecialchars($_POST['component_type'] ?? $criteria_data['component_type']) ?>">
               </div>
               <div class="mb-3">
-                <label for="criteria_weight" class="form-label">Weight</label>
-                <input type="number" class="form-control" id="criteria_weight" name="criteria_weight" aria-describedby="criteria_weight" required> <!-- Added required attribute for validation -->
+                <label for="weight" class="form-label">Weight</label>
+                <div class="input-group" style="width: 150px;">
+                  <input type="number" class="form-control" name="weight" id="weight" value="<?= htmlspecialchars($_POST['weight'] ?? $criteria_data['weight']) ?>">
+                  <span class="input-group-text">%</span>
+                </div>
               </div>
             </div>
           </div>
-          <button onclick="history.back()" type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" name="Submit" class="btn brand-bg-color">Save</button>
+
+          <div class="d-flex justify-content-start mt-4 gap-2">
+            <button onclick="history.back()" type="button" class="btn btn-secondary">Cancel</button>
+            <button type="submit" name="edit_criteria" class="btn brand-bg-color"><i class='bx bxs-save me-2'></i>Save
+              Changes</button>
+          </div>
         </form>
       </div>
-
     </main>
   </div>
 
   <script src="./js/main.js"></script>
-  
+  <script>
+    <?php if ($success): ?>
+      setTimeout(function () {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = './subject_setting.php';
+
+        const facultyInput = document.createElement('input');
+        facultyInput.type = 'hidden';
+        facultyInput.name = 'faculty_sub_id';
+        facultyInput.value = "<?= htmlspecialchars($selected_faculty_sub_id) ?>";
+        form.appendChild(facultyInput);
+
+        document.body.appendChild(form);
+        form.submit();
+      }, 1500);
+    <?php endif; ?>
+  </script>
 </body>
 </html>
