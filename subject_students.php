@@ -122,14 +122,14 @@ include './includes/head.php';
 
                             <div class="d-flex flex-row justify-content-end my-4">
 
-                     
-                            <button type="button" id="editScoresBtn" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn">Edit Scores</button>
+
+                                <button type="button" id="editScoresBtn" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn">Edit Scores</button>
                                 <a href="#" class="btn btn-outline-secondary btn-add ms-3 text-white btn btn-primary"
-  
-                                    data-bs-toggle="modal" 
+
+                                    data-bs-toggle="modal"
                                     data-bs-target="#attendanceModal">
                                     Attendance
-                                    </a>
+                                </a>
 
                                 <a class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn"
                                     href="./column_select?active_period=finalterm&faculty_sub_id=<?= $selected_faculty_sub_id ?>">
@@ -152,115 +152,115 @@ include './includes/head.php';
                             }
                             ?>
 
-                         
 
-                        
-<form id="editScoresForm" method="POST" action="save_scores.php">
-    <input type="text" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>" hidden>
 
-    <table id="student_table_midterm" class="table table-striped" style="width:125%">
-        <thead>
-            <!-- Main Header Row -->
-            <tr>
-                <th>#</th>
-                <th>Student ID</th>
-                <th>Student Name</th>
-                <?php foreach ($midtermCompTwo as $component): ?>
-                    <?php
-                    $componentId = $component['component_id'];
-                    $items = $componentItemsMap[$componentId];
-                    $colspan = count($items);
-                    ?>
-                    <th colspan="<?= max(1, $colspan) ?>" class="text-center component-type-column">
-                        <?= ucwords($component['component_type']) ?>
-                    </th>
-                <?php endforeach; ?>
-            </tr>
-            <!-- Subheader: Component Number & Date -->
-            <tr>
-                <th colspan="3"></th>
-                <?php foreach ($midtermCompTwo as $component): ?>
-                    <?php
-                    $componentId = $component['component_id'];
-                    $items = $componentItemsMap[$componentId];
-                    if (!empty($items)) {
-                        foreach ($items as $item): ?>
-                            <th class="text-center component-type-column">
-                                <div style="font-size: 12px;"><?= "No. " . $item['component_no'] ?></div>
-                                <div style="font-size: 12px; color: gray;">
-                                    <?= date('M d, Y', strtotime($item['component_date'])) ?>
-                                </div>
-                            </th>
-                        <?php endforeach;
-                    } else { ?>
-                        <th class="text-center component-type-column">-</th>
-                    <?php } ?>
-                <?php endforeach; ?>
-            </tr>
-        </thead>
 
-        <tbody>
-            <?php
-            $counter = 1;
-            foreach ($studentList as $student): ?>
-                <tr>
-                    <td><?= $counter ?></td>
-                    <td>
-                        <a href="./edit_grades?faculty_sub_id=<?= $selected_faculty_sub_id ?>&grades_id=<?= $student['grades_id'] ?>&active_period=<?= $_GET['active_period'] ?? 'midterm' ?>">
-                            <?= $student['student_id'] ?>
-                        </a>
-                    </td>
-                    <td><?= ucwords($student['fullName']) ?></td>
+                            <form id="editScoresForm" method="POST" action="save_scores.php">
+                                <input type="text" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>" hidden>
 
-                    <?php foreach ($midtermCompTwo as $component): ?>
-                        <?php
-                        $componentId = $component['component_id'];
-                        $items = $componentItemsMap[$componentId];
-                        if (!empty($items)) {
-                            foreach ($items as $item):
-                                $scoreData = $scores->getAllScoreByItemStud($student['grades_id'], $item['items_id']);
-                                if (!empty($scoreData)) {
-                                    foreach ($scoreData as $score): ?>
-                                        <td class="text-center">
-                                            <span class="score-text" style="color:#952323;">
-                                                <?= htmlspecialchars($score['score']) ?>
-                                            </span>
-                                            <input type="text"
-                                                   class="score-input"
-                                                   name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-                                                   value="<?= htmlspecialchars($score['score']) ?>"
-                                                   
-                                                   style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
-                                            <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
-                                        </td>
-                                    <?php endforeach;
-                                } else { ?>
-                                    <td class="text-center">
-                                        <span class="score-text" style="color:#952323;">0</span>
-                                        <input type="text"
-                                               class="score-input"
-                                               name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-                                               value="0"
-                                               style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
-                                        <span class="text-secondary">/<?= $item['component_quantity'] ?></span>
-                                    </td>
-                                <?php }
-                            endforeach;
-                        } else { ?>
-                            <td class="text-center">-</td>
-                        <?php } ?>
-                    <?php endforeach; ?>
+                                <table id="student_table_midterm" class="table table-striped" style="width:125%">
+                                    <thead>
+                                        <!-- Main Header Row -->
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <?php foreach ($midtermCompTwo as $component): ?>
+                                                <?php
+                                                $componentId = $component['component_id'];
+                                                $items = $componentItemsMap[$componentId];
+                                                $colspan = count($items);
+                                                ?>
+                                                <th colspan="<?= max(1, $colspan) ?>" class="text-center component-type-column">
+                                                    <?= ucwords($component['component_type']) ?>
+                                                </th>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                        <!-- Subheader: Component Number & Date -->
+                                        <tr>
+                                            <th colspan="3"></th>
+                                            <?php foreach ($midtermCompTwo as $component): ?>
+                                                <?php
+                                                $componentId = $component['component_id'];
+                                                $items = $componentItemsMap[$componentId];
+                                                if (!empty($items)) {
+                                                    foreach ($items as $item): ?>
+                                                        <th class="text-center component-type-column">
+                                                            <div style="font-size: 12px;"><?= "No. " . $item['component_no'] ?></div>
+                                                            <div style="font-size: 12px; color: gray;">
+                                                                <?= date('M d, Y', strtotime($item['component_date'])) ?>
+                                                            </div>
+                                                        </th>
+                                                    <?php endforeach;
+                                                } else { ?>
+                                                    <th class="text-center component-type-column">-</th>
+                                                <?php } ?>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                    </thead>
 
-                </tr>
-                <?php
-                $counter++;
-            endforeach;
-            ?>
-        </tbody>
-    </table>
-</form>
+                                    <tbody>
+                                        <?php
+                                        $counter = 1;
+                                        foreach ($studentList as $student): ?>
+                                            <tr>
+                                                <td><?= $counter ?></td>
+                                                <td>
+                                                    <a href="./edit_grades?faculty_sub_id=<?= $selected_faculty_sub_id ?>&grades_id=<?= $student['grades_id'] ?>&active_period=<?= $_GET['active_period'] ?? 'midterm' ?>">
+                                                        <?= $student['student_id'] ?>
+                                                    </a>
+                                                </td>
+                                                <td><?= ucwords($student['fullName']) ?></td>
 
-                         
+                                                <?php foreach ($midtermCompTwo as $component): ?>
+                                                    <?php
+                                                    $componentId = $component['component_id'];
+                                                    $items = $componentItemsMap[$componentId];
+                                                    if (!empty($items)) {
+                                                        foreach ($items as $item):
+                                                            $scoreData = $scores->getAllScoreByItemStud($student['grades_id'], $item['items_id']);
+                                                            if (!empty($scoreData)) {
+                                                                foreach ($scoreData as $score): ?>
+                                                                    <td class="text-center">
+                                                                        <span class="score-text" style="color:#952323;">
+                                                                            <?= htmlspecialchars($score['score']) ?>
+                                                                        </span>
+                                                                        <input type="text"
+                                                                            class="score-input"
+                                                                            name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                            value="<?= htmlspecialchars($score['score']) ?>"
+
+                                                                            style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
+                                                                        <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
+                                                                    </td>
+                                                                <?php endforeach;
+                                                            } else { ?>
+                                                                <td class="text-center">
+                                                                    <span class="score-text" style="color:#952323;">0</span>
+                                                                    <input type="text"
+                                                                        class="score-input"
+                                                                        name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                        value="0"
+                                                                        style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
+                                                                    <span class="text-secondary">/<?= $item['component_quantity'] ?></span>
+                                                                </td>
+                                                        <?php }
+                                                        endforeach;
+                                                    } else { ?>
+                                                        <td class="text-center">-</td>
+                                                    <?php } ?>
+                                                <?php endforeach; ?>
+
+                                            </tr>
+                                        <?php
+                                            $counter++;
+                                        endforeach;
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </form>
+
+
 
                         </div>
                     </div>
@@ -283,7 +283,7 @@ include './includes/head.php';
 
                             <div class="d-flex justify-content-between align-items-center">
 
-                            
+
                                 <div>
                                     <button class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn"
                                         type="button" data-bs-toggle="modal" data-bs-target="#applyAllGradesModal"
@@ -296,12 +296,12 @@ include './includes/head.php';
 
 
 
-                                <button type="button" id="editScoresBtn2" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn">Edit Scores</button>
-                                <a href="#" class="btn btn-outline-secondary btn-add ms-3 text-white btn btn-primary"
-  
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#attendanceModalFinalTerm">
-                                    Attendance
+                                    <button type="button" id="editScoresBtn2" class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn">Edit Scores</button>
+                                    <a href="#" class="btn btn-outline-secondary btn-add ms-3 text-white btn btn-primary"
+
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#attendanceModalFinalTerm">
+                                        Attendance
                                     </a>
 
                                     <a class="btn btn-outline-secondary btn-add ms-3 brand-bg-color add-btn"
@@ -315,7 +315,7 @@ include './includes/head.php';
                                     </button>
                                 </div>
                             </div>
-<!-- ===================FINAL TERM TABLE -->
+                            <!-- ===================FINAL TERM TABLE -->
                             <?php
                             // Pre-fetch component items for all components in $midtermComp
                             $componentItemsMap = [];
@@ -325,109 +325,109 @@ include './includes/head.php';
                                 $componentItemsMap[$componentId] = $componentItems; // Store items for later use
                             }
                             ?>
-                        <form id="editScoresForm2" method="POST" action="save_scores2.php">
-                            <input type="text" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>" hidden>
+                            <form id="editScoresForm2" method="POST" action="save_scores2.php">
+                                <input type="text" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>" hidden>
                                 <table id="student_table_finalterm" class="table table-striped" style="width:125%">
-                               
-                                <thead>
-            <!-- Main Header Row -->
-            <tr>
-                <th>#</th>
-                <th>Student ID</th>
-                <th>Student Name</th>
-                <?php foreach ($finaltermCompTwo as $component): ?>
-                    <?php
-                    $componentId = $component['component_id'];
-                    $items = $componentItemsMap[$componentId];
-                    $colspan = count($items);
-                    ?>
-                    <th colspan="<?= max(1, $colspan) ?>" class="text-center component-type-column">
-                        <?= ucwords($component['component_type']) ?>
-                    </th>
-                <?php endforeach; ?>
-            </tr>
-            <!-- Subheader: Component Number & Date -->
-            <tr>
-                <th colspan="3"></th>
-                <?php foreach ($finaltermCompTwo as $component): ?>
-                    <?php
-                    $componentId = $component['component_id'];
-                    $items = $componentItemsMap[$componentId];
-                    if (!empty($items)) {
-                        foreach ($items as $item): ?>
-                            <th class="text-center component-type-column">
-                                <div style="font-size: 12px;"><?= "No. " . $item['component_no'] ?></div>
-                                <div style="font-size: 12px; color: gray;">
-                                    <?= date('M d, Y', strtotime($item['component_date'])) ?>
-                                </div>
-                            </th>
-                        <?php endforeach;
-                    } else { ?>
-                        <th class="text-center component-type-column">-</th>
-                    <?php } ?>
-                <?php endforeach; ?>
-            </tr>
-        </thead>
 
-        <tbody>
-            <?php
-            $counter = 1;
-            foreach ($studentList as $student): ?>
-                <tr>
-                    <td><?= $counter ?></td>
-                    <td>
-                        <a href="./edit_grades?faculty_sub_id=<?= $selected_faculty_sub_id ?>&grades_id=<?= $student['grades_id'] ?>&active_period=<?= $_GET['active_period'] ?? 'midterm' ?>">
-                            <?= $student['student_id'] ?>
-                        </a>
-                    </td>
-                    <td><?= ucwords($student['fullName']) ?></td>
+                                    <thead>
+                                        <!-- Main Header Row -->
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <?php foreach ($finaltermCompTwo as $component): ?>
+                                                <?php
+                                                $componentId = $component['component_id'];
+                                                $items = $componentItemsMap[$componentId];
+                                                $colspan = count($items);
+                                                ?>
+                                                <th colspan="<?= max(1, $colspan) ?>" class="text-center component-type-column">
+                                                    <?= ucwords($component['component_type']) ?>
+                                                </th>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                        <!-- Subheader: Component Number & Date -->
+                                        <tr>
+                                            <th colspan="3"></th>
+                                            <?php foreach ($finaltermCompTwo as $component): ?>
+                                                <?php
+                                                $componentId = $component['component_id'];
+                                                $items = $componentItemsMap[$componentId];
+                                                if (!empty($items)) {
+                                                    foreach ($items as $item): ?>
+                                                        <th class="text-center component-type-column">
+                                                            <div style="font-size: 12px;"><?= "No. " . $item['component_no'] ?></div>
+                                                            <div style="font-size: 12px; color: gray;">
+                                                                <?= date('M d, Y', strtotime($item['component_date'])) ?>
+                                                            </div>
+                                                        </th>
+                                                    <?php endforeach;
+                                                } else { ?>
+                                                    <th class="text-center component-type-column">-</th>
+                                                <?php } ?>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                    </thead>
 
-                    <?php foreach ($finaltermCompTwo as $component): ?>
-                        <?php
-                        $componentId = $component['component_id'];
-                        $items = $componentItemsMap[$componentId];
-                        if (!empty($items)) {
-                            foreach ($items as $item):
-                                $scoreData = $scores->getAllScoreByItemStud($student['grades_id'], $item['items_id']);
-                                if (!empty($scoreData)) {
-                                    foreach ($scoreData as $score): ?>
-                                        <td class="text-center">
-                                            <span class="score-text2" style="color:#952323;">
-                                                <?= htmlspecialchars($score['score']) ?>
-                                            </span>
-                                            <input type="text"
-                                                   class="score-input2"
-                                                   name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-                                                   value="<?= htmlspecialchars($score['score']) ?>"
-                                                   style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
-                                            <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
-                                        </td>
-                                    <?php endforeach;
-                                } else { ?>
-                                    <td class="text-center">
-                                        <span class="score-text2" style="color:#952323;">0</span>
-                                        <input type="text"
-                                               class="score-input2"
-                                               name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-                                               value="0"
-                                               style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
-                                        <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
-                                    </td>
-                                <?php }
-                            endforeach;
-                        } else { ?>
-                            <td class="text-center">-</td>
-                        <?php } ?>
-                    <?php endforeach; ?>
+                                    <tbody>
+                                        <?php
+                                        $counter = 1;
+                                        foreach ($studentList as $student): ?>
+                                            <tr>
+                                                <td><?= $counter ?></td>
+                                                <td>
+                                                    <a href="./edit_grades?faculty_sub_id=<?= $selected_faculty_sub_id ?>&grades_id=<?= $student['grades_id'] ?>&active_period=<?= $_GET['active_period'] ?? 'midterm' ?>">
+                                                        <?= $student['student_id'] ?>
+                                                    </a>
+                                                </td>
+                                                <td><?= ucwords($student['fullName']) ?></td>
 
-                </tr>
-                <?php
-                $counter++;
-            endforeach;
-            ?>
-        </tbody>
+                                                <?php foreach ($finaltermCompTwo as $component): ?>
+                                                    <?php
+                                                    $componentId = $component['component_id'];
+                                                    $items = $componentItemsMap[$componentId];
+                                                    if (!empty($items)) {
+                                                        foreach ($items as $item):
+                                                            $scoreData = $scores->getAllScoreByItemStud($student['grades_id'], $item['items_id']);
+                                                            if (!empty($scoreData)) {
+                                                                foreach ($scoreData as $score): ?>
+                                                                    <td class="text-center">
+                                                                        <span class="score-text2" style="color:#952323;">
+                                                                            <?= htmlspecialchars($score['score']) ?>
+                                                                        </span>
+                                                                        <input type="text"
+                                                                            class="score-input2"
+                                                                            name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                            value="<?= htmlspecialchars($score['score']) ?>"
+                                                                            style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
+                                                                        <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
+                                                                    </td>
+                                                                <?php endforeach;
+                                                            } else { ?>
+                                                                <td class="text-center">
+                                                                    <span class="score-text2" style="color:#952323;">0</span>
+                                                                    <input type="text"
+                                                                        class="score-input2"
+                                                                        name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                        value="0"
+                                                                        style="width: 40px; text-align: center; color:#952323; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; display: none;" />
+                                                                    <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
+                                                                </td>
+                                                        <?php }
+                                                        endforeach;
+                                                    } else { ?>
+                                                        <td class="text-center">-</td>
+                                                    <?php } ?>
+                                                <?php endforeach; ?>
 
-                            </table>
+                                            </tr>
+                                        <?php
+                                            $counter++;
+                                        endforeach;
+                                        ?>
+                                    </tbody>
+
+                                </table>
                             </form>
                         </div>
                     </div>
@@ -455,14 +455,14 @@ include './includes/head.php';
 
                                 if (!empty($selectedComponents)):
                                     foreach ($selectedComponents as $component):
-                                        ?>
+                                ?>
                                         <div class="col-6">
                                             <a href="./add_component_items?faculty_sub_id=<?= $facultySubId ?>&component_id=<?= $component['component_id'] ?>"
                                                 class="d-flex align-items-center justify-content-center brand-bg-color w-100 p-3 mb-2 rounded">
                                                 <?= ucwords($component['component_type']) ?>
                                             </a>
                                         </div>
-                                        <?php
+                                    <?php
                                     endforeach;
                                 else:
                                     ?>
@@ -511,32 +511,32 @@ include './includes/head.php';
 
         <!-- Attendance Modal  Midterm-->
         <div class="modal fade" id="attendanceModal" tabindex="-1" aria-labelledby="attendanceModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="attendanceModalLabel">Attendance Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="attendanceModalLabel">Attendance Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-      <div class="modal-body" id="attendanceContent">
-      <div class="text-end">
-  <button type="button" id="editAttendanceMidterm" class="btn btn-primary p-2 rounded">
-    Edit Attendance
-  </button>
-</div>
-        
-      <?php
-                            // Pre-fetch component items for all components in $midtermComp
-                            $componentItemsMap = [];
-                            foreach ($getAttendanceMidterm  as $component) {
-                                $componentId = $component['component_id'];
-                                $componentItems = $comp_item->getItemById($componentId);
-                                $componentItemsMap[$componentId] = $componentItems; // Store items for later use
-                            }
-                            ?>
+                    <div class="modal-body" id="attendanceContent">
+                        <div class="text-end">
+                            <button type="button" id="editAttendanceMidterm" class="btn btn-primary p-2 rounded">
+                                Edit Attendance
+                            </button>
+                        </div>
 
-                    <form id="editAttendanceForm" method="POST" action="update_attendance_midterm.php">
-                    <input type="hidden" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>">
+                        <?php
+                        // Pre-fetch component items for all components in $midtermComp
+                        $componentItemsMap = [];
+                        foreach ($getAttendanceMidterm  as $component) {
+                            $componentId = $component['component_id'];
+                            $componentItems = $comp_item->getItemById($componentId);
+                            $componentItemsMap[$componentId] = $componentItems; // Store items for later use
+                        }
+                        ?>
+
+                        <form id="editAttendanceForm" method="POST" action="update_attendance_midterm.php">
+                            <input type="hidden" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>">
                             <table id="student_table_midterm" class="table table-striped" style="width:100%">
                                 <thead>
                                     <!-- Main Header Row -->
@@ -544,8 +544,8 @@ include './includes/head.php';
                                         <th>#</th>
                                         <th>Student ID</th>
                                         <th>Student Name</th>
-                                       
-                                  
+
+
                                         <?php foreach ($getAttendanceMidterm  as $component): ?>
                                             <?php
                                             $componentId = $component['component_id'];
@@ -556,12 +556,12 @@ include './includes/head.php';
                                                 <?= ucwords($component['component_type']) ?>
                                             </th>
                                         <?php endforeach; ?>
-                                   
+
                                     </tr>
 
                                     <!-- Subheader: Component Number & Date -->
                                     <tr>
-                                    
+
                                         <th colspan="3"></th>
                                         <?php foreach ($getAttendanceMidterm  as $component): ?>
                                             <?php
@@ -580,7 +580,7 @@ include './includes/head.php';
                                                 <th class="text-center component-type-column">-</th>
                                             <?php } ?>
                                         <?php endforeach; ?>
-                                        
+
                                     </tr>
                                 </thead>
 
@@ -597,9 +597,9 @@ include './includes/head.php';
                                                 </a>
                                             </td>
                                             <td><?= ucwords($student['fullName']) ?></td>
-                                          
 
-                                           
+
+
 
                                             <?php foreach ($getAttendanceMidterm as $component): ?>
                                                 <?php
@@ -610,80 +610,78 @@ include './includes/head.php';
                                                         $scoreData = $scores->getAllScoreByItemStud($student['grades_id'], $item['items_id']);
                                                         if (!empty($scoreData)) {
                                                             foreach ($scoreData as $score): ?>
-                                                                 <td class="text-center">
-            <input 
-                type="text"
-                name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-                value="<?= htmlspecialchars($score['score']) ?>"
-                class="score-input"
-                style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;"
-            />
-            <span class="score-value" style="color:#952323;">
-                <?= htmlspecialchars($score['score']) ?>
-            </span>
-            <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
-        </td>
-    <?php endforeach;
-} else { ?>
-    <td class="text-center">
-        <input 
-            type="text"
-            name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-            value="0"
-            class="score-input"
-            style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;"
-        />
-        <span class="score-value">0</span><span class="text-secondary">/<?= $item['component_quantity'] ?></span>
-    </td>
-                                                        <?php }
+                                                                <td class="text-center">
+                                                                    <input
+                                                                        type="text"
+                                                                        name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                        value="<?= htmlspecialchars($score['score']) ?>"
+                                                                        class="score-input"
+                                                                        style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;" />
+                                                                    <span class="score-value" style="color:#952323;">
+                                                                        <?= htmlspecialchars($score['score']) ?>
+                                                                    </span>
+                                                                    <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
+                                                                </td>
+                                                            <?php endforeach;
+                                                        } else { ?>
+                                                            <td class="text-center">
+                                                                <input
+                                                                    type="text"
+                                                                    name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                    value="0"
+                                                                    class="score-input"
+                                                                    style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;" />
+                                                                <span class="score-value">0</span><span class="text-secondary">/<?= $item['component_quantity'] ?></span>
+                                                            </td>
+                                                    <?php }
                                                     endforeach;
                                                 } else { ?>
                                                     <td class="text-center">-</td>
                                                 <?php } ?>
                                             <?php endforeach; ?>
-                                            
+
                                         </tr>
-                                        <?php
+                                    <?php
                                         $counter++;
                                     endforeach;
                                     ?>
-                               
+
                                 </tbody>
                             </table>
-                            </form>
- 
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ======================================attendance Final Term -->
-<div class="modal fade" id="attendanceModalFinalTerm" tabindex="-1" aria-labelledby="attendanceModalLabelFinalTerm" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="attendanceModalLabelFinalTerm">Attendance Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="attendanceContent">
+                        </form>
 
-      <div class="text-end">
-  <button type="button" id="editAttendanceFinalTerm" class="btn btn-primary p-2 rounded">
-    Edit Attendance
-  </button>
-</div>
-      <?php
-                            // Pre-fetch component items for all components in $midtermComp
-                            $componentItemsMap = [];
-                            foreach ($getAttendanceFinalTerm  as $component) {
-                                $componentId = $component['component_id'];
-                                $componentItems = $comp_item->getItemById($componentId);
-                                $componentItemsMap[$componentId] = $componentItems; // Store items for later use
-                            }
-                            ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ======================================attendance Final Term -->
+        <div class="modal fade" id="attendanceModalFinalTerm" tabindex="-1" aria-labelledby="attendanceModalLabelFinalTerm" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="attendanceModalLabelFinalTerm">Attendance Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="attendanceContent">
 
-                         
-<form id="editAttendanceFormFinalTerm" method="POST" action="update_attendance_finalterm.php">
-<input type="hidden" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>">
+                        <div class="text-end">
+                            <button type="button" id="editAttendanceFinalTerm" class="btn btn-primary p-2 rounded">
+                                Edit Attendance
+                            </button>
+                        </div>
+                        <?php
+                        // Pre-fetch component items for all components in $midtermComp
+                        $componentItemsMap = [];
+                        foreach ($getAttendanceFinalTerm  as $component) {
+                            $componentId = $component['component_id'];
+                            $componentItems = $comp_item->getItemById($componentId);
+                            $componentItemsMap[$componentId] = $componentItems; // Store items for later use
+                        }
+                        ?>
+
+
+                        <form id="editAttendanceFormFinalTerm" method="POST" action="update_attendance_finalterm.php">
+                            <input type="hidden" name="faculty_sub_id" value="<?= $selected_faculty_sub_id ?>">
                             <table id="student_table_finalterm" class="table table-striped" style="width:100%">
                                 <thead>
                                     <!-- Main Header Row -->
@@ -691,8 +689,8 @@ include './includes/head.php';
                                         <th>#</th>
                                         <th>Student ID</th>
                                         <th>Student Name</th>
-                                       
-                                  
+
+
                                         <?php foreach ($getAttendanceFinalTerm  as $component): ?>
                                             <?php
                                             $componentId = $component['component_id'];
@@ -703,12 +701,12 @@ include './includes/head.php';
                                                 <?= ucwords($component['component_type']) ?>
                                             </th>
                                         <?php endforeach; ?>
-                                   
+
                                     </tr>
 
                                     <!-- Subheader: Component Number & Date -->
                                     <tr>
-                                    
+
                                         <th colspan="3"></th>
                                         <?php foreach ($getAttendanceFinalTerm  as $component): ?>
                                             <?php
@@ -727,7 +725,7 @@ include './includes/head.php';
                                                 <th class="text-center component-type-column">-</th>
                                             <?php } ?>
                                         <?php endforeach; ?>
-                                        
+
                                     </tr>
                                 </thead>
 
@@ -744,9 +742,9 @@ include './includes/head.php';
                                                 </a>
                                             </td>
                                             <td><?= ucwords($student['fullName']) ?></td>
-                                          
 
-                                           
+
+
 
                                             <?php foreach ($getAttendanceFinalTerm as $component): ?>
                                                 <?php
@@ -758,58 +756,56 @@ include './includes/head.php';
                                                         if (!empty($scoreData)) {
                                                             foreach ($scoreData as $score): ?>
                                                                 <td class="text-center">
-                                                                <input 
-                type="text"
-                name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-                value="<?= htmlspecialchars($score['score']) ?>"
-                class="score-input"
-                style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;"
-            />
-            <span class="score-value" style="color:#952323;">
-                <?= htmlspecialchars($score['score']) ?>
-            </span>
-            <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
-        </td>
-    <?php endforeach;
-} else { ?>
-    <td class="text-center">
-        <input 
-            type="text"
-            name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
-            value="0"
-            class="score-input"
-            style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;"
-        />
-        <span class="score-value">0</span><span class="text-secondary">/<?= $item['component_quantity'] ?></span>
-    </td>
-                                                        <?php }
+                                                                    <input
+                                                                        type="text"
+                                                                        name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                        value="<?= htmlspecialchars($score['score']) ?>"
+                                                                        class="score-input"
+                                                                        style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;" />
+                                                                    <span class="score-value" style="color:#952323;">
+                                                                        <?= htmlspecialchars($score['score']) ?>
+                                                                    </span>
+                                                                    <span class="text-secondary score-max">/<?= $item['component_quantity'] ?></span>
+                                                                </td>
+                                                            <?php endforeach;
+                                                        } else { ?>
+                                                            <td class="text-center">
+                                                                <input
+                                                                    type="text"
+                                                                    name="scores[<?= $student['grades_id'] ?>][<?= $item['items_id'] ?>]"
+                                                                    value="0"
+                                                                    class="score-input"
+                                                                    style="width: 40px; height: 25px; font-size: 12px; text-align: center; border: 1px solid #ccc; border-radius: 4px; color: #952323; display: none;" />
+                                                                <span class="score-value">0</span><span class="text-secondary">/<?= $item['component_quantity'] ?></span>
+                                                            </td>
+                                                    <?php }
                                                     endforeach;
                                                 } else { ?>
                                                     <td class="text-center">-</td>
                                                 <?php } ?>
                                             <?php endforeach; ?>
-                                            
+
                                         </tr>
-                                        <?php
+                                    <?php
                                         $counter++;
                                     endforeach;
                                     ?>
-                               
+
                                 </tbody>
                             </table>
-                            </form>
-       
+                        </form>
 
- 
-      </div>
-    </div>
-  </div>
-</div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./js/main.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#student_table_midterm').DataTable({
                 pageLength: 10,
                 scrollX: true,
@@ -838,7 +834,7 @@ include './includes/head.php';
             window.location.href = window.location.pathname + '?' + urlParams.toString();
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             function saveActiveTab(tabId) {
                 localStorage.setItem('activeTab', tabId);
             }
@@ -867,7 +863,7 @@ include './includes/head.php';
 
             const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
             tabButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const tabId = this.getAttribute('id');
                     saveActiveTab(tabId);
                 });
@@ -876,240 +872,239 @@ include './includes/head.php';
             // Restore the active tab on page load
             restoreActiveTab();
         });
-
     </script>
 
-<!-- =============== -->
+    <!-- =============== -->
 
-<script>
-document.getElementById('editScoresBtn').addEventListener('click', function () {
-    const button = this;
-    const scoreTexts = document.querySelectorAll('.score-text');
-    const scoreInputs = document.querySelectorAll('.score-input');
-    const form = document.getElementById('editScoresForm');  // Get the form
+    <script>
+        document.getElementById('editScoresBtn').addEventListener('click', function() {
+            const button = this;
+            const scoreTexts = document.querySelectorAll('.score-text');
+            const scoreInputs = document.querySelectorAll('.score-input');
+            const form = document.getElementById('editScoresForm'); // Get the form
 
-    if (button.textContent === 'Edit Scores') {
-        // Change to edit mode
-        scoreTexts.forEach(function(span) {
-            span.style.display = 'none';
+            if (button.textContent === 'Edit Scores') {
+                // Change to edit mode
+                scoreTexts.forEach(function(span) {
+                    span.style.display = 'none';
+                });
+
+                scoreInputs.forEach(function(input) {
+                    input.style.display = 'inline-block';
+                });
+
+                button.textContent = 'Save Scores'; // Change button text
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+            } else {
+                // Save mode
+                scoreTexts.forEach(function(span, index) {
+                    const input = scoreInputs[index];
+                    span.textContent = input.value; // Update span with input value
+                    span.style.display = 'inline-block';
+                    input.style.display = 'none';
+                });
+
+                button.textContent = 'Edit Scores'; // Change button text back
+                button.classList.remove('btn-success');
+                button.classList.add('btn-primary');
+
+                // Submit the form when the user clicks Save Scores
+                form.submit(); // This will submit the form to save_scores.php
+            }
+        });
+        //Checking the max value of the  midterm score
+        document.querySelectorAll('.score-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const maxSpan = input.closest('td').querySelector('.score-max');
+                if (!maxSpan) return;
+
+                const maxValue = parseFloat(maxSpan.textContent.replace('/', '').trim());
+                const inputValue = parseFloat(input.value);
+
+                if (!isNaN(inputValue) && inputValue > maxValue) {
+                    alert(`Score cannot exceed ${maxValue}`);
+                    input.value = ''; // or reset to maxValue if you prefer
+                }
+            });
+        });
+        //Checking the max value of the  finalterm score
+        document.querySelectorAll('.score-input2').forEach(input => {
+            input.addEventListener('input', function() {
+                const maxSpan = input.closest('td').querySelector('.score-max');
+                if (!maxSpan) return;
+
+                const maxValue = parseFloat(maxSpan.textContent.replace('/', '').trim());
+                const inputValue = parseFloat(input.value);
+
+                if (!isNaN(inputValue) && inputValue > maxValue) {
+                    alert(`Score cannot exceed ${maxValue}`);
+                    input.value = ''; // or reset to maxValue if you prefer
+                }
+            });
+        });
+        document.getElementById('editScoresBtn2').addEventListener('click', function() {
+            const button = this;
+            const scoreTexts = document.querySelectorAll('.score-text2');
+            const scoreInputs = document.querySelectorAll('.score-input2');
+            const form = document.getElementById('editScoresForm2'); // Get the form
+
+            if (button.textContent === 'Edit Scores') {
+                // Change to edit mode
+                scoreTexts.forEach(function(span) {
+                    span.style.display = 'none';
+                });
+
+                scoreInputs.forEach(function(input) {
+                    input.style.display = 'inline-block';
+                });
+
+                button.textContent = 'Save Scores'; // Change button text
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+            } else {
+                // Save mode
+                scoreTexts.forEach(function(span, index) {
+                    const input = scoreInputs[index];
+                    span.textContent = input.value; // Update span with input value
+                    span.style.display = 'inline-block';
+                    input.style.display = 'none';
+                });
+
+                button.textContent = 'Edit Scores'; // Change button text back
+                button.classList.remove('btn-success');
+                button.classList.add('btn-primary');
+
+                // Submit the form when the user clicks Save Scores
+                form.submit(); // This will submit the form to save_scores.php
+            }
         });
 
-        scoreInputs.forEach(function(input) {
-            input.style.display = 'inline-block';
+        //Attendance midterm
+        document.getElementById('editAttendanceMidterm').addEventListener('click', function() {
+            const button = this;
+            const inputs = document.querySelectorAll('#attendanceModal .score-input');
+            const values = document.querySelectorAll('#attendanceModal .score-value');
+
+            if (button.textContent.trim() === 'Edit Attendance') {
+                values.forEach(el => el.style.display = 'none');
+                inputs.forEach(input => input.style.display = 'inline-block');
+
+                button.textContent = 'Save Attendance';
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+            } else {
+                inputs.forEach((input, i) => {
+                    const valueSpan = values[i];
+                    valueSpan.textContent = input.value;
+                    valueSpan.style.display = 'inline-block';
+                    input.style.display = 'none';
+                });
+
+                button.textContent = 'Edit Attendance';
+                button.classList.remove('btn-success');
+                button.classList.add('btn-primary');
+
+                // Submit the form to update_attendance_midterm.php
+                document.getElementById('editAttendanceForm').submit();
+            }
         });
+        document.getElementById('editAttendanceFinalTerm').addEventListener('click', function() {
+            const button = this;
+            const inputs = document.querySelectorAll('#attendanceModalFinalTerm .score-input');
+            const values = document.querySelectorAll('#attendanceModalFinalTerm .score-value');
 
-        button.textContent = 'Save Scores'; // Change button text
-        button.classList.remove('btn-primary');
-        button.classList.add('btn-success');
-    } else {
-        // Save mode
-        scoreTexts.forEach(function(span, index) {
-            const input = scoreInputs[index];
-            span.textContent = input.value; // Update span with input value
-            span.style.display = 'inline-block';
-            input.style.display = 'none';
+            if (button.textContent.trim() === 'Edit Attendance') {
+                values.forEach(el => el.style.display = 'none');
+                inputs.forEach(input => input.style.display = 'inline-block');
+
+                button.textContent = 'Save Attendance';
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-success');
+            } else {
+                inputs.forEach((input, i) => {
+                    const valueSpan = values[i];
+                    valueSpan.textContent = input.value;
+                    valueSpan.style.display = 'inline-block';
+                    input.style.display = 'none';
+                });
+
+                button.textContent = 'Edit Attendance';
+                button.classList.remove('btn-success');
+                button.classList.add('btn-primary');
+
+                // Submit the form to update_attendance_midterm.php
+                document.getElementById('editAttendanceFormFinalTerm').submit();
+            }
         });
+    </script>
 
-        button.textContent = 'Edit Scores'; // Change button text back
-        button.classList.remove('btn-success');
-        button.classList.add('btn-primary');
 
-        // Submit the form when the user clicks Save Scores
-        form.submit();  // This will submit the form to save_scores.php
-    }
-});
-//Checking the max value of the  midterm score
-document.querySelectorAll('.score-input').forEach(input => {
-    input.addEventListener('input', function () {
-        const maxSpan = input.closest('td').querySelector('.score-max');
-        if (!maxSpan) return;
 
-        const maxValue = parseFloat(maxSpan.textContent.replace('/', '').trim());
-        const inputValue = parseFloat(input.value);
 
-        if (!isNaN(inputValue) && inputValue > maxValue) {
-            alert(`Score cannot exceed ${maxValue}`);
-            input.value = ''; // or reset to maxValue if you prefer
+
+    <style>
+        .scrollable-table-container {
+            overflow-x: auto;
+            width: 100%;
         }
-    });
-});
-//Checking the max value of the  finalterm score
-document.querySelectorAll('.score-input2').forEach(input => {
-    input.addEventListener('input', function () {
-        const maxSpan = input.closest('td').querySelector('.score-max');
-        if (!maxSpan) return;
 
-        const maxValue = parseFloat(maxSpan.textContent.replace('/', '').trim());
-        const inputValue = parseFloat(input.value);
-
-        if (!isNaN(inputValue) && inputValue > maxValue) {
-            alert(`Score cannot exceed ${maxValue}`);
-            input.value = ''; // or reset to maxValue if you prefer
+        /* Base styling */
+        #student_table_midterm th,
+        #student_table_midterm td {
+            white-space: nowrap;
+            vertical-align: middle;
         }
-    });
-});
-document.getElementById('editScoresBtn2').addEventListener('click', function () {
-    const button = this;
-    const scoreTexts = document.querySelectorAll('.score-text2');
-    const scoreInputs = document.querySelectorAll('.score-input2');
-    const form = document.getElementById('editScoresForm2');  // Get the form
-
-    if (button.textContent === 'Edit Scores') {
-        // Change to edit mode
-        scoreTexts.forEach(function(span) {
-            span.style.display = 'none';
-        });
-
-        scoreInputs.forEach(function(input) {
-            input.style.display = 'inline-block';
-        });
-
-        button.textContent = 'Save Scores'; // Change button text
-        button.classList.remove('btn-primary');
-        button.classList.add('btn-success');
-    } else {
-        // Save mode
-        scoreTexts.forEach(function(span, index) {
-            const input = scoreInputs[index];
-            span.textContent = input.value; // Update span with input value
-            span.style.display = 'inline-block';
-            input.style.display = 'none';
-        });
-
-        button.textContent = 'Edit Scores'; // Change button text back
-        button.classList.remove('btn-success');
-        button.classList.add('btn-primary');
-
-        // Submit the form when the user clicks Save Scores
-        form.submit();  // This will submit the form to save_scores.php
-    }
-});
-
-//Attendance midterm
-document.getElementById('editAttendanceMidterm').addEventListener('click', function () {
-    const button = this;
-    const inputs = document.querySelectorAll('#attendanceModal .score-input');
-    const values = document.querySelectorAll('#attendanceModal .score-value');
-
-    if (button.textContent.trim() === 'Edit Attendance') {
-        values.forEach(el => el.style.display = 'none');
-        inputs.forEach(input => input.style.display = 'inline-block');
-
-        button.textContent = 'Save Attendance';
-        button.classList.remove('btn-primary');
-        button.classList.add('btn-success');
-    } else {
-        inputs.forEach((input, i) => {
-            const valueSpan = values[i];
-            valueSpan.textContent = input.value;
-            valueSpan.style.display = 'inline-block';
-            input.style.display = 'none';
-        });
-
-        button.textContent = 'Edit Attendance';
-        button.classList.remove('btn-success');
-        button.classList.add('btn-primary');
-
-        // Submit the form to update_attendance_midterm.php
-        document.getElementById('editAttendanceForm').submit();
-    }
-});
-document.getElementById('editAttendanceFinalTerm').addEventListener('click', function () {
-    const button = this;
-    const inputs = document.querySelectorAll('#attendanceModalFinalTerm .score-input');
-    const values = document.querySelectorAll('#attendanceModalFinalTerm .score-value');
-
-    if (button.textContent.trim() === 'Edit Attendance') {
-        values.forEach(el => el.style.display = 'none');
-        inputs.forEach(input => input.style.display = 'inline-block');
-
-        button.textContent = 'Save Attendance';
-        button.classList.remove('btn-primary');
-        button.classList.add('btn-success');
-    } else {
-        inputs.forEach((input, i) => {
-            const valueSpan = values[i];
-            valueSpan.textContent = input.value;
-            valueSpan.style.display = 'inline-block';
-            input.style.display = 'none';
-        });
-
-        button.textContent = 'Edit Attendance';
-        button.classList.remove('btn-success');
-        button.classList.add('btn-primary');
-
-        // Submit the form to update_attendance_midterm.php
-        document.getElementById('editAttendanceFormFinalTerm').submit();
-    }
-});
-
-</script>
 
 
-
-
-
-<style>
-.scrollable-table-container {
-    overflow-x: auto;
-    width: 100%;
-}
-
-/* Base styling */
-#student_table_midterm th,
-#student_table_midterm td {
-    white-space: nowrap;
-    vertical-align: middle;
-}
-
-
-/* Sticky for Student ID */
-/* #student_table_midterm th:nth-child(1),
+        /* Sticky for Student ID */
+        /* #student_table_midterm th:nth-child(1),
 #student_table_midterm td:nth-child(1) {
     position: sticky;
     left: 10px; 
     background: white;
     z-index: 4;
 } */
-/* Sticky for Student ID */
-#student_table_midterm th:nth-child(2),
-#student_table_midterm td:nth-child(2) {
-    position: sticky;
-    left: 10px; 
-    background: white;
-    z-index: 3;
-}
+        /* Sticky for Student ID */
+        #student_table_midterm th:nth-child(2),
+        #student_table_midterm td:nth-child(2) {
+            position: sticky;
+            left: 10px;
+            background: white;
+            z-index: 3;
+        }
 
-/* Sticky for Student Name */
-#student_table_midterm th:nth-child(3),
-#student_table_midterm td:nth-child(3) {
-    position: sticky;
-    left: 110px; 
-    background: white;
-    z-index: 4;
-}
+        /* Sticky for Student Name */
+        #student_table_midterm th:nth-child(3),
+        #student_table_midterm td:nth-child(3) {
+            position: sticky;
+            left: 110px;
+            background: white;
+            z-index: 4;
+        }
 
-#student_table_finalterm th,
-#student_table_finalterm td {
-    white-space: nowrap;
-    vertical-align: middle;
-}
-#student_table_finalterm th:nth-child(2),
-#student_table_finalterm td:nth-child(2) {
-    position: sticky;
-    left: 10px; 
-    background: white;
-    z-index: 3;
-}
-#student_table_finalterm th:nth-child(3),
-#student_table_finalterm td:nth-child(3) {
-    position: sticky;
-    left: 110px; 
-    background: white;
-    z-index: 4;
-}
+        #student_table_finalterm th,
+        #student_table_finalterm td {
+            white-space: nowrap;
+            vertical-align: middle;
+        }
 
-</style>
+        #student_table_finalterm th:nth-child(2),
+        #student_table_finalterm td:nth-child(2) {
+            position: sticky;
+            left: 10px;
+            background: white;
+            z-index: 3;
+        }
+
+        #student_table_finalterm th:nth-child(3),
+        #student_table_finalterm td:nth-child(3) {
+            position: sticky;
+            left: 110px;
+            background: white;
+            z-index: 4;
+        }
+    </style>
 
 </body>
 

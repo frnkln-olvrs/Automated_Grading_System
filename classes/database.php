@@ -4,7 +4,7 @@ class Database {
   private $host = 'localhost';
   private $username = 'root';
   private $password = '';
-  private $database = 'auto';
+  private $database = 'auto_gsdb5';
   protected $connection;
 
   function connect() {
